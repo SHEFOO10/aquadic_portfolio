@@ -14,31 +14,66 @@ import RedArrow from "@/components/icons/process/RedArrow";
 export const processData = [
   {
     id: 1,
-    name: "01. Analysis And Planning",
-    body: (
+    nameEn: "01. Analysis And Planning",
+    nameAr: "01. تحليل وتخطيط",
+    bodyEn: (
       <div className="flex flex-col gap-4 text-[#121212] text-base">
         <p className="font-medium">Answering the big questions:.</p>
         <ul className="flex flex-col gap-3">
           <li className="flex items-center gap-2">
             <RedArrow />
-            Who is supposed to use this software?</li>
+            Who is supposed to use this software?
+          </li>
           <li className="flex items-center gap-2">
             <RedArrow />
-            Who is supposed to use this software?</li>
+            Who is supposed to use this software?
+          </li>
           <li className="flex items-center gap-2">
             <RedArrow />
-            Who is supposed to use this software?</li>
+            Who is supposed to use this software?
+          </li>
           <li className="flex items-center gap-2">
             <RedArrow />
-            Who is supposed to use this software?</li>
+            Who is supposed to use this software?
+          </li>
         </ul>
-        <p className="text-[#5D5D5D]">And defining project scheduling and cost, we’ve an outline to focus on, and move forward. This data is then analyzed to ensure its validity.</p>
+        <p className="text-[#5D5D5D]">
+          And defining project scheduling and cost, we’ve an outline to focus
+          on, and move forward. This data is then analyzed to ensure its
+          validity.
+        </p>
+      </div>
+    ),
+    bodyAr: (
+      <div className="flex flex-col gap-4 text-[#121212] text-base">
+        <p className="font-medium">الاجابة على الاسئلة الكبيرة.</p>
+        <ul className="flex flex-col gap-3">
+          <li className="flex items-center gap-2">
+            <RedArrow />
+            من يستخدم هذا البرنامج
+          </li>
+          <li className="flex items-center gap-2">
+            <RedArrow />
+            من يستخدم هذا البرنامج
+          </li>
+          <li className="flex items-center gap-2">
+            <RedArrow />
+            من يستخدم هذا البرنامج
+          </li>
+          <li className="flex items-center gap-2">
+            <RedArrow />
+            من يستخدم هذا البرنامج
+          </li>
+        </ul>
+        <p className="text-[#5D5D5D]">
+          وتحديد جدول المشروع وتكلفته، لدينا مخطط نركز عليه ونتقدم إلى الأمام.
+          ثم يتم تحليل هذه البيانات لضمان صحتها.
+        </p>
       </div>
     ),
     icon: <AnalysisIcon />,
     hoveredIcon: <AnalysisIcon />,
-  }
-  ,
+  },
   {
     id: 2,
     name: "02. Design",

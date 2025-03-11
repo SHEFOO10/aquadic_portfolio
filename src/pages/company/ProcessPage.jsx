@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import "../../components/Hooks/i18n";
 
 const ProcessPage = () => {
-  const { t } = useTranslation("process");
+  const { t, i18n } = useTranslation("process");
   const [progress, setProgress] = useState(10);
   const containerRef = useRef(null);
 
@@ -32,7 +32,7 @@ const ProcessPage = () => {
       ref={containerRef}
     >
       <h1 className="text-center text-3xl sm:text-5xl font-semibold mb-12 flex gap-2 rtl:flex-row-reverse">
-        {t('company')} <span className="text-brandColor">{t('process')}</span>
+        {t("company")} <span className="text-brandColor">{t("process")}</span>
       </h1>
       <div className="relative w-10 flex flex-col items-center pb-28">
         <div
@@ -44,7 +44,7 @@ const ProcessPage = () => {
           style={{ height: `${progress - 1}%`, borderRadius: "1rem" }}
         />
         {processData.map((item, index) => {
-          const reached = progress >= index * (100 / 6);
+          const reached = progress >= index * (108 / 6);
           return (
             <div
               key={index}
@@ -57,7 +57,11 @@ const ProcessPage = () => {
                 animate={{ opacity: reached ? 1 : 0.5, y: reached ? 0 : 50 }}
                 transition={{ duration: 0.6, ease: "easeInOut" }}
               >
-                <ProcessCard index={index} name={item.name} body={item.body} />
+                <ProcessCard
+                  index={index}
+                  name={i18n.language === "en" ? item.nameEn : item.nameAr}
+                  body={i18n.language === "en" ? item.bodyEn : item.bodyAr}
+                />
               </motion.div>
             </div>
           );
