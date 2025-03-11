@@ -30,6 +30,12 @@ const Header = () => {
   const closeSidebar = () => {
     setIsSidebarOpen(false);
   };
+  const scrollToAboutUs = () => {
+    const aboutUsSection = document.getElementById('aboutUs');
+    if (aboutUsSection) {
+      aboutUsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 
   return (
     <div>
@@ -89,40 +95,22 @@ const Header = () => {
                             <p>{t('aboutus')}</p>
                           </NavLink>
                           <NavLink onClick={closeSidebar}
-                            to="team"
-                            className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
-                          >
-                            <p>{t('team')}</p>
-                          </NavLink>
-                          <NavLink onClick={closeSidebar}
                             to="process"
                             className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
                           >
                             <p>{t('process')}</p>
                           </NavLink>
                           <NavLink onClick={closeSidebar}
-                            to="flog"
+                            to="team"
                             className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
                           >
-                            <p>{t('flog')}</p>
+                            <p>{t('team')}</p>
                           </NavLink>
                           <NavLink onClick={closeSidebar}
-                            to="portfolio"
+                            to="career"
                             className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
                           >
-                            <p>{t('portfolio')}</p>
-                          </NavLink>
-                          <NavLink onClick={closeSidebar}
-                            to="joinus"
-                            className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
-                          >
-                            <p>{t('joinus')}</p>
-                          </NavLink>
-                          <NavLink onClick={closeSidebar}
-                            to="contactus"
-                            className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
-                          >
-                            <p>{t('contactus')}</p>
+                            <p>{t('career')}</p>
                           </NavLink>
                         </ul>
                       </DropdownMenuLabel>
@@ -224,11 +212,21 @@ const Header = () => {
                   <DropdownMenuContent className="w-56">
                     <DropdownMenuLabel>
                       <ul>
-                        <NavLink onClick={closeSidebar}
-                          to="aboutus"
+                        <li>
+                          <a href="#aboutUs" onClick={(e) => {
+                            e.preventDefault();
+                            scrollToAboutUs();
+                          }}
+                            className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
+                          >
+                            {t('aboutus')}
+                          </a>
+                        </li>
+                        <NavLink
+                          to="process"
                           className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
                         >
-                          <p>{t('aboutus')}</p>
+                          <p>{t('process')}</p>
                         </NavLink>
                         <NavLink onClick={closeSidebar}
                           to="team"
@@ -237,35 +235,12 @@ const Header = () => {
                           <p>{t('team')}</p>
                         </NavLink>
                         <NavLink
-                          to="process"
+                          to="career"
                           className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
                         >
-                          <p>{t('process')}</p>
+                          <p>{t('career')}</p>
                         </NavLink>
-                        <NavLink
-                          to="flog"
-                          className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
-                        >
-                          <p>{t('flog')}</p>
-                        </NavLink>
-                        <NavLink
-                          to="portfolio"
-                          className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
-                        >
-                          <p>{t('portfolio')}</p>
-                        </NavLink>
-                        <NavLink
-                          to="joinus"
-                          className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
-                        >
-                          <p>{t('joinus')}</p>
-                        </NavLink>
-                        <NavLink
-                          to="contactus"
-                          className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
-                        >
-                          <p>{t('contactus')}</p>
-                        </NavLink>
+
                       </ul>
                     </DropdownMenuLabel>
                   </DropdownMenuContent>

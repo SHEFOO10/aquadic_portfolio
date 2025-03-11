@@ -8,7 +8,7 @@ const Team = () => {
     return (
         <div>
             <PagesHeader
-                header={t('bestTalent')}
+                sheader={t('bestTalent')}
                 title={t('teamTitle')}
             />
             <TeamCards />

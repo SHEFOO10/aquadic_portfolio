@@ -14,6 +14,12 @@ import "../Hooks/i18n";
 
 const Footer = () => {
   const { t } = useTranslation("navbar");
+  const scrollToAboutUs = () => {
+    const aboutUsSection = document.getElementById('aboutUs');
+    if (aboutUsSection) {
+      aboutUsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
   return (
     <footer className="relative py-6">
       <div className="container">
@@ -55,17 +61,14 @@ const Footer = () => {
               </h2>
               <ul>
                 <li className="mb-4">
-                  <NavLink
-                    to="/aboutus"
+                  <a href="#aboutUs" onClick={(e) => {
+                    e.preventDefault();
+                    scrollToAboutUs();
+                  }}
                     className="text-black text-base left-8"
                   >
                     {t('aboutus')}
-                  </NavLink>
-                </li>
-                <li className="mb-4">
-                  <NavLink to="/team" className="text-black text-base left-8">
-                    {t('team')}
-                  </NavLink>
+                  </a>
                 </li>
                 <li className="mb-4">
                   <NavLink
@@ -76,31 +79,17 @@ const Footer = () => {
                   </NavLink>
                 </li>
                 <li className="mb-4">
-                  <NavLink to="/flog" className="text-black text-base left-8">
-                    {t('flog')}
+                  <NavLink to="/team" className="text-black text-base left-8">
+                    {t('team')}
                   </NavLink>
                 </li>
+
                 <li className="mb-4">
-                  <NavLink
-                    to="/portfolio"
-                    className="text-black text-base left-8"
-                  >
-                    {t('portfolio')}
+                  <NavLink to="/career" className="text-black text-base left-8">
+                    {t('career')}
                   </NavLink>
                 </li>
-                <li className="mb-4">
-                  <NavLink to="/joinus" className="text-black text-base left-8">
-                    {t('joinus')}
-                  </NavLink>
-                </li>
-                <li className="mb-4">
-                  <NavLink
-                    to="/contactus"
-                    className="text-black text-base left-8"
-                  >
-                    {t('contactus')}
-                  </NavLink>
-                </li>
+
               </ul>
             </div>
             <div>
