@@ -44,7 +44,7 @@ const ProcessPage = () => {
           style={{ height: `${progress - 1}%`, borderRadius: "1rem" }}
         />
         {processData.map((item, index) => {
-          const reached = progress >= index * (108 / 6);
+          const reached = progress >= index * (107 / 6);
           return (
             <div
               key={index}
