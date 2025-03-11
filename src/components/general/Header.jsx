@@ -88,12 +88,17 @@ const Header = () => {
                     <DropdownMenuContent className="w-56 mx-2">
                       <DropdownMenuLabel>
                         <ul>
-                          <NavLink onClick={closeSidebar}
-                            to="aboutus"
-                            className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
-                          >
-                            <p>{t('aboutus')}</p>
-                          </NavLink>
+                          <li>
+                            <a href="#aboutUs" onClick={(e) => {
+                              e.preventDefault();
+                              scrollToAboutUs();
+                              closeSidebar();
+                            }}
+                              className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
+                            >
+                              {t('aboutus')}
+                            </a>
+                          </li>
                           <NavLink onClick={closeSidebar}
                             to="process"
                             className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
