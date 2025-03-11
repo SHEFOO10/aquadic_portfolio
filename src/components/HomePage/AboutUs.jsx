@@ -13,7 +13,7 @@ const AboutUs = () => {
   });
   const [isExpanded, setIsExpanded] = useState(false);
   return (
-    <section ref={ref} className="container z-50">
+    <section ref={ref} id="aboutUs" className="container z-50">
       <h1 className="text-[#121212] text-[32px] flex justify-center">
         {t('aboutus')}
       </h1>
