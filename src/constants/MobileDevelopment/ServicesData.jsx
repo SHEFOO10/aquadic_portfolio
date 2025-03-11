@@ -7,33 +7,45 @@ import scalable from '../../assets/images/scalable.svg'
 const ServicesData = [
     {
         image: android,
-        title: "Android",
-        paragraph: "Building Android apps using Gradle building tool and Android Studio, for different devices and screen sizes."
+        titleEn: "Android",
+        titleAr: "أندرويد",
+        paragraphEn: "Building Android apps using Gradle building tool and Android Studio, for different devices and screen sizes.",
+        paragraphAr: "إنشاء تطبيقات Android باستخدام أداة Gradle وAndroid Studio، لأجهزة وأحجام شاشات مختلفة."
     },
     {
         image: ios,
-        title: "iOS",
-        paragraph: "Building iOS apps using Swift programming language, for both iPhone and iPad."
+        titleEn: "iOS",
+        titleAr: "iOS",
+        paragraphEn: "Building iOS apps using Swift programming language, for both iPhone and iPad.",
+        paragraphAr: "إنشاء تطبيقات iOS باستخدام لغة البرمجة Swift، لكل من iPhone وiPad."
     },
     {
         image: scalable,
-        title: "DevOps",
-        paragraph: "Continuous integration for the project life cycle, starting from development and ending with automatic store submission."
+        titleEn: "DevOps",
+        titleAr: "DevOps",
+        paragraphEn: "Continuous integration for the project life cycle, starting from development and ending with automatic store submission.",
+        paragraphAr: "التكامل المستمر لدورة حياة المشروع، بدءًا من التطوير وانتهاءً بالتقديم التلقائي للمتجر."
     },
     {
         image: userFriendly,
-        title: "User-Friendly Designs",
-        paragraph: "Using the latest platform-specific guidelines and trends, we develop professional apps that are not only easy on the eyes but also easy to use."
+        titleEn: "User-Friendly Designs",
+        titleAr: "تصميمات سهلة الاستخدام",
+        paragraphEn: "Using the latest platform-specific guidelines and trends, we develop professional apps that are not only easy on the eyes but also easy to use.",
+        paragraphAr: "باستخدام أحدث الإرشادات والاتجاهات الخاصة بالمنصة، نقوم بتطوير تطبيقات احترافية ليست سهلة على العيون فحسب، بل وسهلة الاستخدام أيضًا."
     },
     {
         image: quality,
-        title: "Quality",
-        paragraph: "Our mobile apps pass through different types of testing: functional testing, compatibility testing, security testing, and UI testing."
+        titleEn: "Quality",
+        titleAr: "الجودة",
+        paragphEn: "Our mobile apps pass through different types of testing: functional testing, compatibility testing, security testing, and UI testing.",
+        paragraphAr: "تخضع تطبيقاتنا المحمولة لأنواع مختلفة من الاختبارات: الاختبار الوظيفي، واختبار التوافق، واختبار الأمان، واختبار واجهة المستخدم."
     },
     {
         image: testing,
-        title: "Testing on Different",
-        paragraph: "We test our applications on different devices, using manual testing and automated testing to deliver high-quality apps."
+        titleEn: "Testing on Different",
+        titleAr: "Testing on Different",
+        paragraphEn: "We test our applications on different devices, using manual testing and automated testing to deliver high-quality apps.",
+        paragraphAr: "نقوم باختبار تطبيقاتنا على أجهزة مختلفة، باستخدام الاختبار اليدوي والاختبار الآلي لتقديم تطبيقات عالية الجودة."
     }
 ];
 
