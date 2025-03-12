@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import "../Hooks/i18n";
+import { axios } from "@/lib/axios.js";
 
 // Define Zod schema
 const contactSchema = z.object({
@@ -34,6 +35,7 @@ const ContactUs = () => {
   // Submit handler
   const onSubmit = async (data) => {
     try {
+      await axios.post("contactus", data);
     } catch (err) {
       console.log(err);
     }
