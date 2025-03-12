@@ -93,17 +93,20 @@ const Header = () => {
                       <DropdownMenuLabel>
                         <ul>
                           <li>
-                            <a href="#aboutUs" onClick={(e) => {
-                              e.preventDefault();
-                              scrollToAboutUs();
-                              closeSidebar();
-                            }}
+                            <a
+                              href="#aboutUs"
+                              onClick={(e) => {
+                                e.preventDefault();
+                                scrollToAboutUs(e);
+                                closeSidebar();
+                              }}
                               className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
                             >
-                              {t('aboutus')}
+                              {t("aboutus")}
                             </a>
                           </li>
-                          <NavLink onClick={closeSidebar}
+                          <NavLink
+                            onClick={closeSidebar}
                             to="process"
                             className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
                           >
@@ -188,7 +191,8 @@ const Header = () => {
                   </DropdownMenu>
                 </li>
                 <li>
-                  <NavLink onClick={closeSidebar}
+                  <NavLink
+                    onClick={closeSidebar}
                     to="/portfolio"
                     className="block py-2 px-3 md:p-0 text-[#121212] font-medium text-base transform  hover:text-brandColor hover:underline transition-all duration-300"
                   >
@@ -239,9 +243,9 @@ const Header = () => {
                       <ul>
                         <li>
                           <button
-                            onClick={() => {
+                            onClick={(e) => {
                               closeSidebar();
-                              scrollToAboutUs();
+                              scrollToAboutUs(e);
                             }}
                             className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
                           >
