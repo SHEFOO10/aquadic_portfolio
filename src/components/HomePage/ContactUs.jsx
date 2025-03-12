@@ -10,6 +10,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import "../Hooks/i18n";
 import { axios } from "@/lib/axios.js";
+import { toast } from "sonner";
 
 // Define Zod schema
 const contactSchema = z.object({
@@ -36,7 +37,10 @@ const ContactUs = () => {
   const onSubmit = async (data) => {
     try {
       await axios.post("contactus", data);
+      toast.success(t("toast.messageSent"));
     } catch (err) {
+      toast.error(t("toast.error"));
+
       console.log(err);
     }
   };

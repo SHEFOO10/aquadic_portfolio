@@ -15,5 +15,9 @@
     "invalidEmail": "تنسيق البريد الإلكتروني غير صالح",
     "subjectRequired": "الموضوع مطلوب",
     "messageRequired": "لا يمكن أن تكون الرسالة فارغة"
+  },
+  "toast": {
+    "messageSent": "تم إرسال الرسالة بنجاح",
+    "error": "حدث خطأ ما"
   }
 }

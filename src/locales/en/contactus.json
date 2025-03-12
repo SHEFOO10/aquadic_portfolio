@@ -15,5 +15,9 @@
     "invalidEmail": "Invalid email format",
     "subjectRequired": "Subject is required",
     "messageRequired": "Message cannot be empty"
+  },
+  "toast": {
+    "messageSent": "Message sent successfully",
+    "error": "Something went wrong"
   }
 }
