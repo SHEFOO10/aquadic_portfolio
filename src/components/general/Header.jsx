@@ -3,10 +3,15 @@ import { useState } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
 import arrow from "@/assets/images/down_arrow.svg";
 import logo from "@/assets/images/logo.svg";
 import toggle from "@/assets/images/toggle.svg";
@@ -14,7 +19,6 @@ import close from "@/assets/images/closeIcon.svg";
 import Language from "./Language";
 import { useTranslation } from "react-i18next";
 import "../Hooks/i18n";
-
 const Header = () => {
   const { t } = useTranslation("navbar");
   const [isOpen, setIsOpen] = useState(false);
@@ -32,13 +36,12 @@ const Header = () => {
   const closeSidebar = () => {
     setIsSidebarOpen(false);
   };
-  const scrollToAboutUs = (event) => {
-    event.preventDefault(); // Prevents default anchor behavior
-    const aboutUsSection = document.getElementById("aboutUs");
+  const scrollToAboutUs = () => {
+    const aboutUsSection = document.getElementById('aboutUs');
     if (aboutUsSection) {
-      aboutUsSection.scrollIntoView({ behavior: "smooth" });
+      aboutUsSection.scrollIntoView({ behavior: 'smooth' });
     }
-  };
+  }
 
   return (
     <div>
@@ -46,7 +49,7 @@ const Header = () => {
         <div className="flex items-center justify-between gap-3 mx-auto">
           <div className="flex items-center  rtl:space-x-reverse">
             <button className="md:hidden flex" onClick={toggleSidebar1}>
-              <img src={toggle} className="w-6 h-6 mr-2" alt="Menu Icon" />
+              <img src={toggle} className="w-6 h-6" alt="Menu Icon" />
             </button>
             <NavLink to="/">
               <img className="max-sm:w-[130px]" src={logo} alt="Logo" />
@@ -69,143 +72,125 @@ const Header = () => {
             <div className="flex flex-col gap-5 font-normal text-lg rtl:space-x-reverse mt-4">
               <ul className="flex flex-col gap-2 font-normal text-lg rtl:space-x-reverse md:flex-row">
                 <li>
-                  <NavLink
-                    onClick={closeSidebar}
+                  <NavLink onClick={closeSidebar}
                     to="/"
                     className="block py-2 px-3 md:p-0 text-[#121212] font-medium text-base transform  hover:text-brandColor hover:underline transition-all duration-300"
                     aria-current="page"
                   >
-                    {t("home")}
+                    {t('home')}
                   </NavLink>
                 </li>
                 <li
                   className="flex items-center gap-1 relative"
                   onClick={toggleDropdown}
                 >
-                  <DropdownMenu>
-                    <DropdownMenuTrigger className="flex items-center gap-1">
-                      <p className="block py-2 px-3 md:p-0 text-[#121212] font-medium text-base transform  hover:text-brandColor hover:underline transition-all duration-300">
-                        {t("company")}
-                      </p>
-                      <img src={arrow} alt="Arrow" />
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent className="w-56 mx-2">
-                      <DropdownMenuLabel>
+                  <Accordion type="single" collapsible className="w-full">
+                    <AccordionItem value="company">
+                      <AccordionTrigger className="flex items-center gap-1">
+                        <p className="block py-2 px-3 md:p-0 text-[#121212] font-medium text-base transform  hover:text-brandColor hover:underline transition-all duration-300">
+                          {t('company')}
+                        </p>
+                      </AccordionTrigger>
+                      <AccordionContent className="px-2">
                         <ul>
                           <li>
                             <a
                               href="#aboutUs"
                               onClick={(e) => {
                                 e.preventDefault();
-                                scrollToAboutUs(e);
-                                closeSidebar();
+                                scrollToAboutUs();
                               }}
                               className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
                             >
-                              {t("aboutus")}
+                              {t('aboutus')}
                             </a>
                           </li>
                           <NavLink
-                            onClick={closeSidebar}
                             to="process"
+                            onClick={closeSidebar}
                             className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
                           >
-                            <p>{t("process")}</p>
+                            <p>{t('process')}</p>
                           </NavLink>
                           <NavLink
-                            onClick={closeSidebar}
                             to="team"
+                            onClick={closeSidebar}
                             className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
                           >
-                            <p>{t("team")}</p>
+                            <p>{t('team')}</p>
                           </NavLink>
                           <NavLink
-                            onClick={closeSidebar}
                             to="career"
                             className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
                           >
-                            <p>{t("career")}</p>
+                            <p>{t('career')}</p>
                           </NavLink>
                         </ul>
-                      </DropdownMenuLabel>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
+                      </AccordionContent>
+                    </AccordionItem>
+                  </Accordion>
                 </li>
 
                 <li>
-                  <DropdownMenu>
-                    <DropdownMenuTrigger className="flex items-center gap-1">
-                      <p className="block py-2 px-3 md:p-0 text-[#121212] font-medium text-base transform hover:text-brandColor hover:underline transition-all duration-300">
-                        {t("services")}
-                      </p>
-                      <img src={arrow} alt="Arrow" />
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent className="w-full mx-2">
-                      <DropdownMenuLabel>{t("services")}</DropdownMenuLabel>
-                      <DropdownMenuItem>
-                        <NavLink
-                          onClick={closeSidebar}
-                          to="/webdev"
-                          className="w-full h-10 flex items-center px-2 text-black text-base font-normal hover:bg-brandColor hover:text-white transition duration-300"
-                        >
-                          {t("webdev")}
-                        </NavLink>
-                      </DropdownMenuItem>
-                      <DropdownMenuItem>
-                        <NavLink
-                          onClick={closeSidebar}
-                          to="/mobiledesign"
-                          className="w-full h-10 flex items-center px-2 text-black text-base font-normal hover:bg-brandColor hover:text-white transition duration-300"
-                        >
-                          {t("mobiledesign")}
-                        </NavLink>
-                      </DropdownMenuItem>
-                      <DropdownMenuItem>
-                        <NavLink
-                          onClick={closeSidebar}
-                          to="/webdesign"
-                          className="w-full h-10 flex items-center px-2 text-black text-base font-normal hover:bg-brandColor hover:text-white transition duration-300"
-                        >
-                          {t("webdesign")}
-                        </NavLink>
-                      </DropdownMenuItem>
-                      <DropdownMenuItem>
-                        <NavLink
-                          onClick={closeSidebar}
-                          to="/mobiledev"
-                          className="w-full h-10 flex items-center px-2 text-black text-base font-normal hover:bg-brandColor hover:text-white transition duration-300"
-                        >
-                          {t("mobiledev")}
-                        </NavLink>
-                      </DropdownMenuItem>
-                      <DropdownMenuItem>
-                        <NavLink
-                          onClick={closeSidebar}
-                          to="/testing"
-                          className="w-full h-10 flex items-center px-2 text-black text-base font-normal hover:bg-brandColor hover:text-white transition duration-300"
-                        >
-                          {t("testing")}
-                        </NavLink>
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
+                  <Accordion type="single" collapsible className="w-full">
+                    <AccordionItem value="services">
+                      <AccordionTrigger className="flex items-center gap-1">
+                        <p className="block py-2 px-3 md:p-0 text-[#121212] font-medium text-base transform hover:text-brandColor hover:underline transition-all duration-300">
+                          {t('services')}
+                        </p>
+                      </AccordionTrigger>
+                      <AccordionContent className="w-full mx-2">
+                        <ul>
+                          <NavLink onClick={closeSidebar}
+                            to="/webdev"
+                            className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
+                          >
+                            <p>{t('webdev')}</p>
+                          </NavLink>
+                          <NavLink onClick={closeSidebar}
+                            to="/mobiledesign"
+                            className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
+                          >
+                            <p>{t('mobiledesign')}</p>
+                          </NavLink>
+                          <NavLink onClick={closeSidebar}
+                            to="/webdesign"
+                            className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
+                          >
+                            <p>{t('webdesign')}</p>
+                          </NavLink>
+                          <NavLink onClick={closeSidebar}
+                            to="/mobiledev"
+                            className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
+                          >
+                            <p>{t('mobiledev')}</p>
+                          </NavLink>
+                          <NavLink onClick={closeSidebar}
+                            to="/testing"
+                            className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
+                          >
+                            <p>{t('testing')}</p>
+                          </NavLink>
+                        </ul>
+                      </AccordionContent>
+                    </AccordionItem>
+                  </Accordion>
+
                 </li>
                 <li>
-                  <NavLink
-                    onClick={closeSidebar}
+                  <NavLink onClick={closeSidebar}
                     to="/portfolio"
                     className="block py-2 px-3 md:p-0 text-[#121212] font-medium text-base transform  hover:text-brandColor hover:underline transition-all duration-300"
                   >
-                    {t("portfolio")}
+                    {t('portfolio')}
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink
-                    onClick={closeSidebar}
+                  <NavLink onClick={closeSidebar}
                     to="/faqs"
                     className="block py-2 px-3 md:p-0 text-[#121212] font-medium text-base transform  hover:text-brandColor hover:underline transition-all duration-300"
                   >
-                    {t("flog")}
+                    {t('flog')}
                   </NavLink>
                 </li>
               </ul>
@@ -218,13 +203,12 @@ const Header = () => {
           >
             <ul className="flex flex-col gap-[59px] font-normal p-4 md:p-0 mt-4 text-lg rtl:space-x-reverse md:flex-row">
               <li>
-                <NavLink
-                  onClick={closeSidebar}
+                <NavLink onClick={closeSidebar}
                   to="/"
                   className="block py-2 px-3 md:p-0 text-[#121212] font-medium text-base transform  hover:text-brandColor hover:underline transition-all duration-300"
                   aria-current="page"
                 >
-                  {t("home")}
+                  {t('home')}
                 </NavLink>
               </li>
               <li
@@ -234,7 +218,7 @@ const Header = () => {
                 <DropdownMenu>
                   <DropdownMenuTrigger className="flex items-center gap-1">
                     <p className="block py-2 px-3 md:p-0 text-[#121212] font-medium text-base transform  hover:text-brandColor hover:underline transition-all duration-300">
-                      {t("company")}
+                      {t('company')}
                     </p>
                     <img src={arrow} alt="Arrow" />
                   </DropdownMenuTrigger>
@@ -242,35 +226,34 @@ const Header = () => {
                     <DropdownMenuLabel>
                       <ul>
                         <li>
-                          <button
-                            onClick={(e) => {
-                              closeSidebar();
-                              scrollToAboutUs(e);
-                            }}
+                          <a href="#aboutUs" onClick={(e) => {
+                            e.preventDefault();
+                            scrollToAboutUs();
+                          }}
                             className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
                           >
-                            {t("aboutus")}
-                          </button>
+                            {t('aboutus')}
+                          </a>
                         </li>
                         <NavLink
                           to="process"
                           className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
                         >
-                          <p>{t("process")}</p>
+                          <p>{t('process')}</p>
                         </NavLink>
-                        <NavLink
-                          onClick={closeSidebar}
+                        <NavLink onClick={closeSidebar}
                           to="team"
                           className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
                         >
-                          <p>{t("team")}</p>
+                          <p>{t('team')}</p>
                         </NavLink>
                         <NavLink
                           to="career"
                           className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
                         >
-                          <p>{t("career")}</p>
+                          <p>{t('career')}</p>
                         </NavLink>
+
                       </ul>
                     </DropdownMenuLabel>
                   </DropdownMenuContent>
@@ -281,7 +264,7 @@ const Header = () => {
                 <DropdownMenu>
                   <DropdownMenuTrigger className="flex items-center gap-1">
                     <p className="block py-2 px-3 md:p-0 text-[#121212] font-medium text-base transform  hover:text-brandColor hover:underline transition-all duration-300">
-                      {t("services")}
+                      {t('services')}
                     </p>
                     <img src={arrow} alt="Arrow" />
                   </DropdownMenuTrigger>
@@ -292,31 +275,31 @@ const Header = () => {
                           to="/webdev"
                           className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
                         >
-                          <p>{t("webdev")}</p>
+                          <p>{t('webdev')}</p>
                         </NavLink>
                         <NavLink
                           to="/mobiledesign"
                           className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
                         >
-                          <p>{t("mobiledesign")}</p>
+                          <p>{t('mobiledesign')}</p>
                         </NavLink>
                         <NavLink
                           to="/webdesign"
                           className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
                         >
-                          <p>{t("webdesign")}</p>
+                          <p>{t('webdesign')}</p>
                         </NavLink>
                         <NavLink
                           to="/mobiledev"
                           className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
                         >
-                          <p>{t("mobiledev")}</p>
+                          <p>{t('mobiledev')}</p>
                         </NavLink>
                         <NavLink
                           to="/testing"
                           className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
                         >
-                          <p>{t("testing")}</p>
+                          <p>{t('testing')}</p>
                         </NavLink>
                       </ul>
                     </DropdownMenuLabel>
@@ -328,7 +311,7 @@ const Header = () => {
                   to="/portfolio"
                   className="block py-2 px-3 md:p-0 text-[#121212] font-medium text-base transform  hover:text-brandColor hover:underline transition-all duration-300"
                 >
-                  {t("portfolio")}
+                  {t('portfolio')}
                 </NavLink>
               </li>
               <li>
@@ -336,7 +319,7 @@ const Header = () => {
                   to="/faqs"
                   className="block py-2 px-3 md:p-0 text-[#121212] font-medium text-base transform  hover:text-brandColor hover:underline transition-all duration-300"
                 >
-                  {t("flog")}
+                  {t('flog')}
                 </NavLink>
               </li>
             </ul>
