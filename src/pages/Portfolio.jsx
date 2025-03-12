@@ -1,7 +1,27 @@
 import { Helmet } from "react-helmet-async";
 import Content from "@/components/Portfolio/Content";
+import { useQuery } from "@tanstack/react-query";
+import { axios } from "@/lib/axios.js";
+import { useState } from "react";
 
 const Portfolio = () => {
+  const [selectedCategory, setSelectedCategory] = useState(0);
+  const { data: categories } = useQuery({
+    queryKey: ["categories"],
+    queryFn: async () => await axios.get("category"),
+    select: (data) => data.data,
+  });
+  const { data: projects } = useQuery({
+    queryKey: ["projects", selectedCategory],
+    queryFn: async () =>
+      await axios.get("/project", {
+        params: {
+          category_id: 1,
+        },
+      }),
+    select: (data) => data.data,
+  });
+  console.log(categories);
   return (
     <div>
       <Helmet>
