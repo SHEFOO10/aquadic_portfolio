@@ -87,13 +87,13 @@ const Header = () => {
                           {t("company")}
                         </p>
                       </AccordionTrigger>
-                      <AccordionContent className="px-2">
+                      <AccordionContent>
                         <ul>
                           <li>
                             <a
                               onClick={closeSidebar}
                               href="/#aboutUs"
-                              className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
+                              className="hover:bg-brandColor flex items-center px-4 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
                             >
                               {t("aboutus")}
                             </a>
@@ -101,20 +101,20 @@ const Header = () => {
                           <NavLink
                             to="process"
                             onClick={closeSidebar}
-                            className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
+                            className="hover:bg-brandColor flex items-center px-4 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
                           >
                             <p>{t("process")}</p>
                           </NavLink>
                           <NavLink
                             to="team"
                             onClick={closeSidebar}
-                            className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
+                            className="hover:bg-brandColor flex items-center px-4 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
                           >
                             <p>{t("team")}</p>
                           </NavLink>
                           <NavLink
                             to="career"
-                            className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
+                            className="hover:bg-brandColor flex items-center px-4 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
                           >
                             <p>{t("career")}</p>
                           </NavLink>
@@ -132,40 +132,40 @@ const Header = () => {
                           {t("services")}
                         </p>
                       </AccordionTrigger>
-                      <AccordionContent className="w-full mx-2">
+                      <AccordionContent className="w-full">
                         <ul>
                           <NavLink
                             onClick={closeSidebar}
                             to="/webdev"
-                            className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
+                            className="hover:bg-brandColor flex items-center px-4 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
                           >
                             <p>{t("webdev")}</p>
                           </NavLink>
                           <NavLink
                             onClick={closeSidebar}
                             to="/mobiledesign"
-                            className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
+                            className="hover:bg-brandColor flex items-center px-4 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
                           >
                             <p>{t("mobiledesign")}</p>
                           </NavLink>
                           <NavLink
                             onClick={closeSidebar}
                             to="/webdesign"
-                            className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
+                            className="hover:bg-brandColor flex items-center px-4 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
                           >
                             <p>{t("webdesign")}</p>
                           </NavLink>
                           <NavLink
                             onClick={closeSidebar}
                             to="/mobiledev"
-                            className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
+                            className="hover:bg-brandColor flex items-center px-4 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
                           >
                             <p>{t("mobiledev")}</p>
                           </NavLink>
                           <NavLink
                             onClick={closeSidebar}
                             to="/testing"
-                            className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
+                            className="hover:bg-brandColor flex items-center px-4 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
                           >
                             <p>{t("testing")}</p>
                           </NavLink>

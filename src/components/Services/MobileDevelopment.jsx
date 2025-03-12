@@ -22,7 +22,7 @@ const MobDevelopment = () => {
                                 {i18n.language === 'en' ? service.titleEn : service.titleAr}
                             </h2>
                             <p className="w-[373px] text-[#5D5D5D] font-medium text-2xl mt-4">
-                                {i18n.language === 'en' ? service.paragphEn : service.paragraphAr}
+                                {i18n.language === 'en' ? service.paragraphEn : service.paragraphAr}
                             </p>
                         </div>
                     ))}
