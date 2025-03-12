@@ -37,7 +37,7 @@ const ServicesData = [
         image: quality,
         titleEn: "Quality",
         titleAr: "الجودة",
-        paragphEn: "Our mobile apps pass through different types of testing: functional testing, compatibility testing, security testing, and UI testing.",
+        paragraphEn: "Our mobile apps pass through different types of testing: functional testing, compatibility testing, security testing, and UI testing.",
         paragraphAr: "تخضع تطبيقاتنا المحمولة لأنواع مختلفة من الاختبارات: الاختبار الوظيفي، واختبار التوافق، واختبار الأمان، واختبار واجهة المستخدم."
     },
     {
