@@ -37,19 +37,31 @@ const Footer = () => {
               </p>
               <div className="flex gap-2 mt-6">
                 <NavLink to="/">
-                  <img src={facebook} alt="Facebook" />
+                  <img
+                    className="max-w-8 max-h-8"
+                    src={facebook}
+                    alt="Facebook"
+                  />
                 </NavLink>
                 <NavLink to="/">
-                  <img src={linkedin} alt="LinkedIn" />
+                  <img
+                    className="max-w-8 max-h-8"
+                    src={linkedin}
+                    alt="LinkedIn"
+                  />
                 </NavLink>
                 <NavLink to="/">
-                  <img src={Be} alt="Be" />
+                  <img className="max-w-8 max-h-8" src={Be} alt="Be" />
                 </NavLink>
                 <NavLink to="/">
-                  <img src={instagram} alt="Instagram" />
+                  <img
+                    className="max-w-8 max-h-8"
+                    src={instagram}
+                    alt="Instagram"
+                  />
                 </NavLink>
                 <NavLink to="/">
-                  <img src={X} alt="X" />
+                  <img className="max-w-8 max-h-8" src={X} alt="X" />
                 </NavLink>
               </div>
             </div>
@@ -62,7 +74,7 @@ const Footer = () => {
               <ul>
                 <li className="mb-4">
                   <a
-                    href="#aboutUs"
+                    href="/#aboutUs"
                     onClick={(e) => {
                       e.preventDefault();
                       scrollToAboutUs();
@@ -99,36 +111,27 @@ const Footer = () => {
               </h2>
               <ul>
                 <li className="mb-4">
-                  <NavLink to="/webdev" className="text-black text-xl left-8">
+                  <NavLink to="/webdev" className="text-black left-8">
                     {t("webdev")}
                   </NavLink>
                 </li>
                 <li className="mb-4">
-                  <NavLink
-                    to="/mobiledesign"
-                    className="text-black text-xl left-8"
-                  >
+                  <NavLink to="/mobiledesign" className="text-black left-8">
                     {t("mobiledesign")}
                   </NavLink>
                 </li>
                 <li className="mb-4">
-                  <NavLink
-                    to="/webdesign"
-                    className="text-black text-xl left-8"
-                  >
+                  <NavLink to="/webdesign" className="text-black left-8">
                     {t("webdesign")}
                   </NavLink>
                 </li>
                 <li className="mb-4">
-                  <NavLink
-                    to="/mobiledev"
-                    className="text-black text-xl left-8"
-                  >
+                  <NavLink to="/mobiledev" className="text-black left-8">
                     {t("mobiledev")}
                   </NavLink>
                 </li>
                 <li className="mb-4">
-                  <NavLink to="/testing" className="text-black text-xl left-8">
+                  <NavLink to="/testing" className="text-black left-8">
                     {t("testing")}
                   </NavLink>
                 </li>
@@ -141,17 +144,15 @@ const Footer = () => {
               <ul>
                 <li className="mb-4 flex items-center gap-4">
                   <img src={phone} alt="Phone" />
-                  <p className="text-black text-xl left-8">
-                    (+20) 110 178 2890
-                  </p>
+                  <p className="text-black left-8">(+20) 110 178 2890</p>
                 </li>
                 <li className="mb-4 flex items-center gap-4">
                   <img src={email} alt="Email" />
-                  <p className="text-black text-xl left-8">hello@aquadic.com</p>
+                  <p className="text-black left-8">hello@aquadic.com</p>
                 </li>
                 <li className="mb-4 flex items-center gap-4">
                   <img src={location} alt="Location" />
-                  <p className="text-black text-xl left-8">
+                  <p className="text-black left-8">
                     Zizinia, Alexandria, Egypt
                   </p>
                 </li>
