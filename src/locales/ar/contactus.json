@@ -1,11 +1,19 @@
 {
-    "contactus": "اتصل بنا",
-    "connectWithUs": "تواصل معنا",
-    "today": "اليوم",
-    "fullName": "الاسم بالكامل",
-    "phoneNumber": "أدخل رقم الهاتف",
-    "enterEmail": "أدخل بريدك الإلكتروني",
-    "subject": "الموضوع",
-    "message": "الرسالة",
-    "sendMsg": "إرسال الرسالة "
+  "contactus": "اتصل بنا",
+  "connectWithUs": "تواصل معنا",
+  "today": "اليوم",
+  "fullName": "الاسم بالكامل",
+  "phoneNumber": "رقم الهاتف",
+  "enterEmail": "أدخل بريدك الإلكتروني",
+  "subject": "الموضوع",
+  "message": "الرسالة",
+  "sendMsg": "إرسال الرسالة",
+  "errors": {
+    "nameRequired": "الاسم مطلوب",
+    "phoneRequired": "رقم الهاتف مطلوب",
+    "emailRequired": "البريد الإلكتروني مطلوب",
+    "invalidEmail": "تنسيق البريد الإلكتروني غير صالح",
+    "subjectRequired": "الموضوع مطلوب",
+    "messageRequired": "لا يمكن أن تكون الرسالة فارغة"
+  }
 }

@@ -1,11 +1,19 @@
 {
-    "contactus": "Contact Us",
-    "connectWithUs": "Connect with us",
-    "today": "Today",
-    "fullName": "Full Name",
-    "phoneNumber": "Enter Phone Number",
-    "enterEmail": "Enter Your E-mail",
-    "subject": "Subject",
-    "message": "Message",
-    "sendMsg": "Send Message"
+  "contactus": "Contact Us",
+  "connectWithUs": "Connect With Us",
+  "today": "Today",
+  "fullName": "Full Name",
+  "phoneNumber": "Phone Number",
+  "enterEmail": "Enter Your Email",
+  "subject": "Subject",
+  "message": "Message",
+  "sendMsg": "Send Message",
+  "errors": {
+    "nameRequired": "Name is required",
+    "phoneRequired": "Phone number is required",
+    "emailRequired": "Email is required",
+    "invalidEmail": "Invalid email format",
+    "subjectRequired": "Subject is required",
+    "messageRequired": "Message cannot be empty"
+  }
 }
