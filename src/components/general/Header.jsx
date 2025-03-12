@@ -6,6 +6,12 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
 import arrow from "@/assets/images/down_arrow.svg";
 import logo from "@/assets/images/logo.svg";
 import toggle from "@/assets/images/toggle.svg";
@@ -78,61 +84,62 @@ const Header = () => {
                   className="flex items-center gap-1 relative"
                   onClick={toggleDropdown}
                 >
-                  <DropdownMenu>
-                    <DropdownMenuTrigger className="flex items-center gap-1">
-                      <p className="block py-2 px-3 md:p-0 text-[#121212] font-medium text-base transform  hover:text-brandColor hover:underline transition-all duration-300">
-                        {t('company')}
-                      </p>
-                      <img src={arrow} alt="Arrow" />
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent className="w-56 mx-2">
-                      <DropdownMenuLabel>
+                  <Accordion type="single" collapsible className="w-full">
+                    <AccordionItem value="company">
+                      <AccordionTrigger className="flex items-center gap-1">
+                        <p className="block py-2 px-3 md:p-0 text-[#121212] font-medium text-base transform  hover:text-brandColor hover:underline transition-all duration-300">
+                          {t('company')}
+                        </p>
+                      </AccordionTrigger>
+                      <AccordionContent className="px-2">
                         <ul>
                           <li>
-                            <a href="#aboutUs" onClick={(e) => {
-                              e.preventDefault();
-                              scrollToAboutUs();
-                              closeSidebar();
-                            }}
+                            <a
+                              href="#aboutUs"
+                              onClick={(e) => {
+                                e.preventDefault();
+                                scrollToAboutUs();
+                              }}
                               className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
                             >
                               {t('aboutus')}
                             </a>
                           </li>
-                          <NavLink onClick={closeSidebar}
+                          <NavLink
                             to="process"
+                            onClick={closeSidebar}
                             className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
                           >
                             <p>{t('process')}</p>
                           </NavLink>
-                          <NavLink onClick={closeSidebar}
+                          <NavLink
                             to="team"
+                            onClick={closeSidebar}
                             className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
                           >
                             <p>{t('team')}</p>
                           </NavLink>
-                          <NavLink onClick={closeSidebar}
+                          <NavLink
                             to="career"
                             className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
                           >
                             <p>{t('career')}</p>
                           </NavLink>
                         </ul>
-                      </DropdownMenuLabel>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
+                      </AccordionContent>
+                    </AccordionItem>
+                  </Accordion>
                 </li>
 
                 <li>
-                  <DropdownMenu>
-                    <DropdownMenuTrigger className="flex items-center gap-1">
-                      <p className="block py-2 px-3 md:p-0 text-[#121212] font-medium text-base transform  hover:text-brandColor hover:underline transition-all duration-300">
-                        {t('services')}
-                      </p>
-                      <img src={arrow} alt="Arrow" />
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent className="w-full mx-2">
-                      <DropdownMenuLabel>
+                  <Accordion type="single" collapsible className="w-full">
+                    <AccordionItem value="services">
+                      <AccordionTrigger className="flex items-center gap-1">
+                        <p className="block py-2 px-3 md:p-0 text-[#121212] font-medium text-base transform hover:text-brandColor hover:underline transition-all duration-300">
+                          {t('services')}
+                        </p>
+                      </AccordionTrigger>
+                      <AccordionContent className="w-full mx-2">
                         <ul>
                           <NavLink onClick={closeSidebar}
                             to="/webdev"
@@ -165,9 +172,10 @@ const Header = () => {
                             <p>{t('testing')}</p>
                           </NavLink>
                         </ul>
-                      </DropdownMenuLabel>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
+                      </AccordionContent>
+                    </AccordionItem>
+                  </Accordion>
+
                 </li>
                 <li>
                   <NavLink onClick={closeSidebar}
