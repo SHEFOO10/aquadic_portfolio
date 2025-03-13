@@ -144,20 +144,6 @@ const Header = () => {
                           </NavLink>
                           <NavLink
                             onClick={closeSidebar}
-                            to="/mobiledesign"
-                            className="hover:bg-brandColor flex items-center px-4 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
-                          >
-                            <p>{t("mobiledesign")}</p>
-                          </NavLink>
-                          <NavLink
-                            onClick={closeSidebar}
-                            to="/webdesign"
-                            className="hover:bg-brandColor flex items-center px-4 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
-                          >
-                            <p>{t("webdesign")}</p>
-                          </NavLink>
-                          <NavLink
-                            onClick={closeSidebar}
                             to="/mobiledev"
                             className="hover:bg-brandColor flex items-center px-4 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
                           >
@@ -276,16 +262,6 @@ const Header = () => {
                         <DropdownMenuItem asChild>
                           <NavLink to="/webdev" className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal hover:text-white">
                             {t("webdev")}
-                          </NavLink>
-                        </DropdownMenuItem>
-                        <DropdownMenuItem asChild>
-                          <NavLink to="/mobiledesign" className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal hover:text-white">
-                            {t("mobiledesign")}
-                          </NavLink>
-                        </DropdownMenuItem>
-                        <DropdownMenuItem asChild>
-                          <NavLink to="/webdesign" className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal hover:text-white">
-                            {t("webdesign")}
                           </NavLink>
                         </DropdownMenuItem>
                         <DropdownMenuItem asChild>

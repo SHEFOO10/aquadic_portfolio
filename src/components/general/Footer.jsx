@@ -116,16 +116,6 @@ const Footer = () => {
                   </NavLink>
                 </li>
                 <li className="mb-4">
-                  <NavLink to="/mobiledesign" className="text-black left-8">
-                    {t("mobiledesign")}
-                  </NavLink>
-                </li>
-                <li className="mb-4">
-                  <NavLink to="/webdesign" className="text-black left-8">
-                    {t("webdesign")}
-                  </NavLink>
-                </li>
-                <li className="mb-4">
                   <NavLink to="/mobiledev" className="text-black left-8">
                     {t("mobiledev")}
                   </NavLink>
