@@ -5,12 +5,13 @@ import TeamData from "@/constants/Team/TeamData.jsx";
 import { useTranslation } from "react-i18next";
 
 const TeamCard = ({ title, teamData }) => {
+  const { t } = useTranslation("team");
   const [teamRef, teamInView] = useInView({
     triggerOnce: true,
     rootMargin: "-400px 0px",
   });
   const {
-    i18n: { language, t },
+    i18n: { language },
   } = useTranslation("team");
 
   return (
