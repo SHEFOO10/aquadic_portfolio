@@ -8,6 +8,7 @@ const HomeGradientRight = () => {
       viewBox="0 0 557 1024"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className="w-full lg:w-[557px]"
     >
       <g filter="url(#filter0_f_277_4307)">
         <circle cx="596" cy="571" r="146" fill="#FFA29D" />
