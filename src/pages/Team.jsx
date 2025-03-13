@@ -69,6 +69,7 @@ const Team = () => {
               key={department.id}
               title={department.name}
               teamData={department.teams}
+              image={department.image}
             />
           ))}
       </div>
