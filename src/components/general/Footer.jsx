@@ -134,7 +134,7 @@ const Footer = () => {
               <ul>
                 <li className="mb-4 flex items-center gap-4">
                   <img src={phone} alt="Phone" />
-                  <p className="text-black left-8">(+20) 110 178 2890</p>
+                  <p className="text-black left-8" dir="ltr">(+20) 110 178 2890</p>
                 </li>
                 <li className="mb-4 flex items-center gap-4">
                   <img src={email} alt="Email" />
