@@ -5,7 +5,7 @@ import AnimateOnScroll from "@/components/general/AnimateOnScroll.jsx";
 import { useTranslation } from "react-i18next";
 import "../Hooks/i18n";
 
-const TeamCard = () => {
+const TeamCard = ({ departments }) => {
   const { t } = useTranslation("team");
   const [leadRef, leadInView] = useInView({
     triggerOnce: true,
@@ -31,103 +31,6 @@ const TeamCard = () => {
     triggerOnce: true,
     rootMargin: "-400px 0px",
   });
-  const leadData = [
-    {
-      image: teammember,
-      name: "Hassan Hamdy",
-      position: "CEO",
-    },
-    {
-      image: teammember,
-      name: "Seif Allah Khaled",
-      position: "CTO",
-    },
-    {
-      image: teammember,
-      name: "Islam Al-Faqi",
-      position: "Team Lead Flutter",
-    },
-  ];
-
-  const designersData = [
-    {
-      image: teammember,
-      name: "Jiana Sakr",
-      position: "Team Lead UI/UX Design",
-    },
-    {
-      image: teammember,
-      name: "Youssef Mohamed",
-      position: "Mid Level UI/UX Design",
-    },
-    {
-      image: teammember,
-      name: "Alaa Khamis",
-      position: "Fresh UI/UX Design",
-    },
-    {
-      image: teammember,
-      name: "Fahed Nafez",
-      position: "Graphic Design",
-    },
-  ];
-
-  const flutterData = [
-    {
-      image: teammember,
-      name: "Ahmed Ali",
-      position: "Senior Flutter",
-    },
-    {
-      image: teammember,
-      name: "Asmaa Magdy",
-      position: "Junior Flutter",
-    },
-  ];
-
-  const backendData = [
-    {
-      image: teammember,
-      name: "Mohamed Galal",
-      position: "Mid Level Backend Development",
-    },
-    {
-      image: teammember,
-      name: "Mohamed Amr",
-      position: "Junior Backend Development",
-    },
-    {
-      image: teammember,
-      name: "Sherif Hamdy",
-      position: "Junior Backend Development",
-    },
-  ];
-
-  const frontendData = [
-    {
-      image: teammember,
-      name: "Ahmed Abozaid",
-      position: "Team Lead Frontend",
-    },
-    {
-      image: teammember,
-      name: "Asmaa Mostafa",
-      position: "Junior Frontend",
-    },
-  ];
-
-  const testersData = [
-    {
-      image: teammember,
-      name: "Salma Nasr",
-      position: "Team Lead Testing",
-    },
-    {
-      image: teammember,
-      name: "Ahmed Gomaa",
-      position: "Mid Level Tester",
-    },
-  ];
 
   return (
     <section className="container flex flex-col items-center md:items-start md:py-[72px]">
@@ -136,7 +39,7 @@ const TeamCard = () => {
           {t("leadership")}
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 md:gap-4 gap-8 md:mt-[91px] mt-10">
-          {leadData.map((item, index) => (
+          {departments.map((item, index) => (
             <AnimateOnScroll inView={leadInView} delay={index * 0.2}>
               <TeamData
                 key={index}

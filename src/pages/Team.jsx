@@ -3,10 +3,18 @@ import PagesHeader from "@/components/general/PagesHeader";
 import TeamCards from "@/components/Team/TeamCards";
 import { useTranslation } from "react-i18next";
 import "../components/Hooks/i18n";
+import { useQuery } from "@tanstack/react-query";
+import { axios } from "@/lib/axios.js";
+import Loading from "@/components/general/Loading.jsx";
 
 const Team = () => {
   const { t } = useTranslation("team");
-
+  const { data: departments, isLoading } = useQuery({
+    queryKey: ["departments"],
+    queryFn: async () => await axios.get("department"),
+    select: (data) => data.data,
+  });
+  if (isLoading) return <Loading />;
   return (
     <div>
       <Helmet>
@@ -53,9 +61,8 @@ const Team = () => {
           content="https://example.com/aquadic-team.jpg"
         />
       </Helmet>
-
       <PagesHeader sheader={t("bestTalent")} title={t("teamTitle")} />
-      <TeamCards />
+      {departments && <TeamCards departments={departments} />}
     </div>
   );
 };
