@@ -5,6 +5,7 @@ import Footer from "@/components/general/Footer.jsx";
 import HomeGradientLeft from "@/components/icons/home/HomeGradientLeft.jsx";
 import HomeGradientRight from "@/components/icons/home/HomeGradientRight.jsx";
 import Providers from "@/lib/Providers.jsx";
+import { Toaster } from "sonner";
 
 const Layout = () => {
   return (
@@ -20,6 +21,7 @@ const Layout = () => {
         <Outlet />
         <Footer />
       </div>
+      <Toaster />
     </Providers>
   );
 };

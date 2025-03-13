@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from "react-i18next";
-import "../../Hooks/i18n";
+import "../../components/Hooks/i18n";
 // eslint-disable-next-line react/prop-types
 const Card = ({ text1, text2, imgSrc, rating }) => {
     const { t } = useTranslation("testimonials");

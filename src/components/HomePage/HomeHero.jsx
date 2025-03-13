@@ -10,14 +10,15 @@ import ArrowRight from "@/components/icons/general/ArrowRight.jsx";
 import HomeStars from "@/components/HomePage/HomeStars.jsx";
 import { useTranslation } from "react-i18next";
 import "../Hooks/i18n";
+import i18n from "../Hooks/i18n";
 
-const words = ["Startups", "Businesses", "Agencies"];
+// const words = ["Startups", "Businesses", "Agencies"];
 
 const HomeHero = () => {
   const { t } = useTranslation("hero");
   const [displayedWord, setDisplayedWord] = useState("");
   const [wordIndex, setWordIndex] = useState(0);
-
+  const words = t("words", { returnObjects: true }) || [];
   // Scroll animation hooks
   const { scrollYProgress } = useScroll();
   const archY = useTransform(scrollYProgress, [0, 1], [0, -200]); // Moves HomeArch upwards on scroll
@@ -44,8 +45,8 @@ const HomeHero = () => {
 
   return (
     <section className="relative">
-      <div className="container relative mt-[60px] md:mt-[140px]">
-        <span className="absolute -top-16">
+      <div className="container relative mt-[60px] md:mt-[140px]" dir="ltr">
+        <span className="absolute -top-16" >
           <HomeLinesIcon className="w-[40px] sm:w-[60px] md:w-[80px]" />
         </span>
 
@@ -56,19 +57,17 @@ const HomeHero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
-          {t('weHelp')}
-          <span className="relative text-brandColor ml-2 sm:ml-3 md:ml-4 whitespace-nowrap" dir="ltr">
-            {displayedWord.split("").map((letter, i) => (
-              <motion.span
-                key={i}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.1, delay: i * 0.05 }}
-                className="inline-block"
-              >
-                {letter}
-              </motion.span>
-            ))}
+          {t('weHelp')} &nbsp;
+          <span className="relative text-brandColor ml-2 sm:ml-3 md:ml-4 whitespace-nowrap">
+            <motion.span
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="inline-block"
+              dir={i18n.language === "ar" ? "rtl" : "ltr"}
+            >
+              {displayedWord}
+            </motion.span>
           </span>{" "}
           {t('journey')}
         </motion.h1>
@@ -87,12 +86,15 @@ const HomeHero = () => {
         >
           {t('heroPara')}
         </motion.p>
-        <button className="mt-8 mx-auto flex items-center justify-center gap-3 bg-brandColor rounded-full px-6 py-3 text-white font-medium border border-brandColor group">
-          <span>{t('getStarted')}</span>{" "}
-          <span className="group-hover:translate-x-1 transition-transform">
-            <ArrowRight />
-          </span>
-        </button>
+        <a href="#contactUS">
+          <button className="mt-8 mx-auto flex items-center justify-center gap-3 bg-brandColor rounded-full px-6 py-3 text-white font-medium border border-brandColor group">
+            <span>{t('getStarted')}</span>{" "}
+            <span className="group-hover:translate-x-1 transition-transform">
+              <ArrowRight />
+            </span>
+          </button>
+        </a>
+
         <HomeStars />
       </div>
     </section>
