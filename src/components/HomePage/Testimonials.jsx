@@ -1,6 +1,6 @@
 import img from "@/assets/images/testimonials.webp";
 import { useInView } from "react-intersection-observer";
-import Card from "../constants/Home/Card";
+import Card from "../../constants/home/Card";
 import AnimateOnScroll from "../general/AnimateOnScroll";
 import { useTranslation } from "react-i18next";
 import "../Hooks/i18n";
