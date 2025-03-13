@@ -1,11 +1,11 @@
 import { Helmet } from "react-helmet-async";
 import PagesHeader from "@/components/general/PagesHeader";
-import TeamCards from "@/components/Team/TeamCards";
 import { useTranslation } from "react-i18next";
 import "../components/Hooks/i18n";
 import { useQuery } from "@tanstack/react-query";
 import { axios } from "@/lib/axios.js";
 import Loading from "@/components/general/Loading.jsx";
+import TeamCard from "@/components/Team/TeamCard.jsx";
 
 const Team = () => {
   const { t } = useTranslation("team");
@@ -16,7 +16,7 @@ const Team = () => {
   });
   if (isLoading) return <Loading />;
   return (
-    <div>
+    <section>
       <Helmet>
         {/* Page Title */}
         <title>AQuadic | Meet Our Expert Team</title>
@@ -62,8 +62,17 @@ const Team = () => {
         />
       </Helmet>
       <PagesHeader sheader={t("bestTalent")} title={t("teamTitle")} />
-      {departments && <TeamCards departments={departments} />}
-    </div>
+      <div className="container flex flex-col items-center md:items-start md:py-[72px]">
+        {departments &&
+          departments.map((department) => (
+            <TeamCard
+              key={department.id}
+              title={department.name}
+              teamData={department.teams}
+            />
+          ))}
+      </div>
+    </section>
   );
 };
 
