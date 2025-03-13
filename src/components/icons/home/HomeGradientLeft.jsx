@@ -8,6 +8,7 @@ const HomeGradientLeft = () => {
       viewBox="0 0 556 1002"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className="w-full lg:w-[556px]"
     >
       <g filter="url(#filter0_f_277_4308)">
         <circle cx="-40" cy="406" r="146" fill="#FFA29D" />

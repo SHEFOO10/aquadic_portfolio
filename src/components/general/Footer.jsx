@@ -28,7 +28,7 @@ const Footer = () => {
             <Link to="/" className="flex items-center">
               <img src={logo} className="w-[183px] h-[55px]" alt="Logo" />
             </Link>
-            <p className="w-[377px] mt-8 text-[#121212] text-xl leading-8">
+            <p className="md:w-[377px] mt-8 text-[#121212] text-xl leading-8">
               {t("footerTitle")}
             </p>
             <div className="mt-12">

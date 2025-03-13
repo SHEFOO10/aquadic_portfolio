@@ -8,6 +8,7 @@ const FooterGradient = () => {
       viewBox="0 0 672 564"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className="w-full lg:w-[672px]"
     >
       <g filter="url(#filter0_f_185_1071)">
         <circle cx="26" cy="538" r="146" fill="#EA433A" />

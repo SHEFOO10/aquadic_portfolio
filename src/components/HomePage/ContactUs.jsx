@@ -70,7 +70,7 @@ const ContactUs = () => {
               allowfullscreen=""
               aria-hidden="false"
               tabIndex="0"
-              className="w-[547px] mx-auto h-[366px]"
+              className="w-full mx-auto lg:w-[547px] lg:h-[366px]"
             />
             <div className="flex md:flex-row flex-col gap-[36px] mt-6">
               <div className="flex flex-col items-center md:gap-4">
