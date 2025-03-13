@@ -4,7 +4,7 @@ import AnimateOnScroll from "@/components/general/AnimateOnScroll.jsx";
 import TeamData from "@/constants/Team/TeamData.jsx";
 import { useTranslation } from "react-i18next";
 
-const TeamCard = ({ title, teamData }) => {
+const TeamCard = ({ title, teamData, image }) => {
   const { t } = useTranslation("team");
   const [teamRef, teamInView] = useInView({
     triggerOnce: true,
@@ -25,9 +25,9 @@ const TeamCard = ({ title, teamData }) => {
             <React.Fragment key={item.id}>
               <AnimateOnScroll inView={teamInView} delay={index * 0.2}>
                 <TeamData
-                  image={"/src/assets/images/teammember.webp"}
-                  name={item.name.en}
-                  position={item.position.name.en}
+                  image={image}
+                  name={language === 'en' ? item.name.en : item.name.ar}
+                  position={language === 'en' ? item.position.name.en : item.position.name.ar}
                 />
               </AnimateOnScroll>
               {index === 0 && (
