@@ -1,7 +1,7 @@
 import mobApp from '../../assets/images/mobApp.svg'
 import quality from '../../assets/images/quality.svg'
 import webTesting from '../../assets/images/webTesting.svg'
-// import usability from '../../assets/images/usability.svg'
+import usability from '../../assets/images/Usability.svg'
 import automation from '../../assets/images/automation.svg'
 import performance from '../../assets/images/performance.svg'
 const ServicesData = [
