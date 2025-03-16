@@ -4,97 +4,57 @@ import Projects from "../general/Projects";
 import { useTranslation } from "react-i18next";
 import "../Hooks/i18n";
 
-const Content = () => {
-  const { t } = useTranslation("portfolio");
+const Content = ({ projects, categories, selectedCategory, setSelectedCategory }) => {
+  const { i18n: { language }, t } = useTranslation("portfolio");
   return (
     <section className="container md:py-16">
       <h1 className="text-[#121212] md:text-[56px] text-3xl font-semibold flex justify-center">
-        <span className="text-brandColor"> {t("portfolio")}&nbsp;</span>{" "}
+        <span className="text-brandColor">{t("portfolio")}&nbsp;</span>
         {t("company")}
       </h1>
-      <Tabs defaultValue="all" className="">
+
+      <Tabs value={selectedCategory.toString()} onValueChange={setSelectedCategory}>
         <TabsList className="flex flex-wrap md:gap-4">
-          <TabsTrigger value="all">{t("all")}</TabsTrigger>
-          <TabsTrigger value="booking">{t("booking")}</TabsTrigger>
-          <TabsTrigger value="business">{t("business")}</TabsTrigger>
-          <TabsTrigger value="medical">{t("medical")}</TabsTrigger>
-          <TabsTrigger value="e-commerce">{t("ecommerce")}</TabsTrigger>
-          <TabsTrigger value="islamic">{t("islamic")}</TabsTrigger>
-          <TabsTrigger value="crm">{t("CRM")}</TabsTrigger>
-          <TabsTrigger value="hotel">{t("hotel")}</TabsTrigger>
-          <TabsTrigger value="car-services">{t("carServices")}</TabsTrigger>
+          {categories?.map((category) => (
+            <TabsTrigger
+              key={category.id}
+              value={category.id.toString()}
+              onClick={() => setSelectedCategory(category.id)}
+            >
+              {language === "en" ? category.name.en : category.name.ar}
+            </TabsTrigger>
+
+          ))}
         </TabsList>
 
-        <TabsContent value="all" className="lg:!w-[1200px]">
-          <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 md:mt-10 mb-[120px]">
-            <Projects image={pinkBG} title="MS Player" type="Media / Social" />
-            <Projects
-              image={pinkBG}
-              title="Fresh Farm"
-              type="E-commerce / Food"
-            />
-            <Projects image={pinkBG} title="Find Help" type="Services" />
-            <Projects image={pinkBG} title="Reaya" type="Medical" />
-            <Projects image={pinkBG} title="Mamulaat" type="Books / Reading" />
-            <Projects
-              image={pinkBG}
-              title="Spacey"
-              type="Services / Management"
-            />
-            <Projects
-              image={pinkBG}
-              title="Pharmacy"
-              type="E-commerce / Medical"
-            />
-            <Projects
-              image={pinkBG}
-              title="Al-Watania HR"
-              type="Services / HR"
-            />
-            <Projects
-              image={pinkBG}
-              title="Eshhaar"
-              type="E-commerce / Exchange"
-            />
-          </div>
-        </TabsContent>
+        {categories?.map(category => {
+          const filteredProjects = projects?.filter(
+            (project) => String(project.category_id) === String(category.id)
+          ) || [];
 
-        <TabsContent value="booking" className="lg:!w-[1200px]">
-          <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 mt-10 mb-[120px]">
-            <Projects image={pinkBG} title="Reaya" type="Medical" />
-            <Projects image={pinkBG} title="Mamulaat" type="Books / Reading" />
-            <Projects
-              image={pinkBG}
-              title="Spacey"
-              type="Services / Management"
-            />
-            <Projects
-              image={pinkBG}
-              title="Pharmacy"
-              type="E-commerce / Medical"
-            />
-            <Projects
-              image={pinkBG}
-              title="Al-Watania HR"
-              type="Services / HR"
-            />
-            <Projects
-              image={pinkBG}
-              title="Eshhaar"
-              type="E-commerce / Exchange"
-            />
-          </div>
-        </TabsContent>
+          console.log("Category:", category.id, category.name);
+          console.log("Filtered Projects for Category:", category.id, filteredProjects);
 
-        <TabsContent value="business">
-          <p>test</p>
-        </TabsContent>
-        <TabsContent value="medical"></TabsContent>
-        <TabsContent value="e-commerce"></TabsContent>
-        <TabsContent value="islamic"></TabsContent>
-        <TabsContent value="crm"></TabsContent>
-        <TabsContent value="hotel"></TabsContent>
-        <TabsContent value="car-services"></TabsContent>
+          return (
+            <TabsContent key={category.id} value={category.id.toString()} className="lg:!w-[1200px]">
+              <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 md:mt-10 mb-[120px]">
+                {filteredProjects.length > 0 ? (
+                  filteredProjects.map(project => (
+                    <Projects
+                      key={project.id}
+                      image={pinkBG}
+                      title={project.name?.[language] || "Untitled Project"}
+                      type={project.category?.name?.[language] || "General"}
+                    />
+                  ))
+                ) : (
+                  <p className="text-center">{t("No projects found")}</p>
+                )}
+              </div>
+            </TabsContent>
+          );
+        })}
+
       </Tabs>
     </section>
   );
