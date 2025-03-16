@@ -13,7 +13,7 @@ const AboutUs = () => {
   });
   const [isExpanded, setIsExpanded] = useState(false);
   return (
-    <section ref={ref} id="aboutUs" className="container">
+    <section ref={ref} id="aboutUs" className="container overflow-x-hidden">
       <h1 className="text-[#121212] text-[32px] mb-5 flex justify-center">
         {t("aboutus")}
       </h1>
@@ -61,22 +61,22 @@ const AboutUs = () => {
                 </div>
               )}
             </div>
-            <div className="flex items-center justify-center md:gap-[152px] gap-20 mt-6">
+            <div className="flex items-center justify-center md:gap-[152px] gap-14 mt-6">
               <div>
-                <p className="text-brandColor font-bold text-[40px]">+27</p>
-                <p className="text-[#121212] text-xl leading-5 font-semibold">
+                <p className="text-brandColor font-bold md:text-[40px] text-4xl">+27</p>
+                <p className="text-[#121212] md:text-xl text-lg leading-5 font-semibold">
                   {t("project")}
                 </p>
               </div>
               <div>
-                <p className="text-brandColor font-bold text-[40px]">+5</p>
-                <p className="text-[#121212] text-xl leading-5 font-semibold">
+                <p className="text-brandColor font-bold md:text-[40px] text-4xl">+5</p>
+                <p className="text-[#121212] md:text-xl text-lg leading-5 font-semibold">
                   {t("client")}
                 </p>
               </div>
               <div>
-                <p className="text-brandColor font-bold text-[40px]">+12</p>
-                <p className="text-[#121212] text-xl leading-5 font-semibold">
+                <p className="text-brandColor font-bold md:text-[40px] text-4xl">+12</p>
+                <p className="text-[#121212] md:text-xl text-lg leading-5 font-semibold">
                   {t("countries")}
                 </p>
               </div>

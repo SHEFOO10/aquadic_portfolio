@@ -5,7 +5,7 @@ const HomeArch = () => {
     <div className="flex justify-center w-full mx-auto py-8 ">
       <svg
         width="100%"
-        height="auto"
+        height="100%"
         viewBox="0 0 1007 53"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
