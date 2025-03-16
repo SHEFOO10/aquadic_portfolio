@@ -14,10 +14,10 @@ const AboutUs = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   return (
     <section ref={ref} id="aboutUs" className="container">
-      <h1 className="text-[#121212] text-[32px] flex justify-center">
+      <h1 className="text-[#121212] text-[32px] mb-5 flex justify-center">
         {t("aboutus")}
       </h1>
-      <div className="flex lg:flex-row flex-col md:gap-[88px]">
+      <div className="flex lg:flex-row flex-col gap-5 md:gap-[88px]">
         <AnimateOnScroll inView={inView} direction={"leftToRight"}>
           <img
             src={aboutus}
