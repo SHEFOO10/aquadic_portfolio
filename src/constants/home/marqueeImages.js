@@ -1,9 +1,9 @@
 export const marqueeImages = [
-  "/public/images/techLogos/android.svg",
-  "/public/images/techLogos/angular.svg",
-  "/public/images/techLogos/figma.svg",
-  "/public/images/techLogos/flutter.svg",
-  "/public/images/techLogos/ios.svg",
-  "/public/images/techLogos/javascript.svg",
-  "/public/images/techLogos/laravel.svg",
+  "/images/techLogos/android.svg",
+  "/images/techLogos/angular.svg",
+  "/images/techLogos/figma.svg",
+  "/images/techLogos/flutter.svg",
+  "/images/techLogos/ios.svg",
+  "/images/techLogos/javascript.svg",
+  "/images/techLogos/laravel.svg",
 ];

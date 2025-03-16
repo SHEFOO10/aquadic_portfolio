@@ -11,6 +11,7 @@ import HomeStars from "@/components/HomePage/HomeStars.jsx";
 import { useTranslation } from "react-i18next";
 import "../Hooks/i18n";
 import i18n from "../Hooks/i18n";
+import Magnet from "@/components/reactAnimations/Magnet.jsx";
 
 // const words = ["Startups", "Businesses", "Agencies"];
 
@@ -46,7 +47,7 @@ const HomeHero = () => {
   return (
     <section className="relative">
       <div className="container relative mt-[60px] md:mt-[140px]" dir="ltr">
-        <span className="absolute -top-16" >
+        <span className="absolute -top-16">
           <HomeLinesIcon className="w-[40px] sm:w-[60px] md:w-[80px]" />
         </span>
 
@@ -57,7 +58,7 @@ const HomeHero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
-          {t('weHelp')} &nbsp;
+          {t("weHelp")} &nbsp;
           <span className="relative text-brandColor ml-2 sm:ml-3 md:ml-4 whitespace-nowrap">
             <motion.span
               initial={{ opacity: 0, y: 10 }}
@@ -69,7 +70,7 @@ const HomeHero = () => {
               {displayedWord}
             </motion.span>
           </span>{" "}
-          {t('journey')}
+          {t("journey")}
         </motion.h1>
 
         {/* Scroll-Affected HomeArch */}
@@ -84,16 +85,20 @@ const HomeHero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3 }}
         >
-          {t('heroPara')}
+          {t("heroPara")}
         </motion.p>
-        <a href="#contactUS">
-          <button className="mt-8 mx-auto flex items-center justify-center gap-3 bg-brandColor rounded-full px-6 py-3 text-white font-medium border border-brandColor group">
-            <span>{t('getStarted')}</span>{" "}
-            <span className="group-hover:translate-x-1 transition-transform">
-              <ArrowRight />
-            </span>
-          </button>
-        </a>
+        <div className="flex items-center justify-center">
+          <Magnet padding={50} disabled={false}>
+            <a href="#contactUS" className="mx-auto">
+              <button className="mt-8 mx-auto flex items-center justify-center gap-3 bg-brandColor rounded-full px-6 py-3 text-white font-medium border border-brandColor group">
+                <span>{t("getStarted")}</span>{" "}
+                <span className="group-hover:translate-x-1 transition-transform">
+                  <ArrowRight />
+                </span>
+              </button>
+            </a>
+          </Magnet>
+        </div>
 
         <HomeStars />
       </div>
