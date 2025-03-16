@@ -26,20 +26,14 @@ const TeamCard = ({ title, teamData }) => {
               <AnimateOnScroll inView={teamInView} delay={index * 0.2}>
                 <TeamData
                   image={item.image.url}
-                  name={language === 'en' ? item.name.en : item.name.ar}
-                  position={language === 'en' ? item.position.name.en : item.position.name.ar}
+                  name={language === "en" ? item.name.en : item.name.ar}
+                  position={
+                    language === "en"
+                      ? item.position.name.en
+                      : item.position.name.ar
+                  }
                 />
               </AnimateOnScroll>
-              {index === 0 && (
-                <div className="mt-[72px] col-span-full">
-                  <h2 className="text-[#121212] font-semibold text-5xl leading-[48px]">
-                    {t("meetTeam")}
-                  </h2>
-                  <p className="md:w-[763px] text-[#5D5D5D] text-2xl font-medium leading-[38.4px] mt-6">
-                    {t("meetTitle")}
-                  </p>
-                </div>
-              )}
             </React.Fragment>
           ))}
         </div>

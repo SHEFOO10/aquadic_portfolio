@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { axios } from "@/lib/axios.js";
 import Loading from "@/components/general/Loading.jsx";
 import TeamCard from "@/components/Team/TeamCard.jsx";
+import React from "react";
 
 const Team = () => {
   const { t } = useTranslation("team");
@@ -64,13 +65,25 @@ const Team = () => {
       <PagesHeader sheader={t("bestTalent")} title={t("teamTitle")} />
       <div className="container flex flex-col items-center md:items-start md:py-[72px]">
         {departments &&
-          departments.map((department) => (
-            <TeamCard
-              key={department.id}
-              title={department.name}
-              teamData={department.teams}
-              image={department.image}
-            />
+          departments.map((department, index) => (
+            <>
+              <TeamCard
+                key={department.id}
+                title={department.name}
+                teamData={department.teams}
+                image={department.image}
+              />
+              {index === 0 && (
+                <div className="mt-[72px] col-span-full">
+                  <h2 className="text-[#121212] font-semibold text-5xl leading-[48px]">
+                    {t("meetTeam")}
+                  </h2>
+                  <p className="md:w-[763px] text-[#5D5D5D] text-2xl font-medium leading-[38.4px] mt-6">
+                    {t("meetTitle")}
+                  </p>
+                </div>
+              )}
+            </>
           ))}
       </div>
     </section>
