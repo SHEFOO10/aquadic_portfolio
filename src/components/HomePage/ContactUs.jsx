@@ -50,7 +50,7 @@ const ContactUs = () => {
   });
 
   return (
-    <section ref={ref} id="contactUS" className="container md:mb-[120px]">
+    <section ref={ref} id="contactUS" className="container md:mb-[120px] overflow-x-hidden">
       <h1 className="text-[#121212] md:text-[32px] text-lg flex justify-center md:leading-8">
         {t("contactus")}
       </h1>
@@ -67,7 +67,7 @@ const ContactUs = () => {
               height="450"
               frameBorder="0"
               style={{ border: 0 }}
-              allowfullscreen=""
+              allowFullScreen=""
               aria-hidden="false"
               tabIndex="0"
               className="w-full mx-auto lg:w-[547px] lg:h-[366px]"
