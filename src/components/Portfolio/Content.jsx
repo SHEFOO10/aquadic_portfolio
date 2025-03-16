@@ -1,5 +1,5 @@
+/* eslint-disable react/prop-types */
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import pinkBG from "../../assets/images/pinkBG.webp";
 import Projects from "../general/Projects";
 import { useTranslation } from "react-i18next";
 import "../Hooks/i18n";
@@ -42,7 +42,7 @@ const Content = ({ projects, categories, selectedCategory, setSelectedCategory }
                   filteredProjects.map(project => (
                     <Projects
                       key={project.id}
-                      image={pinkBG}
+                      image={project.image}
                       title={project.name?.[language] || "Untitled Project"}
                       type={project.category?.name?.[language] || "General"}
                     />
