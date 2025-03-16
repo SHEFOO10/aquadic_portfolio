@@ -3,25 +3,26 @@ import Content from "@/components/Portfolio/Content";
 import { useQuery } from "@tanstack/react-query";
 import { axios } from "@/lib/axios.js";
 import { useState } from "react";
+import i18n from "@/components/Hooks/i18n";
+import Loading from "@/components/general/Loading";
 
 const Portfolio = () => {
+  const language = i18n.language;
   const [selectedCategory, setSelectedCategory] = useState(0);
   const { data: categories } = useQuery({
     queryKey: ["categories"],
     queryFn: async () => await axios.get("category"),
     select: (data) => data.data,
   });
-  const { data: projects } = useQuery({
+  const { data: projects, isLoading } = useQuery({
     queryKey: ["projects", selectedCategory],
-    queryFn: async () =>
-      await axios.get("/project", {
-        params: {
-          category_id: 1,
-        },
-      }),
-    select: (data) => data.data,
+    queryFn: async () => {
+      const response = await axios.get("/project");
+      return response.data.data;
+    },
+    select: (data) => (Array.isArray(data) ? data : []),
   });
-  console.log(categories);
+  if (isLoading) return <Loading />;
   return (
     <div>
       <Helmet>
@@ -75,7 +76,13 @@ const Portfolio = () => {
         />
       </Helmet>
 
-      <Content />
+      <Content
+        projects={projects}
+        categories={categories}
+        selectedCategory={selectedCategory}
+        setSelectedCategory={setSelectedCategory}
+        language={language}
+      />
     </div>
   );
 };
