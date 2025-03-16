@@ -59,7 +59,7 @@ const HomeHero = () => {
           transition={{ duration: 1 }}
         >
           {t("weHelp")} &nbsp;
-          <span className="relative text-brandColor ml-2 sm:ml-3 md:ml-4 whitespace-nowrap">
+          <span className="relative text-brandColor whitespace-nowrap">
             <motion.span
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
