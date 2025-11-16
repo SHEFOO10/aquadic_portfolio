@@ -44,13 +44,13 @@ const Language = () => {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="md:w-[125px] w-[100px] md:h-14 h-10 border flex gap-2 items-center justify-center px-4 py-2 md:text-lg text-xs md:font-bold text-[#1E1E1E] rounded-lg cursor-pointer">
+      <DropdownMenuTrigger className="md:w-[125px] w-[100px] md:h-14 h-10 flex gap-2 items-center justify-center px-4 py-2 md:text-lg text-xs md:font-bold text-[#1E1E1E] rounded-lg cursor-pointer">
         <img
           src={lang}
           className="md:w-full md:h-full w-6 h-6"
           alt="Language"
         />
-        <p>{language === "ar" ? "English" : "العربية"}</p>
+        <p className="text-[#EA433A]">{language === "ar" ? "English" : "العربية"}</p>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         {languages.map((lang) => (
