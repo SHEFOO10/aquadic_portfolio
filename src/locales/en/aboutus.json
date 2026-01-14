@@ -15,5 +15,10 @@
         "part3": "Our Journey to",
         "part4": "Innovation"
     },
-    "description": "At AQuadic, we are always looking for passionate and talented individuals to join our growing team. Here, you’ll have the chance to work on innovative projects, explore the latest technologies, and contribute to creating impactful software solutions. We value creativity, collaboration, and continuous learning, offering a work environment where your ideas are heard and your skills can grow."
+        "description": "At AQuadic, we are always looking for passionate and talented individuals to join our growing team. Here, you’ll have the chance to work on innovative projects, explore the latest technologies, and contribute to creating impactful software solutions. We value creativity, collaboration, and continuous learning, offering a work environment where your ideas are heard and your skills can grow.",
+        "openPositions": {
+        "highlight": "Open",
+        "text": "Positions"
+    },
+    "viewDetails": "View Details"
 }
