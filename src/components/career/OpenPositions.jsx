@@ -29,11 +29,13 @@ const OpenPositions = () => {
                             We are looking for a talented Senior UI/UX Designer to join our team at AQuadic. You will be responsible for designing intuitive, user-friendly interfaces for web and mobile applications. The ideal candidate combines creativity with a strong understanding of user behavior, delivering designs that enhance user experience and drive engagement.
                         </p>
 
-                        <button className='w-full h-14 border border-[#EA433A] rounded-[50px] mt-3 flex items-center justify-center gap-2'>
-                            <p className='text-[#EA433A] md:text-xl font-medium'>
+                        <button
+                            className="w-full h-14 mt-3 flex items-center justify-center gap-2 border border-[#EA433A] rounded-[50px] text-[#EA433A] hover:bg-[#EA433A] hover:text-white transition-all duration-300 ease-in-out group">
+                            <p className="md:text-xl font-medium transition-colors duration-300">
                                 {t("viewDetails")}
                             </p>
-                            <div className='transform rtl:scale-x-[-1]'>
+
+                            <div className="transform rtl:scale-x-[-1] transition-transform duration-300 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 ">
                                 <RedArrow />
                             </div>
                         </button>
