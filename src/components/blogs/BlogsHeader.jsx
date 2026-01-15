@@ -1,17 +1,19 @@
+import { useTranslation } from 'react-i18next'
 import Ai from '../../assets/images/ai.jpg'
 import Cloud from '../../assets/images/cloud.jpg'
 import Projects from '../../assets/images/projects.jpg'
 import UX from '../../assets/images/ux.jpg'
 
 const BlogsHeader = () => {
+    const { t } = useTranslation("aboutus");
     return (
         <section className="container md:py-14 className='text-[#EA433A]'">
             <h2 className="text-[#121212] md:text-[40px] text-2xl font-bold leading-[150%] text-center">
-                Expert {""}
-                <span className='text-[#EA433A]'>opinions</span>,
-                analysis, and {""}
-                <span className='text-[#EA433A]'>practical insights </span>
-                from our software team.
+                {t("expertise.titleStart")}{" "}
+                <span className="text-[#EA433A]">{t("expertise.titleHighlight1")}</span>,{" "}
+                {t("expertise.titleMiddle")},{" "}
+                <span className="text-[#EA433A]">{t("expertise.titleHighlight2")}</span>{" "}
+                {t("expertise.titleEnd")}
             </h2>
 
             <div className="md:mt-8 mt-4 flex flex-wrap gap-8">

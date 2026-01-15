@@ -76,5 +76,17 @@
     "uploadCV": "Upload CV",
     "chooseFile": "Choose file",
     "acceptedFileTypes": "Accepted File Types: pdf, word, jpg, png",
-    "submit": "Submit"
+    "submit": "Submit",
+    "expertise": {
+    "titleStart": "Expert",
+    "titleHighlight1": "opinions",
+    "titleMiddle": "analysis, and",
+    "titleHighlight2": "practical insights",
+    "titleEnd": "from our software team."
+    },
+    "trending": {
+        "prefix": "",
+        "highlight": "Trending",
+        "suffix": "Reviews"
+    }
 }
