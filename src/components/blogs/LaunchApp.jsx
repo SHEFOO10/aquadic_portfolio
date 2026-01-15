@@ -1,6 +1,6 @@
 const LaunchApp = () => {
     return (
-        <section className="container pb-[68px] md:py-0 py-10">
+        <section className="container pb-[68px] md:pt-0 pt-10">
             <h2 className="text-[#121212] md:text-5xl text-2xl font-semibold text-center">
                 Launch Your Dream App -IOs & Android <span className="text-[#EA433A]">Ready !</span>
             </h2>
