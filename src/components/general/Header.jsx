@@ -176,7 +176,7 @@ const Header = () => {
                     to="/faqs"
                     className="block py-2 px-3 md:p-0 text-[#121212] font-medium text-base transform  hover:text-brandColor hover:underline transition-all duration-300"
                   >
-                    {t("flog")}
+                    {t("blog")}
                   </NavLink>
                 </li>
               </ul>
@@ -289,10 +289,10 @@ const Header = () => {
               </li>
               <li>
                 <NavLink
-                  to="/faqs"
+                  to="/blogs"
                   className="block py-2 px-3 md:p-0 text-[#121212] font-medium text-base transform  hover:text-brandColor hover:underline transition-all duration-300"
                 >
-                  {t("flog")}
+                  {t("blog")}
                 </NavLink>
               </li>
             </ul>
