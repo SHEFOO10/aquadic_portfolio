@@ -26,5 +26,24 @@
         "titleHighlight": "Future",
         "titleEnd": "with Technology and Design",
         "description": "At AQuadic, we specialize in delivering innovative software and design-driven solutions that help startups and businesses thrive. Our team works closely with clients to bring their ideas to life."
+    },
+    "aboutStatics": {
+        "years": {
+        "value": "8+",
+        "title": "Years of Experience",
+        "description": "Helping businesses grow with reliable and efficient tech solutions."
+        },
+        "experts": {
+        "value": "+20",
+        "title": "Tech Experts"
+        },
+        "clients": {
+        "value": "+15",
+        "title": "Happy Clients"
+        },
+        "countries": {
+        "value": "+12",
+        "title": "Countries Served"
+        }
     }
 }
