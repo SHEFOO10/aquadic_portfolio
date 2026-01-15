@@ -84,9 +84,8 @@ const HomeHero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3 }}
-        >
-          {t("heroPara")}
-        </motion.p>
+          dangerouslySetInnerHTML={{ __html: t("heroPara") }}
+        />
         <div className="flex items-center justify-center">
           <Magnet padding={50} disabled={false}>
             <a href="#contactUS" className="mx-auto">

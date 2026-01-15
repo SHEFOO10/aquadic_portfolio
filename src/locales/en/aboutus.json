@@ -8,5 +8,85 @@
     "showLess": "Show Less",
     "project": "Project",
     "client": "Client",
-    "countries": "Countries"
+    "countries": "Countries",
+    "title": {
+        "part1": "Be",
+        "part2": "Part of",
+        "part3": "Our Journey to",
+        "part4": "Innovation"
+    },
+        "description": "At AQuadic, we are always looking for passionate and talented individuals to join our growing team. Here, you’ll have the chance to work on innovative projects, explore the latest technologies, and contribute to creating impactful software solutions. We value creativity, collaboration, and continuous learning, offering a work environment where your ideas are heard and your skills can grow.",
+        "openPositions": {
+        "highlight": "Open",
+        "text": "Positions"
+    },
+    "viewDetails": "View Details",
+    "aboutHeader": {
+        "titleStart": "Shaping the",
+        "titleHighlight": "Future",
+        "titleEnd": "with Technology and Design",
+        "description": "At AQuadic, we specialize in delivering innovative software and design-driven solutions that help startups and businesses thrive. Our team works closely with clients to bring their ideas to life."
+    },
+    "aboutStatics": {
+        "years": {
+        "value": "8+",
+        "title": "Years of Experience",
+        "description": "Helping businesses grow with reliable and efficient tech solutions."
+        },
+        "experts": {
+        "value": "+20",
+        "title": "Tech Experts"
+        },
+        "clients": {
+        "value": "+15",
+        "title": "Happy Clients"
+        },
+        "countries": {
+        "value": "+12",
+        "title": "Countries Served"
+        }
+    },
+    "aboutTech": {
+        "titleStart": "Innovative",
+        "titleHighlight": "Tech Services",
+        "titleEnd": "for Every Challenge",
+        "description": "We deliver smart, reliable software solutions that help businesses grow, from websites and apps to custom digital products designed for seamless user experiences.",
+        "services": {
+        "analysis": "Analysis and Planning",
+        "design": "Design",
+        "development": "Software Development",
+        "testing": "Testing"
+        }
+    },
+    "ourWork": {
+        "titleStart": "A Glimpse of",
+        "titleHighlight": "Our Work",
+        "description": "Explore a selection of our projects showcasing creativity, innovation, and technical expertise across web, mobile, and custom software solutions.",
+        "button": "Explore Our Portfolio",
+        "imageAlt": "Our work showcase"
+    },
+    "applyingForm": "Applying",
+    "form": "Form",
+    "fullName": "Full Name",
+    "enterFullName": "Enter full name",
+    "phoneNumber": "Phone Number",
+    "phonePlaceholder": "+20",
+    "email": "Email",
+    "enterEmail": "Enter your email",
+    "uploadCV": "Upload CV",
+    "chooseFile": "Choose file",
+    "acceptedFileTypes": "Accepted File Types: pdf, word, jpg, png",
+    "submit": "Submit",
+    "expertise": {
+    "titleStart": "Expert",
+    "titleHighlight1": "opinions",
+    "titleMiddle": "analysis, and",
+    "titleHighlight2": "practical insights",
+    "titleEnd": "from our software team."
+    },
+    "trending": {
+        "prefix": "",
+        "highlight": "Trending",
+        "suffix": "Reviews"
+    }
 }

@@ -56,6 +56,12 @@ const Testimonials = () => {
           />
         </AnimateOnScroll>
       </div>
+
+      <div className="flex items-center justify-center mt-10">
+        <button className="md:w-[584px] h-14 border border-[#EA433A] rounded-[50px] text-[#EA433A] text-xl font-medium">
+          {t('read_more')}
+        </button>
+      </div>
     </section>
   );
 };
