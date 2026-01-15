@@ -11,7 +11,9 @@ const AboutUsPage = () => {
             <AboutStatics />
             <AboutTechServices />
             <OurWork />
-            <Testimonials />
+            <div className="pb-20">
+                <Testimonials />
+            </div>
         </div>
     )
 }
