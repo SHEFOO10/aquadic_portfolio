@@ -20,5 +20,11 @@
         "highlight": "Open",
         "text": "Positions"
     },
-    "viewDetails": "View Details"
+    "viewDetails": "View Details",
+    "aboutHeader": {
+        "titleStart": "Shaping the",
+        "titleHighlight": "Future",
+        "titleEnd": "with Technology and Design",
+        "description": "At AQuadic, we specialize in delivering innovative software and design-driven solutions that help startups and businesses thrive. Our team works closely with clients to bring their ideas to life."
+    }
 }

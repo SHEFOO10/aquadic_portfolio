@@ -91,13 +91,13 @@ const Header = () => {
                       <AccordionContent>
                         <ul>
                           <li>
-                            <a
+                            <NavLink
                               onClick={closeSidebar}
-                              href="/#aboutUs"
+                              href="/about-us"
                               className="hover:bg-brandColor flex items-center px-4 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
                             >
                               {t("aboutus")}
-                            </a>
+                            </NavLink>
                           </li>
                           <NavLink
                             to="process"
@@ -223,7 +223,7 @@ const Header = () => {
                     <DropdownMenuLabel>
                       <ul>
                         <DropdownMenuItem asChild>
-                          <NavLink to="/#aboutUs" className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal hover:text-white">
+                          <NavLink to="/about-us" className="hover:bg-brandColor flex items-center px-2 w-full h-10 transition duration-300 text-black text-base font-normal hover:text-white">
                             {t("aboutus")}
                           </NavLink>
                         </DropdownMenuItem>

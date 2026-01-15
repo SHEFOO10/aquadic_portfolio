@@ -8,6 +8,7 @@ import Testing from "./pages/Testing";
 import WebDevelopment from "./pages/WebDevelopment";
 import ProcessPage from "./pages/company/ProcessPage";
 import CareerPage from "./pages/company/CareerPage";
+import AboutUsPage from "./pages/company/AboutUsPage";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="portfolio" element={<Portfolio />} />
           <Route path="process" element={<ProcessPage />} />
           <Route path="career" element={<CareerPage />} />
+          <Route path="about-us" element={<AboutUsPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
