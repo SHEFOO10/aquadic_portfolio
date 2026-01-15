@@ -45,5 +45,17 @@
         "value": "+12",
         "title": "Countries Served"
         }
+    },
+    "aboutTech": {
+        "titleStart": "Innovative",
+        "titleHighlight": "Tech Services",
+        "titleEnd": "for Every Challenge",
+        "description": "We deliver smart, reliable software solutions that help businesses grow, from websites and apps to custom digital products designed for seamless user experiences.",
+        "services": {
+        "analysis": "Analysis and Planning",
+        "design": "Design",
+        "development": "Software Development",
+        "testing": "Testing"
+        }
     }
 }
