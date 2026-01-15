@@ -64,5 +64,17 @@
         "description": "Explore a selection of our projects showcasing creativity, innovation, and technical expertise across web, mobile, and custom software solutions.",
         "button": "Explore Our Portfolio",
         "imageAlt": "Our work showcase"
-    }
+    },
+    "applyingForm": "Applying",
+    "form": "Form",
+    "fullName": "Full Name",
+    "enterFullName": "Enter full name",
+    "phoneNumber": "Phone Number",
+    "phonePlaceholder": "+20",
+    "email": "Email",
+    "enterEmail": "Enter your email",
+    "uploadCV": "Upload CV",
+    "chooseFile": "Choose file",
+    "acceptedFileTypes": "Accepted File Types: pdf, word, jpg, png",
+    "submit": "Submit"
 }

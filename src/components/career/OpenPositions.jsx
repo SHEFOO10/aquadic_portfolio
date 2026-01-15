@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import figma from '../../assets/images/figma.jpg'
 import RedArrow from '../icons/career/RedArrow'
+import { Link } from 'react-router';
 
 const OpenPositions = () => {
     const { t } = useTranslation("aboutus");
@@ -12,7 +13,7 @@ const OpenPositions = () => {
                     {t("openPositions.text")}
                 </h2>
 
-                <div className="w-full h-full border-2 border-[#E4E3E3] p-6 rounded-[32px] mt-10 flex gap-2">
+                <Link to='/job_details' className="w-full h-full border-2 border-[#E4E3E3] p-6 rounded-[32px] mt-10 flex gap-2">
                     <img
                         src={figma}
                         alt="figma"
@@ -40,7 +41,7 @@ const OpenPositions = () => {
                             </div>
                         </button>
                     </div>
-                </div>
+                </Link>
             </div>
         </section>
     )
