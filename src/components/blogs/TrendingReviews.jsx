@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { useQuery } from "@tanstack/react-query";
 import { getBlogs } from "@/lib/blogs/blogs";
 import { Skeleton } from "../ui/skeleton";
+import { Link } from 'react-router';
 
 const TrendingReviews = () => {
     const { t, i18n } = useTranslation("aboutus");
@@ -49,7 +50,7 @@ const TrendingReviews = () => {
                 {!isLoading &&
                     !isError &&
                     blogs.map((blog) => (
-                        <div
+                        <Link to={`/blogs/${blog.id}`}
                             key={blog.id}
                             className="px-6 py-4 border-2 border-[#E3E3E3] rounded-[32px] flex flex-wrap gap-4"
                         >
@@ -78,7 +79,7 @@ const TrendingReviews = () => {
                                     </p>
                                 </div>
                             </div>
-                        </div>
+                        </Link>
                     ))}
             </div>
         </section>

@@ -7,3 +7,8 @@ export const getBlogs = async (page = 1) => {
 
   return response.data;
 };
+
+export const getBlogById = async (id) => {
+  const { data } = await axios.get(`blogs/${id}`);
+  return data;
+};

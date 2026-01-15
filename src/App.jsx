@@ -11,6 +11,7 @@ import CareerPage from "./pages/company/CareerPage";
 import AboutUsPage from "./pages/company/AboutUsPage";
 import JobDetailsPage from "./pages/company/JobDetailsPage";
 import BlogsPage from "./pages/BlogsPage";
+import BlogDetails from "./pages/BlogDetailsPage";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="about-us" element={<AboutUsPage />} />
           <Route path="job_details" element={<JobDetailsPage />} />
           <Route path="blogs" element={<BlogsPage />} />
+          <Route path="/blogs/:id" element={<BlogDetails />} />
         </Route>
       </Routes>
     </BrowserRouter>
