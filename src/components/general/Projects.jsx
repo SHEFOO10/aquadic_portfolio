@@ -7,8 +7,16 @@ const Projects = ({ id, image, title, type }) => {
       to={`/portfolio/${id}`}
       className="flex flex-col items-center mt-14 hover:opacity-90 transition-opacity"
     >
-      <div className="w-[150px] h-[150px] flex items-center justify-center bg-gray-50 rounded-2xl mb-6 shadow-sm">
-        <img src={image} className="w-24 h-24 object-contain" alt={title} />
+      <div className="w-[150px] h-[150px] flex items-center justify-center bg-gray-50 rounded-2xl mb-6 shadow-sm overflow-hidden">
+        {image ? (
+          <img src={image} className="w-24 h-24 object-contain" alt={title} />
+        ) : (
+          <div className="flex flex-col items-center justify-center">
+            <span className="text-3xl font-bold text-gray-300">
+              {title?.substring(0, 2).toUpperCase() || "AQ"}
+            </span>
+          </div>
+        )}
       </div>
       <h2 className="text-[#121212] text-[28px] font-semibold mb-2 text-center">
         {title}

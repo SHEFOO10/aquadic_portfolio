@@ -1,6 +1,6 @@
 import React from "react";
 
-const HomeGradientLeft = () => {
+const HomeGradientLeft = ({ className }) => {
   return (
     <svg
       width="556"
@@ -8,7 +8,8 @@ const HomeGradientLeft = () => {
       viewBox="0 0 556 1002"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="w-full lg:w-[556px]"
+      className={className || "w-full lg:w-[556px]"}
+      preserveAspectRatio="none"
     >
       <g filter="url(#filter0_f_277_4308)">
         <circle cx="-40" cy="406" r="146" fill="#FFA29D" />

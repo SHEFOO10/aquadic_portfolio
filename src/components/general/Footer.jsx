@@ -7,13 +7,16 @@ import X from "@/assets/images/X.svg";
 import phone from "@/assets/images/footerPhone.svg";
 import email from "@/assets/images/footerEmail.svg";
 import location from "@/assets/images/footerLoc.svg";
-import { Link, NavLink } from "react-router";
+import { Link, NavLink, useLocation } from "react-router";
 import FooterGradient from "@/components/icons/general/FooterGradient.jsx";
 import { useTranslation } from "react-i18next";
 import "../Hooks/i18n";
 
 const Footer = () => {
   const { t } = useTranslation("navbar");
+  const location = useLocation();
+  const isSingleProject = /^\/portfolio\/.+/.test(location.pathname);
+
   const scrollToAboutUs = () => {
     const aboutUsSection = document.getElementById("aboutUs");
     if (aboutUsSection) {
@@ -111,7 +114,10 @@ const Footer = () => {
                 </li>
 
                 <li className="mb-4">
-                  <NavLink to="/portfolio" className="text-black text-base left-8">
+                  <NavLink
+                    to="/portfolio"
+                    className="text-black text-base left-8"
+                  >
                     {t("portfolio")}
                   </NavLink>
                 </li>
@@ -146,7 +152,9 @@ const Footer = () => {
               <ul>
                 <li className="mb-4 flex items-center gap-4">
                   <img src={phone} alt="Phone" />
-                  <p className="text-black left-8" dir="ltr">(+20) 110 178 2890</p>
+                  <p className="text-black left-8" dir="ltr">
+                    (+20) 110 178 2890
+                  </p>
                 </li>
                 <li className="mb-4 flex items-center gap-4">
                   <img src={email} alt="Email" />
@@ -164,9 +172,11 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <span className="absolute bottom-0 left-0 -z-10">
-        <FooterGradient />
-      </span>
+      {!isSingleProject && (
+        <span className="absolute bottom-0 left-0 -z-10">
+          <FooterGradient />
+        </span>
+      )}
     </footer>
   );
 };

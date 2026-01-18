@@ -1,4 +1,3 @@
-import React from "react";
 import { Outlet } from "react-router";
 import Header from "@/components/general/Header.jsx";
 import Footer from "@/components/general/Footer.jsx";
@@ -11,11 +10,11 @@ const Layout = () => {
   return (
     <Providers>
       <div className="relative">
-        <span className="fixed left-0 max-w-[40%] -z-10">
-          <HomeGradientLeft />
+        <span className="fixed left-0 top-0 h-screen max-w-[40%] -z-10 pointer-events-none">
+          <HomeGradientLeft className="w-full h-full opacity-70" />
         </span>
-        <span className="fixed right-0 max-w-[40%] -z-10">
-          <HomeGradientRight />
+        <span className="fixed right-0 top-0 h-screen max-w-[40%] -z-10 pointer-events-none">
+          <HomeGradientRight className="w-full h-full opacity-70" />
         </span>
         <Header />
         <Outlet />

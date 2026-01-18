@@ -226,7 +226,7 @@ const SingleProjectPage = () => {
       )}
 
       {/* Section 4: Launch App Banner */}
-      <section className="relative w-full py-16 md:py-24 mt-8 mb-20">
+      <section className="relative w-full py-16 md:py-24">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img
