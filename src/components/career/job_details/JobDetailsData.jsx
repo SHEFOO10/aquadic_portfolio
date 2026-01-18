@@ -1,102 +1,130 @@
-import { Link } from "react-router"
-import figma from '../../../assets/images/figma.jpg'
-import { useTranslation } from 'react-i18next';
+import { useParams } from "react-router"
+import { useQuery } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
+
+import { getPositionById } from "@/lib/positions/positions";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const JobDetailsData = () => {
-    const { t } = useTranslation("aboutus");
+    const { t, i18n } = useTranslation("aboutus");
+    const lang = i18n.language;
+    const { id } = useParams();
+
+    const { data: job, isLoading, error } = useQuery({
+        queryKey: ["position", id],
+        queryFn: () => getPositionById(id),
+        enabled: !!id,
+    });
+
+    if (isLoading) {
+        return (
+            <div className="container mt-20 space-y-6">
+                <div className="flex gap-4">
+                    <Skeleton className="md:w-[180px] w-20 md:h-[172px] h-20 rounded-xl" />
+                    <div className="flex-1 space-y-4">
+                        <Skeleton className="h-6 w-3/4" />
+                        <Skeleton className="h-4 w-1/2" />
+                        <Skeleton className="h-16 w-full" />
+                    </div>
+                </div>
+
+                <Skeleton className="h-8 w-1/4 mt-10" />
+                <Skeleton className="h-4 w-full mt-3" />
+                <Skeleton className="h-4 w-5/6 mt-2" />
+                <Skeleton className="h-4 w-2/3 mt-2" />
+            </div>
+        );
+    }
+
+    if (error || !job) {
+        return <p className="text-center mt-20">Job not found</p>;
+    }
+
     return (
         <section className=''>
             <div className='container'>
-                <Link to='/job_details' className="w-full h-full border-2 border-[#E4E3E3] p-6 rounded-[32px] mt-10 flex gap-2">
+                <div className="w-full h-full border-2 border-[#E4E3E3] p-6 rounded-[32px] mt-10 flex gap-4">
                     <img
-                        src={figma}
-                        alt="figma"
+                        src={job.image?.url}
+                        alt={job.name?.[lang]}
                         className='md:w-[180px] w-20 md:h-[172px] h-20'
                     />
                     <div>
                         <h2 className='text-[#121212] md:text-[32px] font-bold'>
-                            Senior UI/UX Designer
+                            {job.name?.[lang]}
                         </h2>
-                        <p className='text-[#5D5D5D] md:text-sm text-xs font-semibold mt-3'>
-                            On site - Full Time
-                        </p>
-                        <p className='text-[#5D5D5D] md:text-base text-xs font-medium mt-4'>
-                            We are looking for a talented Senior UI/UX Designer to join our team at AQuadic. You will be responsible for designing intuitive, user-friendly interfaces for web and mobile applications. The ideal candidate combines creativity with a strong understanding of user behavior, delivering designs that enhance user experience and drive engagement.
-                        </p>
+
+                        {job.features?.[lang] && (
+                            <p className="text-[#5D5D5D] md:text-sm text-xs font-semibold mt-3">
+                                {job.features[lang]}
+                            </p>
+                        )}
+
+                        {job.description?.[lang] && (
+                            <p className="text-[#5D5D5D] md:text-base text-xs font-medium mt-4">
+                                {job.description[lang]}
+                            </p>
+                        )}
                     </div>
-                </Link>
-
-                <div className="mt-20">
-                    <h2 className="text-[#EA433A] text-[32px] font-medium">
-                        Key Responsibilities:
-                    </h2>
-                    <ul className="list-disc px-8">
-                        <li className="text-[#121212] text-lg font-medium leading-[150%] mt-3">
-                            Lead discovery, user research, and user journey mapping.
-                        </li>
-                        <li className="text-[#121212] text-lg font-medium leading-[150%] mt-3">
-                            Deliver design solutions from concept to implementation.
-                        </li>
-                        <li className="text-[#121212] text-lg font-medium leading-[150%] mt-3">
-                            Define design standards and contribute to the design system.
-                        </li>
-                        <li className="text-[#121212] text-lg font-medium leading-[150%] mt-3">
-                            Ensure accessibility and user diversity are considered in all stages.
-                        </li>
-                        <li className="text-[#121212] text-lg font-medium leading-[150%] mt-3">
-                            Collaborate on roadmap planning and influence product direction.
-                        </li>
-                        <li className="text-[#121212] text-lg font-medium leading-[150%] mt-3">
-                            Mentor junior designers and advocate for user-centered thinking across teams.
-                        </li>
-                    </ul>
                 </div>
 
-                <div className="mt-16">
-                    <h2 className="text-[#EA433A] text-[32px] font-medium">
-                        Must-Have Qualifications:
-                    </h2>
-                    <ul className="list-disc px-8">
-                        <li className="text-[#121212] text-lg font-medium leading-[150%] mt-3">
-                            Lead discovery, user research, and user journey mapping.
-                        </li>
-                        <li className="text-[#121212] text-lg font-medium leading-[150%] mt-3">
-                            Deliver design solutions from concept to implementation.
-                        </li>
-                        <li className="text-[#121212] text-lg font-medium leading-[150%] mt-3">
-                            Define design standards and contribute to the design system.
-                        </li>
-                        <li className="text-[#121212] text-lg font-medium leading-[150%] mt-3">
-                            Ensure accessibility and user diversity are considered in all stages.
-                        </li>
-                        <li className="text-[#121212] text-lg font-medium leading-[150%] mt-3">
-                            Collaborate on roadmap planning and influence product direction.
-                        </li>
-                        <li className="text-[#121212] text-lg font-medium leading-[150%] mt-3">
-                            Mentor junior designers and advocate for user-centered thinking across teams.
-                        </li>
-                    </ul>
-                </div>
+                {job.key_responsibilities && job.key_responsibilities.length > 0 && (
+                    <div className="mt-20">
+                        <h2 className="text-[#EA433A] text-[32px] font-medium">
+                            {t("jobDetails.responsibilities")}
+                        </h2>
 
-                <div className="mt-16">
-                    <h2 className="text-[#121212] text-[32px] font-medium">
-                        Why Join <span className="text-[#EA433A]">Aquadic ?</span>
-                    </h2>
-                    <ul className="list-disc px-8">
-                        <li className="text-[#121212] text-lg font-medium leading-[150%] mt-3">
-                            Work on high-impact, scalable digital products.
-                        </li>
-                        <li className="text-[#121212] text-lg font-medium leading-[150%] mt-3">
-                            Collaborate with talented professionals in a supportive environment.
-                        </li>
-                        <li className="text-[#121212] text-lg font-medium leading-[150%] mt-3">
-                            A hybrid work model with flexibility.
-                        </li>
-                        <li className="text-[#121212] text-lg font-medium leading-[150%] mt-3">
-                            Opportunities for professional growth and leadership.
-                        </li>
-                    </ul>
-                </div>
+                        <ul className="list-disc px-8">
+                            {job.key_responsibilities.map((item, index) => (
+                                <li
+                                    key={index}
+                                    className="text-[#121212] text-lg font-medium leading-[150%] mt-3"
+                                >
+                                    {item}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
+
+                {job.qualifications && job.qualifications.length > 0 && (
+                    <div className="mt-16">
+                        <h2 className="text-[#EA433A] text-[32px] font-medium">
+                            {t("jobDetails.qualifications")}
+                        </h2>
+
+                        <ul className="list-disc px-8">
+                            {job.qualifications.map((item, index) => (
+                                <li
+                                    key={index}
+                                    className="text-[#121212] text-lg font-medium leading-[150%] mt-3"
+                                >
+                                    {item}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
+
+                {job.why_join && job.why_join.length > 0 && (
+                    <div className="mt-16">
+                        <h2 className="text-[#121212] text-[32px] font-medium">
+                            {t("jobDetails.whyJoin")}{" "}
+                            <span className="text-[#EA433A]">Aquadic?</span>
+                        </h2>
+
+                        <ul className="list-disc px-8">
+                            {job.why_join.map((item, index) => (
+                                <li
+                                    key={index}
+                                    className="text-[#121212] text-lg font-medium leading-[150%] mt-3"
+                                >
+                                    {item}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
             </div>
         </section>
     )
