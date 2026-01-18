@@ -10,5 +10,10 @@
   "CRM": "إدارة علاقات العملاء",
   "hotel": "فندقي",
   "carServices": "خدمات السيارات",
-  "aboutProject": "عن المشروع"
+  "aboutProject": "عن المشروع",
+  "technologiesUsed": "التقنيات المستخدمة",
+  "launchTitle": "أطلق تطبيق أحلامك - لنظامي Android و iOS",
+  "launchTitleSuffix": "جاهز !",
+  "launchDesc": "حول فكرتك إلى تطبيق جوال قوي مع تجربة مستخدم سلسة، مصمم ليعمل بسلاسة على نظامي iOS و Android.",
+  "contactUsNow": "تواصل معنا الآن"
 }

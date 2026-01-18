@@ -10,5 +10,10 @@
   "CRM": "CRM",
   "hotel": "Hotel",
   "carServices": "Car Services",
-  "aboutProject": "About The Project"
+  "aboutProject": "About The Project",
+  "technologiesUsed": "Technologies Used",
+  "launchTitle": "Launch Your Dream App -IOs & Android",
+  "launchTitleSuffix": "Ready !",
+  "launchDesc": "Turn your idea into a powerful mobile app with a seamless user experience, built to perform flawlessly on both iOS and Android platforms.",
+  "contactUsNow": "Contact Us Now"
 }

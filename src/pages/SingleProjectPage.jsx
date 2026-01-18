@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useParams, Link } from "react-router";
 import { axios } from "../lib/axios";
 import { useTranslation } from "react-i18next";
 import Loading from "@/components/general/Loading";
@@ -164,7 +164,7 @@ const SingleProjectPage = () => {
 
         {/* Main Product Image with Background */}
         {mainImage && (
-          <div className="relative w-full max-w-6xl mx-auto px-4">
+          <div className="relative w-full max-w-2xl mx-auto px-4">
             <div className="absolute inset-0 bg-gradient-to-b from-[#F0F8FF] to-white rounded-[24px] md:rounded-[40px] -z-10 transform scale-105" />
             <div className="bg-[#E8F1F8] rounded-[24px] md:rounded-[40px] p-4 md:p-12 lg:p-20 shadow-xl overflow-hidden">
               <img
@@ -178,7 +178,7 @@ const SingleProjectPage = () => {
       </section>
 
       {/* Section 2: About The Project */}
-      <section className="container py-12 md:py-24 mb-10 md:mb-20">
+      <section className="container py-6 md:py-12 mb-10 md:mb-20">
         <div className="text-center mb-8 md:mb-12">
           <h2 className="text-2xl md:text-[32px] font-bold">
             <span className="text-[#1073C0]">
@@ -189,6 +189,70 @@ const SingleProjectPage = () => {
         </div>
         <div className="max-w-5xl mx-auto text-center text-[#4A4A4A] text-base md:text-2xl leading-[1.6] md:leading-[1.8] font-medium px-4">
           {fullDesc}
+        </div>
+      </section>
+
+      {/* Section 3: Technologies Used */}
+      {project.technologies && project.technologies.length > 0 && (
+        <section className="container py-6 md:py-12 mb-10 md:mb-20">
+          <div className="text-center mb-8 md:mb-12">
+            <h2 className="text-2xl md:text-[32px] font-bold">
+              <span className="text-[#1073C0]">
+                {t("technologiesUsed").split(" ").slice(0, 1).join(" ")}
+              </span>{" "}
+              {t("technologiesUsed").split(" ").slice(1).join(" ")}
+            </h2>
+          </div>
+          <div className="flex flex-wrap justify-center gap-6 md:gap-10 px-4">
+            {project.technologies.map((tech) => (
+              <div
+                key={tech.id}
+                className="w-[60px] h-[60px] md:w-[100px] md:h-[100px] flex items-center justify-center transition-transform hover:scale-105"
+                title={tech.name}
+              >
+                {tech.image?.url ? (
+                  <img
+                    src={tech.image.url}
+                    alt={tech.name}
+                    className="w-full h-full object-contain"
+                  />
+                ) : (
+                  <span className="text-xs">{tech.name}</span>
+                )}
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Section 4: Launch App Banner */}
+      <section className="relative w-full py-16 md:py-24 mt-8 mb-20">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/images/launchBg.png"
+            alt="Launch Background"
+            className="w-full h-full object-cover opacity-30 md:opacity-100"
+          />
+          {/* Overlay for better text readability on mobile if needed, though design looks clean */}
+          <div className="absolute inset-0 bg-white/50 md:bg-transparent"></div>
+        </div>
+
+        {/* Content */}
+        <div className="relative z-10 container flex flex-col items-center text-center px-4">
+          <h2 className="text-3xl md:text-[48px] font-bold text-[#121212] mb-6 leading-tight">
+            {t("launchTitle")}{" "}
+            <span className="text-[#EA433A]">{t("launchTitleSuffix")}</span>
+          </h2>
+          <p className="text-[#5D5D5D] text-base md:text-[20px] max-w-4xl mb-10 leading-relaxed font-medium">
+            “{t("launchDesc")}”
+          </p>
+          <Link
+            to="/"
+            className="px-8 py-4 bg-[#EA433A] text-white rounded-full font-bold text-lg hover:bg-[#d63c33] transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+          >
+            {t("contactUsNow")}
+          </Link>
         </div>
       </section>
     </div>
