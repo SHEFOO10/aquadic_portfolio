@@ -88,5 +88,6 @@
         "prefix": "التقييمات",
         "highlight": "الأكثر رواجًا",
         "suffix": ""
-    }
+    },
+    "successMessage_ar": "تم إرسال الطلب بنجاح!"
 }

@@ -200,9 +200,6 @@ const JobForm = () => {
                             {selectedCountry?.dial}
                         </span>
                     </div>
-                    <p className="text-[#5D5D5D] text-sm mt-1">
-                        {t("phoneHint") || "Enter your phone number without the country code"}
-                    </p>
                 </div>
 
                 {/* Email */}

@@ -88,5 +88,6 @@
         "prefix": "",
         "highlight": "Trending",
         "suffix": "Reviews"
-    }
+    },
+    "successMessage": "Application submitted successfully!"
 }
