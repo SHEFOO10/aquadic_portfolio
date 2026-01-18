@@ -9,19 +9,34 @@ import Loading from "@/components/general/Loading";
 const Portfolio = () => {
   const language = i18n.language;
   const [selectedCategory, setSelectedCategory] = useState(0);
+  const [page, setPage] = useState(1);
+
   const { data: categories } = useQuery({
     queryKey: ["categories"],
     queryFn: async () => await axios.get("category"),
-    select: (data) => data.data,
+    select: (data) => data.data.data || data.data,
   });
-  const { data: projects, isLoading } = useQuery({
-    queryKey: ["projects", selectedCategory],
+
+  const { data, isLoading } = useQuery({
+    queryKey: ["projects", selectedCategory, page],
     queryFn: async () => {
-      const response = await axios.get("/project");
-      return response.data.data;
+      const response = await axios.get("/project", {
+        params: {
+          page: page,
+          category_id: selectedCategory !== 0 ? selectedCategory : undefined,
+        },
+      });
+      return response.data;
     },
-    select: (data) => (Array.isArray(data) ? data : []),
   });
+
+  const projects = data?.data || [];
+  const pagination = {
+    current_page: data?.current_page,
+    last_page: data?.last_page,
+    total: data?.total,
+  };
+
   if (isLoading) return <Loading />;
   return (
     <div>
@@ -80,7 +95,13 @@ const Portfolio = () => {
         projects={projects}
         categories={categories}
         selectedCategory={selectedCategory}
-        setSelectedCategory={setSelectedCategory}
+        setSelectedCategory={(val) => {
+          setSelectedCategory(val);
+          setPage(1);
+        }}
+        page={page}
+        setPage={setPage}
+        pagination={pagination}
         language={language}
       />
     </div>

@@ -1,13 +1,14 @@
 {
-    "portfolio": "ملف",
-    "company": "الشركة",
-    "all": "الكل",
-    "booking": "الحجز",
-    "business": "أعمال",
-    "medical": "طبي",
-    "ecommerce": "التجارة الإلكترونية",
-    "islamic": "اسلامي",
-    "CRM": "إدارة علاقات العملاء",
-    "hotel": "فندقي",
-    "carServices": "خدمات السيارات"
+  "portfolio": "ملف",
+  "company": "الشركة",
+  "all": "الكل",
+  "booking": "الحجز",
+  "business": "أعمال",
+  "medical": "طبي",
+  "ecommerce": "التجارة الإلكترونية",
+  "islamic": "اسلامي",
+  "CRM": "إدارة علاقات العملاء",
+  "hotel": "فندقي",
+  "carServices": "خدمات السيارات",
+  "aboutProject": "عن المشروع"
 }

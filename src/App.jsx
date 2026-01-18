@@ -12,6 +12,7 @@ import AboutUsPage from "./pages/company/AboutUsPage";
 import JobDetailsPage from "./pages/company/JobDetailsPage";
 import BlogsPage from "./pages/BlogsPage";
 import BlogDetails from "./pages/BlogDetailsPage";
+import SingleProjectPage from "./pages/SingleProjectPage";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="mobiledev" element={<MobDevelopment />} />
           <Route path="testing" element={<Testing />} />
           <Route path="portfolio" element={<Portfolio />} />
+          <Route path="portfolio/:id" element={<SingleProjectPage />} />
           <Route path="process" element={<ProcessPage />} />
           <Route path="career" element={<CareerPage />} />
           <Route path="about-us" element={<AboutUsPage />} />

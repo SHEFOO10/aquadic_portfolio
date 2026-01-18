@@ -1,13 +1,14 @@
 {
-    "portfolio": "Portfolio",
-    "company": "Company",
-    "all": "All",
-    "booking": "Booking",
-    "business": "Business",
-    "medical": "Medical",
-    "ecommerce": "E-commerce",
-    "islamic": "Islamic",
-    "CRM": "CRM",
-    "hotel": "Hotel",
-    "carServices": "Car Services"
+  "portfolio": "Portfolio",
+  "company": "Company",
+  "all": "All",
+  "booking": "Booking",
+  "business": "Business",
+  "medical": "Medical",
+  "ecommerce": "E-commerce",
+  "islamic": "Islamic",
+  "CRM": "CRM",
+  "hotel": "Hotel",
+  "carServices": "Car Services",
+  "aboutProject": "About The Project"
 }
