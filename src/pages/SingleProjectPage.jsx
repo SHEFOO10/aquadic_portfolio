@@ -4,6 +4,8 @@ import { axios } from "../lib/axios";
 import { useTranslation } from "react-i18next";
 import Loading from "@/components/general/Loading";
 import { Globe } from "lucide-react";
+import Behance from "@/components/icons/projects/Behance";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const SingleProjectPage = () => {
   const { id } = useParams();
@@ -221,6 +223,195 @@ const SingleProjectPage = () => {
                 )}
               </div>
             ))}
+          </div>
+        </section>
+      )}
+
+      {/* Site Preview */}
+      {project.galleries && project.galleries.length > 0 && (
+        <section className="bg-[#F6FAFD] py-12 mb-20">
+          <div className="container">
+            <div className="flex justify-between items-start mb-8">
+              <div>
+                <h2 className="text-[#121212] md:text-[48px] text-2xl font-semibold">
+                  Site Preview
+                </h2>
+                <p className="text-[#5D5D5D] md:text-xl font-medium mt-4">
+                  Take a look inside {title} and explore its features through these screenshots.
+                </p>
+              </div>
+              {project.behance_url && (
+                <a
+                  href={project.behance_url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="w-[379px] h-14 border-2 border-[#1073C0] rounded-[40px] flex items-center justify-center gap-3 hover:bg-[#1073C0] hover:text-white transition-all"
+                >
+                  <Behance />
+                  <p className="text-lg font-semibold">View on Behance</p>
+                </a>
+              )}
+            </div>
+
+            <Tabs defaultValue="general">
+              <TabsList className="!border-none !bg-transparent justify-start !rounded-full">
+                {project.galleries.some(g => g.category_id === 1) && (
+                  <TabsTrigger
+                    value="general"
+                    className="rounded-full data-[state=active]:bg-[#1073C0] data-[state=active]:text-white data-[state=active]:border-none bg-white border mx-2 !text-sm"
+                  >
+                    General
+                  </TabsTrigger>
+                )}
+                {project.galleries.some(g => g.category_id === 2) && (
+                  <TabsTrigger
+                    value="mobile_app"
+                    className="rounded-full data-[state=active]:bg-[#1073C0] data-[state=active]:text-white data-[state=active]:border-none bg-white border mx-2 !text-sm"
+                  >
+                    Mobile App
+                  </TabsTrigger>
+                )}
+                {project.galleries.some(g => g.category_id === 3) && (
+                  <TabsTrigger
+                    value="website"
+                    className="rounded-full data-[state=active]:bg-[#1073C0] data-[state=active]:text-white data-[state=active]:border-none bg-white border mx-2 !text-sm"
+                  >
+                    Website
+                  </TabsTrigger>
+                )}
+                {project.galleries.some(g => g.category_id === 4) && (
+                  <TabsTrigger
+                    value="landing"
+                    className="rounded-full data-[state=active]:bg-[#1073C0] data-[state=active]:text-white data-[state=active]:border-none bg-white border mx-2 !text-sm"
+                  >
+                    Landing page
+                  </TabsTrigger>
+                )}
+                {project.galleries.some(g => g.category_id === 5) && (
+                  <TabsTrigger
+                    value="dashboard"
+                    className="rounded-full data-[state=active]:bg-[#1073C0] data-[state=active]:text-white data-[state=active]:border-none bg-white border mx-2 !text-sm"
+                  >
+                    Dashboard
+                  </TabsTrigger>
+                )}
+              </TabsList>
+
+              <TabsContent value="general" className="mt-8">
+                <div className="flex flex-wrap gap-4">
+                  {project.galleries
+                    .filter((g) => g.category_id === 1)
+                    .slice(0, 3)
+                    .map((gallery) => (
+                      <div
+                        key={gallery.id}
+                        className="md:w-[379px] h-[335px] w-full border-2 border-b-0 border-[#0F7EE2] rounded-tr-[40px] rounded-tl-[40px] bg-white p-4 shadow-md hover:shadow-xl transition-all"
+                      >
+                        <h3 className="text-[#121212] text-lg font-semibold leading-[150%]">
+                          {gallery.name}
+                        </h3>
+                        <img
+                          src={gallery.image?.url}
+                          alt={gallery.name}
+                          className="w-full h-auto object-cover rounded-xl mt-2"
+                        />
+                      </div>
+                    ))}
+                </div>
+              </TabsContent>
+
+              <TabsContent value="mobile_app" className="mt-8">
+                <div className="flex flex-wrap gap-4">
+                  {project.galleries
+                    .filter((g) => g.category_id === 2)
+                    .slice(0, 3)
+                    .map((gallery) => (
+                      <div
+                        key={gallery.id}
+                        className="md:w-[379px] h-[335px] w-full border-2 border-b-0 border-[#0F7EE2] rounded-tr-[40px] rounded-tl-[40px] bg-white p-4 shadow-md hover:shadow-xl transition-all"
+                      >
+                        <h3 className="text-[#121212] text-lg font-semibold leading-[150%]">
+                          {gallery.name}
+                        </h3>
+                        <img
+                          src={gallery.image?.url}
+                          alt={gallery.name}
+                          className="w-full h-auto object-cover rounded-xl mt-2"
+                        />
+                      </div>
+                    ))}
+                </div>
+              </TabsContent>
+
+              <TabsContent value="website" className="mt-8">
+                <div className="flex flex-wrap gap-4">
+                  {project.galleries
+                    .filter((g) => g.category_id === 3)
+                    .slice(0, 3)
+                    .map((gallery) => (
+                      <div
+                        key={gallery.id}
+                        className="md:w-[379px] h-[335px] w-full border-2 border-b-0 border-[#0F7EE2] rounded-tr-[40px] rounded-tl-[40px] bg-white p-4 shadow-md hover:shadow-xl transition-all"
+                      >
+                        <h3 className="text-[#121212] text-lg font-semibold leading-[150%]">
+                          {gallery.name}
+                        </h3>
+                        <img
+                          src={gallery.image?.url}
+                          alt={gallery.name}
+                          className="w-full h-auto object-cover rounded-xl mt-2"
+                        />
+                      </div>
+                    ))}
+                </div>
+              </TabsContent>
+
+              <TabsContent value="landing" className="mt-8">
+                <div className="flex flex-wrap gap-4">
+                  {project.galleries
+                    .filter((g) => g.category_id === 4)
+                    .slice(0, 3)
+                    .map((gallery) => (
+                      <div
+                        key={gallery.id}
+                        className="md:w-[379px] h-[335px] w-full border-2 border-b-0 border-[#0F7EE2] rounded-tr-[40px] rounded-tl-[40px] bg-white p-4 shadow-md hover:shadow-xl transition-all"
+                      >
+                        <h3 className="text-[#121212] text-lg font-semibold leading-[150%]">
+                          {gallery.name}
+                        </h3>
+                        <img
+                          src={gallery.image?.url}
+                          alt={gallery.name}
+                          className="w-full h-auto object-cover rounded-xl mt-2"
+                        />
+                      </div>
+                    ))}
+                </div>
+              </TabsContent>
+
+              <TabsContent value="dashboard" className="mt-8">
+                <div className="flex flex-wrap gap-4">
+                  {project.galleries
+                    .filter((g) => g.category_id === 5)
+                    .slice(0, 3)
+                    .map((gallery) => (
+                      <div
+                        key={gallery.id}
+                        className="md:w-[379px] h-[335px] w-full border-2 border-b-0 border-[#0F7EE2] rounded-tr-[40px] rounded-tl-[40px] bg-white p-4 shadow-md hover:shadow-xl transition-all"
+                      >
+                        <h3 className="text-[#121212] text-lg font-semibold leading-[150%]">
+                          {gallery.name}
+                        </h3>
+                        <img
+                          src={gallery.image?.url}
+                          alt={gallery.name}
+                          className="w-full h-auto object-cover rounded-xl mt-2"
+                        />
+                      </div>
+                    ))}
+                </div>
+              </TabsContent>
+            </Tabs>
           </div>
         </section>
       )}
