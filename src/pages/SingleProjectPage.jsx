@@ -234,10 +234,10 @@ const SingleProjectPage = () => {
             <div className="flex justify-between items-start mb-8">
               <div>
                 <h2 className="text-[#121212] md:text-[48px] text-2xl font-semibold">
-                  Site Preview
+                  {t("sitePreviewHeading")}
                 </h2>
                 <p className="text-[#5D5D5D] md:text-xl font-medium mt-4">
-                  Take a look inside {title} and explore its features through these screenshots.
+                  {t("sitePreviewDesc", { title })}
                 </p>
               </div>
               {project.behance_url && (
@@ -260,7 +260,7 @@ const SingleProjectPage = () => {
                     value="general"
                     className="rounded-full data-[state=active]:bg-[#1073C0] data-[state=active]:text-white data-[state=active]:border-none bg-white border mx-2 !text-sm"
                   >
-                    General
+                    {t("tabGeneral")}
                   </TabsTrigger>
                 )}
                 {project.galleries.some(g => g.category_id === 2) && (
@@ -268,7 +268,7 @@ const SingleProjectPage = () => {
                     value="mobile_app"
                     className="rounded-full data-[state=active]:bg-[#1073C0] data-[state=active]:text-white data-[state=active]:border-none bg-white border mx-2 !text-sm"
                   >
-                    Mobile App
+                    {t("tabMobileApp")}
                   </TabsTrigger>
                 )}
                 {project.galleries.some(g => g.category_id === 3) && (
@@ -276,7 +276,7 @@ const SingleProjectPage = () => {
                     value="website"
                     className="rounded-full data-[state=active]:bg-[#1073C0] data-[state=active]:text-white data-[state=active]:border-none bg-white border mx-2 !text-sm"
                   >
-                    Website
+                    {t("tabWebsite")}
                   </TabsTrigger>
                 )}
                 {project.galleries.some(g => g.category_id === 4) && (
@@ -284,7 +284,7 @@ const SingleProjectPage = () => {
                     value="landing"
                     className="rounded-full data-[state=active]:bg-[#1073C0] data-[state=active]:text-white data-[state=active]:border-none bg-white border mx-2 !text-sm"
                   >
-                    Landing page
+                    {t("tabLandingPage")}
                   </TabsTrigger>
                 )}
                 {project.galleries.some(g => g.category_id === 5) && (
@@ -292,7 +292,7 @@ const SingleProjectPage = () => {
                     value="dashboard"
                     className="rounded-full data-[state=active]:bg-[#1073C0] data-[state=active]:text-white data-[state=active]:border-none bg-white border mx-2 !text-sm"
                   >
-                    Dashboard
+                    {t("tabDashboard")}
                   </TabsTrigger>
                 )}
               </TabsList>

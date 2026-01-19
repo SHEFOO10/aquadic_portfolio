@@ -15,5 +15,12 @@
   "launchTitle": "Launch Your Dream App -IOs & Android",
   "launchTitleSuffix": "Ready !",
   "launchDesc": "Turn your idea into a powerful mobile app with a seamless user experience, built to perform flawlessly on both iOS and Android platforms.",
-  "contactUsNow": "Contact Us Now"
+  "contactUsNow": "Contact Us Now",
+  "sitePreviewHeading": "Site Preview",
+  "sitePreviewDesc": "Take a look inside {{title}} and explore its features through these screenshots.",
+  "tabGeneral": "General",
+  "tabMobileApp": "Mobile App",
+  "tabWebsite": "Website",
+  "tabLandingPage": "Landing Page",
+  "tabDashboard": "Dashboard"
 }

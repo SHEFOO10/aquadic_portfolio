@@ -15,5 +15,12 @@
   "launchTitle": "أطلق تطبيق أحلامك - لنظامي Android و iOS",
   "launchTitleSuffix": "جاهز !",
   "launchDesc": "حول فكرتك إلى تطبيق جوال قوي مع تجربة مستخدم سلسة، مصمم ليعمل بسلاسة على نظامي iOS و Android.",
-  "contactUsNow": "تواصل معنا الآن"
+  "contactUsNow": "تواصل معنا الآن",
+  "sitePreviewHeading": "معاينة الموقع",
+  "sitePreviewDesc": "ألقِ نظرة داخل {{title}} واستكشف ميزاته من خلال هذه اللقطات.",
+  "tabGeneral": "عام",
+  "tabMobileApp": "تطبيق الجوال",
+  "tabWebsite": "موقع ويب",
+  "tabLandingPage": "صفحة هبوط",
+  "tabDashboard": "لوحة التحكم"
 }
