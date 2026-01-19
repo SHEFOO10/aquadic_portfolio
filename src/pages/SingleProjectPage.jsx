@@ -305,7 +305,7 @@ const SingleProjectPage = () => {
                     .map((gallery) => (
                       <div
                         key={gallery.id}
-                        className="md:w-[379px] h-[335px] w-full border-2 border-b-0 border-[#0F7EE2] rounded-tr-[40px] rounded-tl-[40px] bg-white p-4 shadow-md hover:shadow-xl transition-all"
+                        className="md:w-[379px] h-full w-full border-2 border-b-0 border-[#0F7EE2] rounded-tr-[40px] rounded-tl-[40px] bg-white p-4 shadow-md hover:shadow-xl transition-all"
                       >
                         <h3 className="text-[#121212] text-lg font-semibold leading-[150%]">
                           {gallery.name}
@@ -313,7 +313,7 @@ const SingleProjectPage = () => {
                         <img
                           src={gallery.image?.url}
                           alt={gallery.name}
-                          className="w-full h-auto object-cover rounded-xl mt-2"
+                          className="w-[347px] h-[221px] object-cover rounded-xl mt-8"
                         />
                       </div>
                     ))}
@@ -328,7 +328,7 @@ const SingleProjectPage = () => {
                     .map((gallery) => (
                       <div
                         key={gallery.id}
-                        className="md:w-[379px] h-[335px] w-full border-2 border-b-0 border-[#0F7EE2] rounded-tr-[40px] rounded-tl-[40px] bg-white p-4 shadow-md hover:shadow-xl transition-all"
+                        className="md:w-[379px] h-full w-full border-2 border-b-0 border-[#0F7EE2] rounded-tr-[40px] rounded-tl-[40px] bg-white p-4 shadow-md hover:shadow-xl transition-all"
                       >
                         <h3 className="text-[#121212] text-lg font-semibold leading-[150%]">
                           {gallery.name}
@@ -336,7 +336,7 @@ const SingleProjectPage = () => {
                         <img
                           src={gallery.image?.url}
                           alt={gallery.name}
-                          className="w-full h-auto object-cover rounded-xl mt-2"
+                          className="w-[347px] h-[221px] object-cover rounded-xl mt-8"
                         />
                       </div>
                     ))}
@@ -351,7 +351,7 @@ const SingleProjectPage = () => {
                     .map((gallery) => (
                       <div
                         key={gallery.id}
-                        className="md:w-[379px] h-[335px] w-full border-2 border-b-0 border-[#0F7EE2] rounded-tr-[40px] rounded-tl-[40px] bg-white p-4 shadow-md hover:shadow-xl transition-all"
+                        className="md:w-[379px] h-full w-full border-2 border-b-0 border-[#0F7EE2] rounded-tr-[40px] rounded-tl-[40px] bg-white p-4 shadow-md hover:shadow-xl transition-all"
                       >
                         <h3 className="text-[#121212] text-lg font-semibold leading-[150%]">
                           {gallery.name}
@@ -359,7 +359,7 @@ const SingleProjectPage = () => {
                         <img
                           src={gallery.image?.url}
                           alt={gallery.name}
-                          className="w-full h-auto object-cover rounded-xl mt-2"
+                          className="w-[347px] h-[221px] object-cover rounded-xl mt-8"
                         />
                       </div>
                     ))}
@@ -374,7 +374,7 @@ const SingleProjectPage = () => {
                     .map((gallery) => (
                       <div
                         key={gallery.id}
-                        className="md:w-[379px] h-[335px] w-full border-2 border-b-0 border-[#0F7EE2] rounded-tr-[40px] rounded-tl-[40px] bg-white p-4 shadow-md hover:shadow-xl transition-all"
+                        className="md:w-[379px] h-full w-full border-2 border-b-0 border-[#0F7EE2] rounded-tr-[40px] rounded-tl-[40px] bg-white p-4 shadow-md hover:shadow-xl transition-all"
                       >
                         <h3 className="text-[#121212] text-lg font-semibold leading-[150%]">
                           {gallery.name}
@@ -382,7 +382,7 @@ const SingleProjectPage = () => {
                         <img
                           src={gallery.image?.url}
                           alt={gallery.name}
-                          className="w-full h-auto object-cover rounded-xl mt-2"
+                          className="w-[347px] h-[221px] object-cover rounded-xl mt-8"
                         />
                       </div>
                     ))}
@@ -397,7 +397,7 @@ const SingleProjectPage = () => {
                     .map((gallery) => (
                       <div
                         key={gallery.id}
-                        className="md:w-[379px] h-[335px] w-full border-2 border-b-0 border-[#0F7EE2] rounded-tr-[40px] rounded-tl-[40px] bg-white p-4 shadow-md hover:shadow-xl transition-all"
+                        className="md:w-[379px] h-full w-full border-2 border-b-0 border-[#0F7EE2] rounded-tr-[40px] rounded-tl-[40px] bg-white p-4 shadow-md hover:shadow-xl transition-all"
                       >
                         <h3 className="text-[#121212] text-lg font-semibold leading-[150%]">
                           {gallery.name}
@@ -405,7 +405,7 @@ const SingleProjectPage = () => {
                         <img
                           src={gallery.image?.url}
                           alt={gallery.name}
-                          className="w-full h-auto object-cover rounded-xl mt-2"
+                          className="w-[347px] h-[221px] object-cover rounded-xl mt-8"
                         />
                       </div>
                     ))}
