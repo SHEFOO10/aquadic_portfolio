@@ -2,8 +2,6 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useState, useEffect } from "react";
@@ -21,7 +19,7 @@ const Language = () => {
     {
       code: "ar",
       name: "العربية",
-      flag: "https://purecatamphetamine.github.io/country-flag-icons/3x2/AE.svg",
+      flag: "https://purecatamphetamine.github.io/country-flag-icons/3x2/EG.svg",
     },
   ];
 
@@ -50,7 +48,9 @@ const Language = () => {
           className="md:w-full md:h-full w-6 h-6"
           alt="Language"
         />
-        <p className="text-[#EA433A]">{language === "ar" ? "English" : "العربية"}</p>
+        <p className="text-[#EA433A]">
+          {language === "ar" ? "English" : "العربية"}
+        </p>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         {languages.map((lang) => (
