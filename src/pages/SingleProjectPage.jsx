@@ -224,8 +224,8 @@ const SingleProjectPage = () => {
 
       {/* Section 3: Technologies Used */}
       {project.technologies && project.technologies.length > 0 && (
-        <section className="container py-6 md:py-12 mb-10 md:mb-20">
-          <div className="text-center mb-8 md:mb-12">
+        <section className="py-6 md:py-12 mb-10 md:mb-20 overflow-hidden">
+          <div className="text-center mb-8 md:mb-12 container">
             <h2 className="text-2xl md:text-[32px] font-bold">
               <span className="text-[#1073C0]">
                 {t("technologiesUsed").split(" ").slice(0, 1).join(" ")}
@@ -233,24 +233,61 @@ const SingleProjectPage = () => {
               {t("technologiesUsed").split(" ").slice(1).join(" ")}
             </h2>
           </div>
-          <div className="flex flex-wrap justify-center gap-6 md:gap-10 px-4">
-            {project.technologies.map((tech) => (
-              <div
-                key={tech.id}
-                className="w-[60px] h-[60px] md:w-[100px] md:h-[100px] flex items-center justify-center transition-transform hover:scale-105"
-                title={tech.name}
-              >
-                {tech.image?.url ? (
-                  <img
-                    src={tech.image.url}
-                    alt={tech.name}
-                    className="w-full h-full object-contain"
-                  />
-                ) : (
-                  <span className="text-xs">{tech.name}</span>
-                )}
+          <div className="relative">
+            <style>
+              {`
+                @keyframes marquee {
+                  0% { transform: translateX(0); }
+                  100% { transform: translateX(-50%); }
+                }
+                .marquee-container {
+                  animation: marquee 30s linear infinite;
+                }
+                .marquee-container:hover {
+                  animation-play-state: paused;
+                }
+              `}
+            </style>
+            <div className="flex marquee-container">
+              <div className="flex gap-6 md:gap-10 px-4 flex-shrink-0">
+                {project.technologies.map((tech) => (
+                  <div
+                    key={`first-${tech.id}`}
+                    className="w-[60px] h-[60px] md:w-[100px] md:h-[100px] flex items-center justify-center transition-transform hover:scale-105"
+                    title={tech.name}
+                  >
+                    {tech.image?.url ? (
+                      <img
+                        src={tech.image.url}
+                        alt={tech.name}
+                        className="w-full h-full object-contain"
+                      />
+                    ) : (
+                      <span className="text-xs">{tech.name}</span>
+                    )}
+                  </div>
+                ))}
               </div>
-            ))}
+              <div className="flex gap-6 md:gap-10 px-4 flex-shrink-0">
+                {project.technologies.map((tech) => (
+                  <div
+                    key={`second-${tech.id}`}
+                    className="w-[60px] h-[60px] md:w-[100px] md:h-[100px] flex items-center justify-center transition-transform hover:scale-105"
+                    title={tech.name}
+                  >
+                    {tech.image?.url ? (
+                      <img
+                        src={tech.image.url}
+                        alt={tech.name}
+                        className="w-full h-full object-contain"
+                      />
+                    ) : (
+                      <span className="text-xs">{tech.name}</span>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
       )}
@@ -281,164 +318,35 @@ const SingleProjectPage = () => {
               )}
             </div>
 
-            <Tabs defaultValue="general">
-              <TabsList className="!border-none !bg-transparent justify-start !rounded-full">
-                {project.galleries.some(g => g.category_id === 1) && (
+            <Tabs defaultValue={project.galleries[0]?.id.toString()}>
+              <TabsList className="!border-none !bg-transparent justify-start !rounded-full flex-wrap">
+                {project.galleries.map((gallery) => (
                   <TabsTrigger
-                    value="general"
-                    className="rounded-full data-[state=active]:bg-[#1073C0] data-[state=active]:text-white data-[state=active]:border-none bg-white border mx-2 !text-sm"
+                    key={gallery.id}
+                    value={gallery.id.toString()}
+                    className="rounded-full data-[state=active]:bg-[#1073C0] data-[state=active]:text-white data-[state=active]:border-none bg-white border mx-2 my-1 !text-sm"
                   >
-                    {t("tabGeneral")}
+                    {gallery.name}
                   </TabsTrigger>
-                )}
-                {project.galleries.some(g => g.category_id === 2) && (
-                  <TabsTrigger
-                    value="mobile_app"
-                    className="rounded-full data-[state=active]:bg-[#1073C0] data-[state=active]:text-white data-[state=active]:border-none bg-white border mx-2 !text-sm"
-                  >
-                    {t("tabMobileApp")}
-                  </TabsTrigger>
-                )}
-                {project.galleries.some(g => g.category_id === 3) && (
-                  <TabsTrigger
-                    value="website"
-                    className="rounded-full data-[state=active]:bg-[#1073C0] data-[state=active]:text-white data-[state=active]:border-none bg-white border mx-2 !text-sm"
-                  >
-                    {t("tabWebsite")}
-                  </TabsTrigger>
-                )}
-                {project.galleries.some(g => g.category_id === 4) && (
-                  <TabsTrigger
-                    value="landing"
-                    className="rounded-full data-[state=active]:bg-[#1073C0] data-[state=active]:text-white data-[state=active]:border-none bg-white border mx-2 !text-sm"
-                  >
-                    {t("tabLandingPage")}
-                  </TabsTrigger>
-                )}
-                {project.galleries.some(g => g.category_id === 5) && (
-                  <TabsTrigger
-                    value="dashboard"
-                    className="rounded-full data-[state=active]:bg-[#1073C0] data-[state=active]:text-white data-[state=active]:border-none bg-white border mx-2 !text-sm"
-                  >
-                    {t("tabDashboard")}
-                  </TabsTrigger>
-                )}
+                ))}
               </TabsList>
 
-              <TabsContent value="general" className="mt-8">
-                <div className="flex flex-wrap gap-4">
-                  {project.galleries
-                    .filter((g) => g.category_id === 1)
-                    .slice(0, 3)
-                    .map((gallery) => (
-                      <div
-                        key={gallery.id}
-                        className="md:w-[379px] h-full w-full border-2 border-b-0 border-[#0F7EE2] rounded-tr-[40px] rounded-tl-[40px] bg-white p-4 shadow-md hover:shadow-xl transition-all"
-                      >
-                        <h3 className="text-[#121212] text-lg font-semibold leading-[150%]">
-                          {gallery.name}
-                        </h3>
-                        <img
-                          src={gallery.image?.url}
-                          alt={gallery.name}
-                          className="w-[347px] h-[221px] object-cover rounded-xl mt-8"
-                        />
-                      </div>
-                    ))}
-                </div>
-              </TabsContent>
-
-              <TabsContent value="mobile_app" className="mt-8">
-                <div className="flex flex-wrap gap-4">
-                  {project.galleries
-                    .filter((g) => g.category_id === 2)
-                    .slice(0, 3)
-                    .map((gallery) => (
-                      <div
-                        key={gallery.id}
-                        className="md:w-[379px] h-full w-full border-2 border-b-0 border-[#0F7EE2] rounded-tr-[40px] rounded-tl-[40px] bg-white p-4 shadow-md hover:shadow-xl transition-all"
-                      >
-                        <h3 className="text-[#121212] text-lg font-semibold leading-[150%]">
-                          {gallery.name}
-                        </h3>
-                        <img
-                          src={gallery.image?.url}
-                          alt={gallery.name}
-                          className="w-[347px] h-[221px] object-cover rounded-xl mt-8"
-                        />
-                      </div>
-                    ))}
-                </div>
-              </TabsContent>
-
-              <TabsContent value="website" className="mt-8">
-                <div className="flex flex-wrap gap-4">
-                  {project.galleries
-                    .filter((g) => g.category_id === 3)
-                    .slice(0, 3)
-                    .map((gallery) => (
-                      <div
-                        key={gallery.id}
-                        className="md:w-[379px] h-full w-full border-2 border-b-0 border-[#0F7EE2] rounded-tr-[40px] rounded-tl-[40px] bg-white p-4 shadow-md hover:shadow-xl transition-all"
-                      >
-                        <h3 className="text-[#121212] text-lg font-semibold leading-[150%]">
-                          {gallery.name}
-                        </h3>
-                        <img
-                          src={gallery.image?.url}
-                          alt={gallery.name}
-                          className="w-[347px] h-[221px] object-cover rounded-xl mt-8"
-                        />
-                      </div>
-                    ))}
-                </div>
-              </TabsContent>
-
-              <TabsContent value="landing" className="mt-8">
-                <div className="flex flex-wrap gap-4">
-                  {project.galleries
-                    .filter((g) => g.category_id === 4)
-                    .slice(0, 3)
-                    .map((gallery) => (
-                      <div
-                        key={gallery.id}
-                        className="md:w-[379px] h-full w-full border-2 border-b-0 border-[#0F7EE2] rounded-tr-[40px] rounded-tl-[40px] bg-white p-4 shadow-md hover:shadow-xl transition-all"
-                      >
-                        <h3 className="text-[#121212] text-lg font-semibold leading-[150%]">
-                          {gallery.name}
-                        </h3>
-                        <img
-                          src={gallery.image?.url}
-                          alt={gallery.name}
-                          className="w-[347px] h-[221px] object-cover rounded-xl mt-8"
-                        />
-                      </div>
-                    ))}
-                </div>
-              </TabsContent>
-
-              <TabsContent value="dashboard" className="mt-8">
-                <div className="flex flex-wrap gap-4">
-                  {project.galleries
-                    .filter((g) => g.category_id === 5)
-                    .slice(0, 3)
-                    .map((gallery) => (
-                      <div
-                        key={gallery.id}
-                        className="md:w-[379px] h-full w-full border-2 border-b-0 border-[#0F7EE2] rounded-tr-[40px] rounded-tl-[40px] bg-white p-4 shadow-md hover:shadow-xl transition-all"
-                      >
-                        <h3 className="text-[#121212] text-lg font-semibold leading-[150%]">
-                          {gallery.name}
-                        </h3>
-                        <img
-                          src={gallery.image?.url}
-                          alt={gallery.name}
-                          className="w-[347px] h-[221px] object-cover rounded-xl mt-8"
-                        />
-                      </div>
-                    ))}
-                </div>
-              </TabsContent>
+              {project.galleries.map((gallery) => (
+                <TabsContent key={gallery.id} value={gallery.id.toString()} className="mt-8">
+                  <div className="flex flex-wrap">
+                    <div className="md:w-[379px] h-full w-full border-2 border-b-0 border-[#0F7EE2] rounded-tr-[40px] rounded-tl-[40px] bg-white p-4 shadow-md hover:shadow-xl transition-all">
+                      <h3 className="text-[#121212] text-lg font-semibold leading-[150%]">
+                        {gallery.name}
+                      </h3>
+                      <img
+                        src={gallery.image?.url}
+                        alt={gallery.name}
+                        className="w-[347px] h-[221px] object-cover rounded-xl mt-8"
+                      />
+                    </div>
+                  </div>
+                </TabsContent>
+              ))}
             </Tabs>
           </div>
         </section>
