@@ -54,7 +54,7 @@ const HomeHero = () => {
 
         {/* Animated Heading */}
         <motion.h1
-          className="relative z-10 text-center font-bold text-4xl sm:text-5xl md:text-[72px] mx-10 leading-relaxed md:!leading-[100px]"
+          className="relative z-0 text-center font-bold text-4xl sm:text-5xl md:text-[72px] mx-10 leading-relaxed md:!leading-[100px]"
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
@@ -81,13 +81,13 @@ const HomeHero = () => {
 
         {/* Animated Description */}
         <motion.p
-          className="relative z-10 text-center text-brandGray text-lg sm:text-2xl"
+          className="relative z-0 text-center text-brandGray text-lg sm:text-2xl"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3 }}
           dangerouslySetInnerHTML={{ __html: t("heroPara") }}
         />
-        <div className="relative z-10 flex items-center justify-center">
+        <div className="relative z-0 flex items-center justify-center">
           <Magnet padding={50} disabled={false}>
             <a href="#contactUS" className="mx-auto">
               <button className="mt-8 mx-auto flex items-center justify-center gap-3 bg-brandColor rounded-full px-6 py-3 text-white font-medium border border-brandColor group">
