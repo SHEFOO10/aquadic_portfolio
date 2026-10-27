@@ -1,5 +1,5 @@
 import { NavLink } from "react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -23,47 +23,64 @@ import "../Hooks/i18n";
 
 const Header = () => {
   const { t } = useTranslation("navbar");
-  const [isOpen, setIsOpen] = useState(false);
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
-
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
-  const toggleSidebar1 = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
-  const closeSidebar = () => {
-    setIsSidebarOpen(false);
-  };
+  const closeSidebar = () => setIsSidebarOpen(false);
+
+  useEffect(() => {
+    if (!isSidebarOpen) return undefined;
+
+    const closeOnEscape = (event) => {
+      if (event.key === "Escape") setIsSidebarOpen(false);
+    };
+
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [isSidebarOpen]);
 
   return (
-    <div>
-      <nav className="container z-10 relative h-[100px] py-8 ">
+    <header className="sticky top-0 z-50 border-b border-slate-200/70 bg-white/85 shadow-[0_8px_30px_-20px_rgba(15,23,42,0.25)] backdrop-blur-xl">
+      <nav aria-label={t("mainNavigation", { defaultValue: "Main navigation" })} className="container relative h-[84px] py-3">
         <div className="flex items-center justify-between gap-3 mx-auto">
           <div className="flex items-center  rtl:space-x-reverse">
-            <button className="md:hidden flex" onClick={toggleSidebar1}>
-              <img src={toggle} className="w-6 h-6 mr-2" alt="Menu Icon" />
+            <button
+              type="button"
+              className="md:hidden flex rounded p-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-brandColor"
+              onClick={() => setIsSidebarOpen((open) => !open)}
+              aria-label={t("openMenu", { defaultValue: "Open menu" })}
+              aria-expanded={isSidebarOpen}
+              aria-controls="mobile-menu"
+            >
+              <img src={toggle} className="w-6 h-6 mr-2" alt="" />
             </button>
             <NavLink to="/">
-              <img className="max-sm:w-[130px]" src={logo} alt="Logo" />
+              <img className="max-sm:w-[130px]" src={logo} alt="AQuadic home" />
             </NavLink>
           </div>
           {isSidebarOpen && (
             <div
-              className="fixed inset-0 bg-black opacity-50 z-40"
+              className="fixed inset-0 bg-black/50 z-40"
               onClick={closeSidebar}
+              aria-hidden="true"
             ></div>
           )}
           <div
+            id="mobile-menu"
+            role={isSidebarOpen ? "dialog" : undefined}
+            aria-modal={isSidebarOpen ? true : undefined}
+            aria-label={t("mobileNavigation", { defaultValue: "Mobile navigation" })}
+            aria-hidden={!isSidebarOpen}
+            inert={!isSidebarOpen}
             className={`fixed inset-y-0 ${isSidebarOpen ? "left-0" : "-left-full"} bg-white w-64 md:hidden z-50 transition-all duration-300 ease-in-out`}
           >
             <div className="flex items-center justify-between px-5">
-              <p onClick={toggleSidebar} className="relative top-4 ltr:left-48">
-                <img src={close} alt="Close Icon" />
-              </p>
+              <button
+                type="button"
+                onClick={closeSidebar}
+                aria-label={t("closeMenu", { defaultValue: "Close menu" })}
+                className="relative top-4 ltr:left-48 rounded p-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-brandColor"
+              >
+                <img src={close} alt="" />
+              </button>
             </div>
             <div className="flex flex-col gap-5 font-normal text-lg rtl:space-x-reverse mt-4">
               <ul className="flex flex-col gap-2 font-normal text-lg rtl:space-x-reverse md:flex-row">
@@ -72,14 +89,13 @@ const Header = () => {
                     onClick={closeSidebar}
                     to="/"
                     className="block py-2 px-3 md:p-0 text-[#121212] font-medium text-base transform  hover:text-brandColor hover:underline transition-all duration-300"
-                    aria-current="page"
-                  >
+                    >
                     {t("home")}
                   </NavLink>
                 </li>
                 <li
                   className="flex items-center gap-1 relative"
-                  onClick={toggleDropdown}
+
                 >
                   <Accordion type="single" collapsible className="w-full">
                     <AccordionItem value="company">
@@ -93,28 +109,29 @@ const Header = () => {
                           <li>
                             <NavLink
                               onClick={closeSidebar}
-                              href="/about-us"
+                              to="/about-us"
                               className="hover:bg-brandColor flex items-center px-4 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
                             >
                               {t("aboutus")}
                             </NavLink>
                           </li>
                           <NavLink
-                            to="process"
+                            to="/process"
                             onClick={closeSidebar}
                             className="hover:bg-brandColor flex items-center px-4 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
                           >
                             <p>{t("process")}</p>
                           </NavLink>
                           <NavLink
-                            to="team"
+                            to="/team"
                             onClick={closeSidebar}
                             className="hover:bg-brandColor flex items-center px-4 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
                           >
                             <p>{t("team")}</p>
                           </NavLink>
                           <NavLink
-                            to="career"
+                            to="/career"
+                            onClick={closeSidebar}
                             className="hover:bg-brandColor flex items-center px-4 w-full h-10 transition duration-300 text-black text-base font-normal left-8 hover:text-white"
                           >
                             <p>{t("career")}</p>
@@ -173,7 +190,7 @@ const Header = () => {
                 <li>
                   <NavLink
                     onClick={closeSidebar}
-                    to="/faqs"
+                    to="/blogs"
                     className="block py-2 px-3 md:p-0 text-[#121212] font-medium text-base transform  hover:text-brandColor hover:underline transition-all duration-300"
                   >
                     {t("blog")}
@@ -181,19 +198,25 @@ const Header = () => {
                 </li>
               </ul>
             </div>
+            <NavLink
+              to="/#contactUS"
+              onClick={closeSidebar}
+              className="mx-4 mt-4 flex min-h-11 items-center justify-center rounded-full bg-brandColor px-4 font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brandColor"
+            >
+              {t("contactus")}
+            </NavLink>
             <Language />
           </div>
           <div
             className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
             id="navbar-language"
           >
-            <ul className="flex flex-col gap-[59px] font-normal p-4 md:p-0 mt-4 text-lg rtl:space-x-reverse md:flex-row">
+            <ul className="flex flex-col gap-3 font-normal text-lg rtl:space-x-reverse md:flex-row md:items-center md:gap-4 lg:gap-6 xl:gap-8">
               <li>
                 <NavLink
                   onClick={closeSidebar}
                   to="/"
                   className="block py-2 px-3 md:p-0 text-[#121212] font-medium text-base transform  hover:text-brandColor hover:underline transition-all duration-300"
-                  aria-current="page"
                 >
                   {t("home")}
                 </NavLink>
@@ -201,7 +224,7 @@ const Header = () => {
 
               <li
                 className="flex items-center gap-1 relative"
-                onClick={toggleDropdown}
+
               >
                 <DropdownMenu>
                   <DropdownMenuTrigger className="flex items-center gap-1">
@@ -309,12 +332,18 @@ const Header = () => {
               </li>
             </ul>
           </div>
-          <div className="order-3 flex items-center gap-2">
+          <div className="order-3 flex items-center gap-2 md:gap-3">
+            <NavLink
+              to="/#contactUS"
+              className="hidden min-h-10 items-center justify-center rounded-full bg-brandColor px-5 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brandColor lg:inline-flex"
+            >
+              {t("contactus")}
+            </NavLink>
             <Language />
           </div>
         </div>
       </nav>
-    </div>
+    </header>
   );
 };
 

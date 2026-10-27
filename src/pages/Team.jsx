@@ -10,12 +10,22 @@ import React from "react";
 
 const Team = () => {
   const { t } = useTranslation("team");
-  const { data: departments, isLoading } = useQuery({
+  const { data: departments, isLoading, isError, refetch } = useQuery({
     queryKey: ["departments"],
     queryFn: async () => await axios.get("department"),
     select: (data) => data.data,
   });
   if (isLoading) return <Loading />;
+  if (isError) {
+    return (
+      <section className="container py-20 text-center" role="alert">
+        <p className="text-lg text-slate-700">{t("loadError", { defaultValue: "Unable to load the team." })}</p>
+        <button type="button" onClick={() => refetch()} className="mt-5 rounded-full border border-brandColor px-6 py-3 font-semibold text-brandColor">
+          {t("retry", { defaultValue: "Try again" })}
+        </button>
+      </section>
+    );
+  }
   return (
     <section>
       <Helmet>
@@ -45,7 +55,7 @@ const Team = () => {
         />
         <meta
           property="og:image"
-          content="https://example.com/aquadic-team.jpg"
+          content="https://aquadic.com/images/launchBg.png"
         />
         <meta property="og:url" content="https://aquadic.com/team" />
         <meta property="og:type" content="website" />
@@ -59,16 +69,15 @@ const Team = () => {
         />
         <meta
           name="twitter:image"
-          content="https://example.com/aquadic-team.jpg"
+          content="https://aquadic.com/images/launchBg.png"
         />
       </Helmet>
       <PagesHeader sheader={t("bestTalent")} title={t("teamTitle")} />
       <div className="container flex flex-col items-center md:items-start md:py-[72px]">
         {departments &&
           departments.map((department, index) => (
-            <>
+            <React.Fragment key={department.id}>
               <TeamCard
-                key={department.id}
                 title={department.name}
                 teamData={department.teams}
                 image={department.image}
@@ -83,7 +92,7 @@ const Team = () => {
                   </p>
                 </div>
               )}
-            </>
+            </React.Fragment>
           ))}
       </div>
     </section>

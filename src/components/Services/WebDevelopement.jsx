@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import "../Hooks/i18n";
 
 const WebDevelopement = () => {
-    const { t, i18n } = useTranslation("navbar");
+    const { i18n } = useTranslation("navbar");
     const [ref, inView] = useInView({
         triggerOnce: true,
         rootMargin: "-300px 0px",

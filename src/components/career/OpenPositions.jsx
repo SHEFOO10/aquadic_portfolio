@@ -1,114 +1,195 @@
 import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
-import RedArrow from '../icons/career/RedArrow'
+import { Link } from "react-router";
+import { motion, useReducedMotion } from "framer-motion";
+import { ArrowUpRight, Briefcase } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getPositions } from "@/lib/positions/positions";
-import { Link } from 'react-router';
+
+const ROLE_DESCRIPTION_KEYS = {
+  "backend developer": "backendDeveloper",
+  "sales representative": "salesRepresentative",
+  "graphic designer": "graphicDesigner",
+  assistant: "assistant",
+};
+
+const getLocalizedText = (value, language) => {
+  if (typeof value === "string") return value;
+  if (value && typeof value === "object") {
+    return value[language] || value.en || value.ar || "";
+  }
+  return "";
+};
 
 const OpenPositions = () => {
-    const { t, i18n } = useTranslation("aboutus");
-    const lang = i18n.language;
+  const { t, i18n } = useTranslation("aboutus");
+  const language = i18n.language?.startsWith("ar") ? "ar" : "en";
+  const reducedMotion = useReducedMotion();
+  const {
+    data: positionData,
+    isLoading,
+    isError,
+    refetch,
+  } = useQuery({
+    queryKey: ["positions"],
+    queryFn: getPositions,
+  });
+  const positions = Array.isArray(positionData) ? positionData : [];
 
-    const { data: positions, isLoading, error } = useQuery({
-        queryKey: ["positions"],
-        queryFn: getPositions,
-    });
-
-    if (isLoading) {
-        return (
-            <section className="md:pb-20 bg-white">
-                <div className="container">
-                    <div className="mt-10 space-y-6">
-                        {[1, 2, 3].map((item) => (
-                            <div
-                                key={item}
-                                className="w-full border-2 border-[#E4E3E3] p-6 rounded-[32px] flex gap-4"
-                            >
-                                <Skeleton className="md:w-[180px] w-20 md:h-[172px] h-20 rounded-xl" />
-
-                                <div className="flex-1 space-y-3">
-                                    <Skeleton className="h-8 w-[60%]" />
-                                    <Skeleton className="h-4 w-[40%]" />
-                                    <Skeleton className="h-4 w-[80%]" />
-                                    <Skeleton className="h-12 w-full rounded-[50px]" />
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-        );
-    }
-
-    if (error) {
-        return <p className="text-center mt-10">Error loading positions</p>;
-    }
-
+  if (isLoading) {
     return (
-        <section className="md:pb-20 bg-white">
-            <div className='container'>
-                <h2 className="text-[40px] font-bold text-center">
-                    <span className="text-[#EA433A]">{t("openPositions.highlight")}</span>{" "}
-                    {t("openPositions.text")}
-                </h2>
+      <section className="bg-white py-14 md:py-20">
+        <div className="container">
+          <div className="mb-8 space-y-3">
+            <Skeleton className="h-4 w-40" />
+            <Skeleton className="h-10 w-64" />
+          </div>
+          <div className="grid gap-5 md:grid-cols-2">
+            {[1, 2, 3, 4].map((item) => (
+              <div key={item} className="min-h-64 rounded-3xl border border-slate-200 p-6">
+                <Skeleton className="h-12 w-12 rounded-2xl" />
+                <Skeleton className="mt-6 h-7 w-2/3" />
+                <Skeleton className="mt-4 h-4 w-full" />
+                <Skeleton className="mt-2 h-4 w-5/6" />
+                <Skeleton className="mt-8 h-4 w-28" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
 
-                <div className="mt-10 space-y-6">
-                    {positions.map((position) => (
-                        <Link
-                            key={position.id}
-                            to={`/job_details/${position.id}`}
-                            className="w-full h-full border-2 border-[#E4E3E3] p-6 rounded-[32px] flex gap-4"
-                        >
-                            {position.image && (
-                                <img
-                                    src={position.image.url}
-                                    srcSet={
-                                        position.image.responsive_urls?.length
-                                            ? position.image.responsive_urls
-                                                .map((url) => `${url} 512w`)
-                                                .join(", ")
-                                            : undefined
-                                    }
-                                    sizes="(max-width: 768px) 80px, 180px"
-                                    alt={position.name?.[lang]}
-                                    className="md:w-[180px] w-20 md:h-[172px] h-20 object-cover rounded-xl"
-                                />
-                            )}
+  if (isError) {
+    return (
+      <section className="bg-white py-14 md:py-20">
+        <div className="container">
+          <div className="rounded-3xl border border-slate-200 px-6 py-12 text-center" role="alert">
+            <p className="text-slate-700">
+              {language === "ar" ? "تعذر تحميل الوظائف المتاحة." : "Unable to load open positions."}
+            </p>
+            <button
+              type="button"
+              onClick={() => refetch()}
+              className="mt-5 rounded-full border border-brandColor px-5 py-2 font-semibold text-brandColor transition hover:bg-brandColor hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brandColor"
+            >
+              {language === "ar" ? "حاول مرة أخرى" : "Try again"}
+            </button>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
-                            <div className="flex-1">
-                                <h2 className="text-[#121212] md:text-[32px] font-bold">
-                                    {position.name?.[lang]}
-                                </h2>
+  return (
+    <section className="bg-white pb-16 pt-8 md:pb-24 md:pt-12">
+      <div className="container">
+        <div className="mb-8 flex flex-col gap-4 border-b border-slate-200 pb-6 sm:flex-row sm:items-end sm:justify-between md:mb-10 md:pb-8">
+          <div>
+            <p className="mb-2 text-sm font-semibold uppercase tracking-[0.16em] text-brandColor">
+              {t("openPositions.eyebrow")}
+            </p>
+            <h2 className="text-3xl font-semibold tracking-tight text-slate-950 md:text-5xl">
+              <span className="text-brandColor">{t("openPositions.highlight")}</span>{" "}
+              {t("openPositions.text")}
+            </h2>
+          </div>
+          {positions.length > 0 && (
+            <p className="shrink-0 text-sm font-medium text-slate-500">
+              {t("openPositions.count", { count: positions.length })}
+            </p>
+          )}
+        </div>
 
-                                {position.features && (
-                                    <p className="text-[#5D5D5D] md:text-sm text-xs font-semibold mt-3">
-                                        {position.features[lang]}
-                                    </p>
-                                )}
+        {positions.length > 0 ? (
+          <div className="grid gap-5 md:grid-cols-2 md:gap-6">
+            {positions.map((position, index) => {
+              const title =
+                getLocalizedText(position.name, language) ||
+                getLocalizedText(position.title, language) ||
+                (language === "ar" ? "وظيفة شاغرة" : "Open position");
+              const englishTitle =
+                getLocalizedText(position.name, "en") || getLocalizedText(position.title, "en");
+              const suppliedDescription =
+                getLocalizedText(position.short_description, language) ||
+                getLocalizedText(position.description, language);
+              const descriptionKey = ROLE_DESCRIPTION_KEYS[englishTitle.trim().toLowerCase()];
+              const description =
+                suppliedDescription ||
+                t(
+                  descriptionKey
+                    ? `openPositions.descriptions.${descriptionKey}`
+                    : "openPositions.descriptions.default",
+                  { title },
+                );
 
-                                {position.short_description?.[lang] && (
-                                    <p className="text-[#5D5D5D] md:text-base text-xs font-medium mt-4">
-                                        {position.short_description[lang]}
-                                    </p>
-                                )}
+              return (
+                <motion.article
+                  key={position.id}
+                  className="h-full"
+                  initial={reducedMotion ? false : { opacity: 0, y: 14 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.15 }}
+                  transition={{
+                    duration: reducedMotion ? 0 : 0.35,
+                    delay: reducedMotion ? 0 : Math.min(index * 0.06, 0.24),
+                  }}
+                >
+                  <Link
+                    to={`/job_details/${position.id}`}
+                    className="group flex h-full min-h-64 flex-col rounded-3xl border border-slate-200 bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-brandColor/40 hover:shadow-[0_18px_50px_-28px_rgba(15,23,42,0.35)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brandColor md:p-7"
+                  >
+                    <div className="flex items-center justify-between gap-3">
+                      {position.image?.url ? (
+                        <img
+                          src={position.image.url}
+                          alt=""
+                          className="h-12 w-12 rounded-2xl object-cover"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      ) : (
+                        <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-brandColor/10 text-brandColor">
+                          <Briefcase className="h-6 w-6" aria-hidden="true" />
+                        </span>
+                      )}
+                      <span className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-600">
+                        {t("openPositions.roleLabel")}
+                      </span>
+                    </div>
 
-                                <button
-                                    className="w-full h-14 mt-3 flex items-center justify-center gap-2 border border-[#EA433A] rounded-[50px] text-[#EA433A] hover:bg-[#EA433A] hover:text-white transition-all duration-300 ease-in-out group">
-                                    <p className="md:text-xl font-medium transition-colors duration-300">
-                                        {t("viewDetails")}
-                                    </p>
+                    <h3 className="mt-6 text-xl font-semibold leading-snug tracking-tight text-slate-950 transition-colors group-hover:text-brandColor md:text-2xl">
+                      {title}
+                    </h3>
+                    <p className="mt-3 flex-1 text-sm leading-7 text-slate-600 md:text-base">
+                      {description}
+                    </p>
 
-                                    <div className="transform rtl:scale-x-[-1] transition-transform duration-300 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 ">
-                                        <RedArrow />
-                                    </div>
-                                </button>
-                            </div>
-                        </Link>
-                    ))}
-                </div>
-            </div>
-        </section>
-    )
-}
+                    <div className="mt-7 flex items-center justify-between border-t border-slate-100 pt-5 text-sm font-semibold text-brandColor">
+                      <span>{t("viewDetails")}</span>
+                      <ArrowUpRight
+                        className="h-5 w-5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 rtl:-scale-x-100"
+                        aria-hidden="true"
+                      />
+                    </div>
+                  </Link>
+                </motion.article>
+              );
+            })}
+          </div>
+        ) : (
+          <div className="rounded-3xl border border-dashed border-slate-300 bg-slate-50/70 px-6 py-12 text-center">
+            <span className="mx-auto inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-brandColor shadow-sm">
+              <Briefcase className="h-6 w-6" aria-hidden="true" />
+            </span>
+            <p className="mx-auto mt-4 max-w-lg text-slate-600">
+              {t("openPositions.empty")}
+            </p>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+};
 
-export default OpenPositions
+export default OpenPositions;

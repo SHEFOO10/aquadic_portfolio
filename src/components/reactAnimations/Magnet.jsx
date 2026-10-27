@@ -1,4 +1,5 @@
-import { useState, useEffect, useRef } from "react";
+import PropTypes from "prop-types";
+import { useEffect, useRef, useState } from "react";
 
 const Magnet = ({
   children,
@@ -16,28 +17,25 @@ const Magnet = ({
   const magnetRef = useRef(null);
 
   useEffect(() => {
-    if (disabled) {
+    if (disabled || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setPosition({ x: 0, y: 0 });
-      return;
+      return undefined;
     }
 
-    const handleMouseMove = (e) => {
+    const handleMouseMove = (event) => {
       if (!magnetRef.current) return;
-
-      const { left, top, width, height } =
-        magnetRef.current.getBoundingClientRect();
+      const { left, top, width, height } = magnetRef.current.getBoundingClientRect();
       const centerX = left + width / 2;
       const centerY = top + height / 2;
-
-      const distX = Math.abs(centerX - e.clientX);
-      const distY = Math.abs(centerY - e.clientY);
+      const distX = Math.abs(centerX - event.clientX);
+      const distY = Math.abs(centerY - event.clientY);
 
       if (distX < width / 2 + padding && distY < height / 2 + padding) {
         setIsActive(true);
-
-        const offsetX = (e.clientX - centerX) / magnetStrength;
-        const offsetY = (e.clientY - centerY) / magnetStrength;
-        setPosition({ x: offsetX, y: offsetY });
+        setPosition({
+          x: (event.clientX - centerX) / magnetStrength,
+          y: (event.clientY - centerY) / magnetStrength,
+        });
       } else {
         setIsActive(false);
         setPosition({ x: 0, y: 0 });
@@ -45,20 +43,13 @@ const Magnet = ({
     };
 
     window.addEventListener("mousemove", handleMouseMove);
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
+    return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [padding, disabled, magnetStrength]);
 
   const transitionStyle = isActive ? activeTransition : inactiveTransition;
 
   return (
-    <div
-      ref={magnetRef}
-      className={wrapperClassName}
-      style={{ position: "relative", display: "inline-block" }}
-      {...props}
-    >
+    <div ref={magnetRef} className={wrapperClassName} style={{ position: "relative", display: "inline-block" }} {...props}>
       <div
         className={innerClassName}
         style={{
@@ -71,6 +62,17 @@ const Magnet = ({
       </div>
     </div>
   );
+};
+
+Magnet.propTypes = {
+  children: PropTypes.node,
+  padding: PropTypes.number,
+  disabled: PropTypes.bool,
+  magnetStrength: PropTypes.number,
+  activeTransition: PropTypes.string,
+  inactiveTransition: PropTypes.string,
+  wrapperClassName: PropTypes.string,
+  innerClassName: PropTypes.string,
 };
 
 export default Magnet;

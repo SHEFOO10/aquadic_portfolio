@@ -1,18 +1,21 @@
+import { lazy } from "react";
 import { BrowserRouter, Route, Routes } from "react-router";
 import Layout from "./components/general/Layout";
-import HomePage from "./pages/HomePage";
-import MobDevelopment from "./pages/MobDevelopment";
-import Portfolio from "./pages/Portfolio";
-import Team from "./pages/Team";
-import Testing from "./pages/Testing";
-import WebDevelopment from "./pages/WebDevelopment";
-import ProcessPage from "./pages/company/ProcessPage";
-import CareerPage from "./pages/company/CareerPage";
-import AboutUsPage from "./pages/company/AboutUsPage";
-import JobDetailsPage from "./pages/company/JobDetailsPage";
-import BlogsPage from "./pages/BlogsPage";
-import BlogDetails from "./pages/BlogDetailsPage";
-import SingleProjectPage from "./pages/SingleProjectPage";
+
+const HomePage = lazy(() => import("./pages/HomePage"));
+const MobDevelopment = lazy(() => import("./pages/MobDevelopment"));
+const Portfolio = lazy(() => import("./pages/Portfolio"));
+const Team = lazy(() => import("./pages/Team"));
+const Testing = lazy(() => import("./pages/Testing"));
+const WebDevelopment = lazy(() => import("./pages/WebDevelopment"));
+const ProcessPage = lazy(() => import("./pages/company/ProcessPage"));
+const CareerPage = lazy(() => import("./pages/company/CareerPage"));
+const AboutUsPage = lazy(() => import("./pages/company/AboutUsPage"));
+const JobDetailsPage = lazy(() => import("./pages/company/JobDetailsPage"));
+const BlogsPage = lazy(() => import("./pages/BlogsPage"));
+const BlogDetails = lazy(() => import("./pages/BlogDetailsPage"));
+const SingleProjectPage = lazy(() => import("./pages/SingleProjectPage"));
+const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 
 function App() {
   return (
@@ -31,7 +34,8 @@ function App() {
           <Route path="about-us" element={<AboutUsPage />} />
           <Route path="job_details/:id" element={<JobDetailsPage />} />
           <Route path="blogs" element={<BlogsPage />} />
-          <Route path="/blogs/:id" element={<BlogDetails />} />
+          <Route path="blogs/:id" element={<BlogDetails />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

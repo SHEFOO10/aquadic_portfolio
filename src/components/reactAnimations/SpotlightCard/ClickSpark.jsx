@@ -2,6 +2,7 @@
 	Installed from https://reactbits.dev/tailwind/
 */
 
+import PropTypes from "prop-types";
 import { useRef, useEffect, useCallback } from "react";
 
 const ClickSpark = ({
@@ -152,6 +153,17 @@ const ClickSpark = ({
       {children}
     </div>
   );
+};
+
+ClickSpark.propTypes = {
+  sparkColor: PropTypes.string,
+  sparkSize: PropTypes.number,
+  sparkRadius: PropTypes.number,
+  sparkCount: PropTypes.number,
+  duration: PropTypes.number,
+  easing: PropTypes.oneOf(["linear", "ease-in", "ease-out", "ease-in-out"]),
+  extraScale: PropTypes.number,
+  children: PropTypes.node,
 };
 
 export default ClickSpark;

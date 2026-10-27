@@ -1,4 +1,5 @@
 {
-    "company": "Company",
-    "process": "Process"
+  "company": "Company",
+  "process": "Process",
+  "step": "Step"
 }

@@ -18,21 +18,9 @@ export const processData = [
     nameAr: "01. تحليل وتخطيط",
     bodyEn: (
       <div className="flex flex-col gap-4 text-[#121212] text-base">
-        <p className="font-medium">Answering the big questions:.</p>
+        <p className="font-medium">Answering the big questions.</p>
         <ul className="flex flex-col gap-3">
-          <li className="flex items-center gap-2">
-            <RedArrow />
-            Who is supposed to use this software?
-          </li>
-          <li className="flex items-center gap-2">
-            <RedArrow />
-            Who is supposed to use this software?
-          </li>
-          <li className="flex items-center gap-2">
-            <RedArrow />
-            Who is supposed to use this software?
-          </li>
-          <li className="flex items-center gap-2">
+<li className="flex items-center gap-2">
             <RedArrow />
             Who is supposed to use this software?
           </li>
@@ -48,19 +36,7 @@ export const processData = [
       <div className="flex flex-col gap-4 text-[#121212] text-base">
         <p className="font-medium">الاجابة على الاسئلة الكبيرة.</p>
         <ul className="flex flex-col gap-3">
-          <li className="flex items-center gap-2">
-            <RedArrow />
-            من يستخدم هذا البرنامج
-          </li>
-          <li className="flex items-center gap-2">
-            <RedArrow />
-            من يستخدم هذا البرنامج
-          </li>
-          <li className="flex items-center gap-2">
-            <RedArrow />
-            من يستخدم هذا البرنامج
-          </li>
-          <li className="flex items-center gap-2">
+<li className="flex items-center gap-2">
             <RedArrow />
             من يستخدم هذا البرنامج
           </li>

@@ -7,7 +7,7 @@ import { Link } from 'react-router';
 const TrendingReviews = () => {
     const { t, i18n } = useTranslation("aboutus");
 
-    const { data, isLoading, isError } = useQuery({
+    const { data, isLoading, isError, refetch } = useQuery({
         queryKey: ["blogs", "trending"],
         queryFn: getBlogs,
     });
@@ -45,7 +45,14 @@ const TrendingReviews = () => {
                         </div>
                     ))}
 
-                {isError && !isLoading && null}
+                {isError && !isLoading && (
+                    <div className="col-span-full rounded-2xl border border-rose-200 bg-rose-50 p-6 text-center" role="alert">
+                        <p className="text-slate-700">{i18n.language === "ar" ? "تعذر تحميل المقالات." : "Unable to load articles."}</p>
+                        <button type="button" onClick={() => refetch()} className="mt-3 font-semibold text-brandColor underline underline-offset-4">
+                            {i18n.language === "ar" ? "حاول مرة أخرى" : "Try again"}
+                        </button>
+                    </div>
+                )}
 
                 {!isLoading &&
                     !isError &&

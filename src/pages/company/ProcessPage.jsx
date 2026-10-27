@@ -1,125 +1,87 @@
+import { useRef } from "react";
 import { Helmet } from "react-helmet-async";
-import React, { useState, useEffect, useRef } from "react";
-import { motion } from "framer-motion";
-import { processData } from "@/constants/process/processData.jsx";
-import ProcessCard from "@/components/process/ProcessCard.jsx";
+import { motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import ProcessCard from "@/components/process/ProcessCard.jsx";
+import { processData } from "@/constants/process/processData.jsx";
 import "../../components/Hooks/i18n";
 
 const ProcessPage = () => {
   const { t, i18n } = useTranslation("process");
-  const [progress, setProgress] = useState(10);
+  const prefersReducedMotion = useReducedMotion();
   const containerRef = useRef(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (containerRef.current) {
-        const { top, height } = containerRef.current.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
-
-        let percentage = ((windowHeight - top) / height) * 90;
-        percentage = Math.min(Math.max(percentage - 17, 0), 100);
-        setProgress(percentage);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start 75%", "end 75%"],
+  });
+  const progress = useSpring(scrollYProgress, {
+    stiffness: 90,
+    damping: 24,
+    restDelta: 0.001,
+  });
+  const isArabic = i18n.language === "ar";
 
   return (
-    <section
-      className="container flex flex-col items-center py-20 overflow-hidden"
-      ref={containerRef}
-    >
-      {/* SEO Meta Data */}
+    <section ref={containerRef} className="container overflow-hidden py-16 md:py-24" dir={isArabic ? "rtl" : "ltr"}>
       <Helmet>
-        {/* Page Title */}
         <title>AQuadic | Our Process</title>
-
-        {/* Meta Description */}
-        <meta
-          name="description"
-          content="Discover AQuadic's structured and efficient development process, ensuring high-quality software solutions through innovative methodologies."
-        />
-
-        {/* Keywords for SEO */}
-        <meta
-          name="keywords"
-          content="software development process, Agile development, software engineering, project workflow, AQuadic software process"
-        />
-
-        {/* Author */}
+        <meta name="description" content="Discover AQuadic's structured development process, from analysis and design through launch and after-sales support." />
+        <meta name="keywords" content="software development process, Agile development, software engineering, project workflow, AQuadic software process" />
         <meta name="author" content="AQuadic Software House" />
-
-        {/* Open Graph (OG) Meta Tags - For Social Sharing */}
+        <link rel="canonical" href="https://aquadic.com/process" />
         <meta property="og:title" content="AQuadic | Our Development Process" />
-        <meta
-          property="og:description"
-          content="Learn about AQuadic’s efficient development process for delivering top-notch software solutions."
-        />
-        <meta
-          property="og:image"
-          content="https://example.com/aquadic-process.jpg"
-        />
+        <meta property="og:description" content="Learn about AQuadic's development process, from planning through ongoing support." />
+        <meta property="og:image" content="https://aquadic.com/images/launchBg.png" />
         <meta property="og:url" content="https://aquadic.com/process" />
         <meta property="og:type" content="website" />
-
-        {/* Twitter Card Meta Tags */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta
-          name="twitter:title"
-          content="AQuadic | Our Development Process"
-        />
-        <meta
-          name="twitter:description"
-          content="Explore how AQuadic crafts high-quality software solutions with a streamlined development process."
-        />
-        <meta
-          name="twitter:image"
-          content="https://example.com/aquadic-process.jpg"
-        />
+        <meta name="twitter:title" content="AQuadic | Our Development Process" />
+        <meta name="twitter:image" content="https://aquadic.com/images/launchBg.png" />
       </Helmet>
 
-      <h1 className="text-center text-3xl sm:text-5xl font-semibold mb-12 flex gap-2 rtl:flex-row-reverse">
-        {t("company")} <span className="text-brandColor">{t("process")}</span>
-      </h1>
-      <div className="relative w-10 flex flex-col items-center pb-28">
-        <div
-          className="absolute w-1 sm:w-2 bg-gray-300 h-[1580px] top-8 sm:top-4"
-          style={{ borderRadius: "1rem" }}
-        ></div>
-        <motion.div
-          className="absolute w-1 sm:w-2 bg-red-500 top-8 sm:top-4 max-h-[1580px]"
-          style={{ height: `${progress - 1}%`, borderRadius: "1rem" }}
-        />
-        {processData.map((item, index) => {
-          const reached = progress >= index * (107 / 6);
-          return (
-            <div
-              key={index}
-              className={`relative ${index > 0 && "mt-[220px]"}`}
-            >
-              <span>{reached ? item.hoveredIcon : item.icon}</span>
-              <motion.div
-                className={`absolute top-5 sm:top-0 ${
-                  index % 2 === 0
-                    ? "right-16 sm:right-24"
-                    : "left-16 sm:left-24"
-                }`}
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: reached ? 1 : 0.5, y: reached ? 0 : 50 }}
-                transition={{ duration: 0.6, ease: "easeInOut" }}
-              >
-                <ProcessCard
-                  index={index}
-                  name={i18n.language === "en" ? item.nameEn : item.nameAr}
-                  body={i18n.language === "en" ? item.bodyEn : item.bodyAr}
-                />
-              </motion.div>
-            </div>
-          );
-        })}
+      <div className="mx-auto max-w-6xl">
+        <h1 className="flex justify-center gap-2 text-center text-3xl font-semibold text-slate-950 sm:text-5xl">
+          {t("company")} <span className="text-brandColor">{t("process")}</span>
+        </h1>
+
+        <div className="relative mt-12 md:mt-16">
+          <div className="absolute inset-y-5 left-4 w-px bg-slate-200 md:left-1/2" aria-hidden="true" />
+          <motion.div
+            className="absolute inset-y-5 left-4 w-0.5 origin-top bg-gradient-to-b from-[#1073C0] via-[#EA433A] to-[#1073C0] md:left-1/2"
+            style={{ scaleY: prefersReducedMotion ? 1 : progress }}
+            aria-hidden="true"
+          />
+
+          <ol className="relative space-y-6 md:space-y-0" aria-label={isArabic ? "مراحل العمل" : "Process stages"}>
+            {processData.map((item, index) => {
+              const cardPosition = index % 2 === 0
+                ? "md:col-start-1 md:col-end-2 md:pr-8"
+                : "md:col-start-3 md:col-end-4 md:pl-8";
+
+              return (
+                <motion.li
+                  key={item.id}
+                  className="relative pl-10 md:grid md:min-h-[230px] md:grid-cols-[1fr_88px_1fr] md:items-center md:pl-0 md:py-7"
+                  initial={prefersReducedMotion ? false : { opacity: 0, y: 22 }}
+                  whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 0.45, ease: "easeOut" }}
+                >
+                  <div className={cardPosition}>
+                    <ProcessCard
+                      index={index}
+                      name={isArabic ? item.nameAr : item.nameEn}
+                      body={isArabic ? item.bodyAr : item.bodyEn}
+                    />
+                  </div>
+                  <span className="absolute left-4 top-7 z-10 flex h-12 w-12 -translate-x-1/2 items-center justify-center rounded-2xl border border-slate-200 bg-white text-brandColor shadow-md shadow-slate-900/5 md:left-1/2 md:top-1/2 md:h-14 md:w-14 md:-translate-y-1/2" aria-hidden="true">
+                    {item.icon}
+                  </span>
+                </motion.li>
+              );
+            })}
+          </ol>
+        </div>
       </div>
     </section>
   );

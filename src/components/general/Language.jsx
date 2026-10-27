@@ -30,12 +30,14 @@ const Language = () => {
     localStorage.setItem("language", langCode);
     setLanguage(langCode);
     i18n.changeLanguage(langCode);
+    document.documentElement.lang = langCode;
     document.documentElement.dir = langCode === "ar" ? "rtl" : "ltr";
     document.body.dir = langCode === "ar" ? "rtl" : "ltr";
   };
 
   useEffect(() => {
     i18n.changeLanguage(language);
+    document.documentElement.lang = language;
     document.documentElement.dir = language === "ar" ? "rtl" : "ltr";
     document.body.dir = language === "ar" ? "rtl" : "ltr";
   }, [language, i18n]);

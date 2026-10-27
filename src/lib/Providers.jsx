@@ -1,4 +1,4 @@
-import React from "react";
+import PropTypes from "prop-types";
 import { HelmetProvider } from "react-helmet-async";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
@@ -14,12 +14,12 @@ function makeQueryClient() {
 
 const queryClient = makeQueryClient();
 
-const Providers = ({ children }) => {
-  return (
-    <HelmetProvider>
-      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-    </HelmetProvider>
-  );
-};
+const Providers = ({ children }) => (
+  <HelmetProvider>
+    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+  </HelmetProvider>
+);
+
+Providers.propTypes = { children: PropTypes.node };
 
 export default Providers;

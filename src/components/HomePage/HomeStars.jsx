@@ -1,7 +1,6 @@
 import BigStar from "@/components/icons/home/BigStar.jsx";
 import SmallStar from "@/components/icons/home/SmallStar.jsx";
 import { motion } from "framer-motion";
-import React from "react";
 
 const createFloatAndPulse = (delay) => ({
   animate: {

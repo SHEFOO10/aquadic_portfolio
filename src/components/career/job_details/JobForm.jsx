@@ -1,7 +1,10 @@
 import { useRef, useState } from "react";
+import { useParams } from "react-router";
 import Upload from "@/components/icons/career/Upload";
 import { useTranslation } from "react-i18next";
 import { axios } from "@/lib/axios";
+
+const MAX_CV_SIZE = 10 * 1024 * 1024;
 
 const COUNTRIES = [
     { code: "AF", name: "Afghanistan", dial: "+93" },
@@ -79,7 +82,8 @@ const COUNTRIES = [
 ];
 
 const JobForm = () => {
-    const { t } = useTranslation("aboutus");
+    const { t, i18n } = useTranslation("aboutus");
+    const { id: positionId } = useParams();
     const fileInputRef = useRef(null);
     const [file, setFile] = useState(null);
     const [formData, setFormData] = useState({
@@ -97,9 +101,26 @@ const JobForm = () => {
     };
 
     const handleFileChange = (e) => {
-        if (e.target.files && e.target.files[0]) {
-            setFile(e.target.files[0]);
+        const selectedFile = e.target.files?.[0];
+        if (!selectedFile) return;
+
+        const allowedExtension = /\.(pdf|doc|docx|jpg|jpeg|png)$/i.test(selectedFile.name);
+        const isArabic = i18n.language === "ar";
+        if (!allowedExtension) {
+            setFile(null);
+            setError(isArabic ? "يرجى اختيار ملف PDF أو Word أو صورة." : "Choose a PDF, Word document, or image file.");
+            e.target.value = "";
+            return;
         }
+        if (selectedFile.size > MAX_CV_SIZE) {
+            setFile(null);
+            setError(isArabic ? "يجب ألا يتجاوز حجم الملف 10 ميجابايت." : "The file must be 10 MB or smaller.");
+            e.target.value = "";
+            return;
+        }
+
+        setError(null);
+        setFile(selectedFile);
     };
 
     const handleSubmit = async (e) => {
@@ -114,25 +135,23 @@ const JobForm = () => {
             data.append("phone", formData.phone);
             data.append("email", formData.email);
             data.append("phone_country", formData.phone_country);
+            if (positionId) data.append("position_id", positionId);
             if (file) data.append("file", file);
 
-            await axios.post("applications", data, {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                },
-            });
+            await axios.post("applications", data);
 
             setSuccess(t("successMessage") || "Application submitted successfully!");
             setFormData({ name: "", phone: "", email: "", phone_country: "EG" });
             setFile(null);
             if (fileInputRef.current) fileInputRef.current.value = "";
         } catch (err) {
-            console.error(err.response?.data || err);
-            const errorMsg = err.response?.data?.message ||
+            const validationMessage =
                 err.response?.data?.errors?.phone?.[0] ||
-                err.response?.data?.errors?.phone_country?.[0] ||
-                "Submission failed!";
-            setError(errorMsg);
+                err.response?.data?.errors?.phone_country?.[0];
+            const fallbackMessage = i18n.language === "ar"
+                ? "تعذر إرسال الطلب. يرجى المحاولة مرة أخرى."
+                : "We could not submit your application. Please try again.";
+            setError(typeof validationMessage === "string" ? validationMessage : fallbackMessage);
         } finally {
             setLoading(false);
         }
@@ -141,18 +160,19 @@ const JobForm = () => {
     const selectedCountry = COUNTRIES.find(c => c.code === formData.phone_country);
 
     return (
-        <section className="container py-[112px]">
+        <section className="container py-16 md:py-[112px]">
             <h2 className="text-[#121212] text-[32px] font-medium">
                 {t("applyingForm")} <span className="text-[#EA433A]">{t("form")}</span>
             </h2>
 
-            <div className="mt-6">
+            <form className="mt-6" onSubmit={handleSubmit} aria-busy={loading}>
                 {/* Full Name */}
                 <div>
-                    <label htmlFor="name" className="text-[#000000] text-lg font-medium">
+                    <label htmlFor="application-name" className="text-[#000000] text-lg font-medium">
                         {t("fullName")}
                     </label>
                     <input
+                        id="application-name"
                         type="text"
                         name="name"
                         value={formData.name}
@@ -164,10 +184,11 @@ const JobForm = () => {
                 </div>
 
                 <div className="mt-6">
-                    <label className="text-[#000000] text-lg font-medium">
+                    <label htmlFor="application-country" className="text-[#000000] text-lg font-medium">
                         {t("phoneCountry") || "Country"}
                     </label>
                     <select
+                        id="application-country"
                         name="phone_country"
                         value={formData.phone_country}
                         onChange={handleChange}
@@ -184,11 +205,12 @@ const JobForm = () => {
 
                 {/* Phone */}
                 <div className="mt-6">
-                    <label htmlFor="phone" className="text-[#000000] text-lg font-medium">
+                    <label htmlFor="application-phone" className="text-[#000000] text-lg font-medium">
                         {t("phoneNumber")}
                     </label>
                     <div className="relative">
                         <input
+                            id="application-phone"
                             type="tel"
                             name="phone"
                             value={formData.phone}
@@ -204,10 +226,11 @@ const JobForm = () => {
 
                 {/* Email */}
                 <div className="mt-6">
-                    <label htmlFor="email" className="text-[#000000] text-lg font-medium">
+                    <label htmlFor="application-email" className="text-[#000000] text-lg font-medium">
                         {t("email")}
                     </label>
                     <input
+                        id="application-email"
                         type="email"
                         name="email"
                         value={formData.email}
@@ -220,19 +243,21 @@ const JobForm = () => {
 
                 {/* Upload CV */}
                 <div className="mt-6">
-                    <label className="text-[#000000] text-lg font-medium">{t("uploadCV")}</label>
+                    <label htmlFor="application-cv" className="text-[#000000] text-lg font-medium">{t("uploadCV")}</label>
 
                     <input
+                        id="application-cv"
                         type="file"
                         ref={fileInputRef}
                         onChange={handleFileChange}
-                        accept=".pdf,.doc,.docx,.jpg,.png"
-                        className="hidden"
+                        accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
+                        className="peer sr-only"
+                        aria-describedby="application-cv-help"
                     />
 
-                    <div
-                        onClick={() => fileInputRef.current?.click()}
-                        className="w-full h-[150px] border border-[#E3E3E3] rounded-[10px] mt-3 bg-transparent flex flex-col items-center justify-center cursor-pointer hover:border-[#EA433A] transition"
+                    <label
+                        htmlFor="application-cv"
+                        className="mt-3 flex h-[150px] w-full cursor-pointer flex-col items-center justify-center rounded-[10px] border border-[#E3E3E3] bg-transparent transition hover:border-[#EA433A] peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-brandColor"
                     >
                         <Upload />
 
@@ -240,17 +265,16 @@ const JobForm = () => {
                             {file ? file.name : t("chooseFile")}
                         </p>
 
-                        <p className="text-[#5D5D5D] text-sm mt-1">
-                            {t("acceptedFileTypes")}
+                        <p id="application-cv-help" className="mt-1 text-center text-sm text-[#5D5D5D]">
+                            {t("acceptedFileTypes")} · Max 10 MB
                         </p>
-                    </div>
+                    </label>
                 </div>
 
                 {/* Submit */}
                 <div>
                     <button
-                        type="button"
-                        onClick={handleSubmit}
+                        type="submit"
                         disabled={loading}
                         className="w-full h-14 bg-[#EA433A] rounded-[50px] mt-6 text-[#FFFFFF] text-lg font-bold disabled:opacity-50"
                     >
@@ -258,9 +282,9 @@ const JobForm = () => {
                     </button>
                 </div>
 
-                {success && <p className="mt-4 text-green-600">{success}</p>}
-                {error && <p className="mt-4 text-red-600">{error}</p>}
-            </div>
+                {success && <p className="mt-4 text-green-600" role="status" aria-live="polite">{success}</p>}
+                {error && <p className="mt-4 text-red-600" role="alert">{error}</p>}
+            </form>
         </section>
     );
 };

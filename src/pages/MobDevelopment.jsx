@@ -39,11 +39,11 @@ const MobDevelopment = () => {
         />
         <meta
           property="og:image"
-          content="https://example.com/aquadic-mobile-dev.jpg"
+          content="https://aquadic.com/images/launchBg.png"
         />
         <meta
           property="og:url"
-          content="https://aquadic.com/mobile-development"
+          content="https://aquadic.com/mobiledev"
         />
         <meta property="og:type" content="website" />
 
@@ -59,7 +59,7 @@ const MobDevelopment = () => {
         />
         <meta
           name="twitter:image"
-          content="https://example.com/aquadic-mobile-dev.jpg"
+          content="https://aquadic.com/images/launchBg.png"
         />
       </Helmet>
 

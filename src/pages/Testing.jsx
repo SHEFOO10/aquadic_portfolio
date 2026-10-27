@@ -39,7 +39,7 @@ const Testing = () => {
         />
         <meta
           property="og:image"
-          content="https://example.com/aquadic-testing.jpg"
+          content="https://aquadic.com/images/launchBg.png"
         />
         <meta property="og:url" content="https://aquadic.com/testing" />
         <meta property="og:type" content="website" />
@@ -56,7 +56,7 @@ const Testing = () => {
         />
         <meta
           name="twitter:image"
-          content="https://example.com/aquadic-testing.jpg"
+          content="https://aquadic.com/images/launchBg.png"
         />
       </Helmet>
 

@@ -39,9 +39,9 @@ const WebDevelopment = () => {
         />
         <meta
           property="og:image"
-          content="https://example.com/aquadic-web-dev.jpg"
+          content="https://aquadic.com/images/launchBg.png"
         />
-        <meta property="og:url" content="https://aquadic.com/web-development" />
+        <meta property="og:url" content="https://aquadic.com/webdev" />
         <meta property="og:type" content="website" />
 
         {/* Twitter Card Meta Tags */}
@@ -56,7 +56,7 @@ const WebDevelopment = () => {
         />
         <meta
           name="twitter:image"
-          content="https://example.com/aquadic-web-dev.jpg"
+          content="https://aquadic.com/images/launchBg.png"
         />
       </Helmet>
 

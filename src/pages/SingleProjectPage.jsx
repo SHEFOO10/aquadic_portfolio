@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router";
+import { Link, useParams } from "react-router";
+import { Helmet } from "react-helmet-async";
 import { axios } from "../lib/axios";
 import { useTranslation } from "react-i18next";
 import Loading from "@/components/general/Loading";
@@ -46,9 +47,23 @@ const SingleProjectPage = () => {
   const fullDesc = project.description?.[language] || project.description;
   const mainImage = project.image?.url;
   const icon = project.icon?.url;
+  const canonicalUrl = `https://aquadic.com/portfolio/${encodeURIComponent(id)}`;
+  const metadataDescription = shortDesc || fullDesc || "AQuadic software project case study.";
 
   return (
-    <div className="bg-white overflow-hidden" dir={isAr ? "rtl" : "ltr"}>
+    <>
+      <Helmet>
+        <title>{title} | AQuadic Portfolio</title>
+        <meta name="description" content={metadataDescription} />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:title" content={`${title} | AQuadic Portfolio`} />
+        <meta property="og:description" content={metadataDescription} />
+        <meta property="og:image" content={mainImage || "https://aquadic.com/images/launchBg.png"} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content={mainImage || "https://aquadic.com/images/launchBg.png"} />
+      </Helmet>
+      <div className="bg-white overflow-hidden" dir={isAr ? "rtl" : "ltr"}>
       {/* Section 1: Hero */}
       <section className=" pt-12 md:pt-20 md:mb-20 mb-12 flex flex-col items-center text-center bg-gradient-to-b from-white via-[#F3F9FF] to-[#E6F2FF]">
         <div className="relative inline-block px-4 md:px-0">
@@ -180,11 +195,7 @@ const SingleProjectPage = () => {
               rel="noreferrer"
               className="flex items-center gap-2 md:gap-3 px-3 md:px-5 py-2 md:py-2.5 border border-gray-200 rounded-xl hover:bg-gray-50 transition-all shadow-sm"
             >
-              <img
-                src="/src/assets/images/Be.svg"
-                className="w-5 h-5 md:w-7 md:h-7"
-                alt="Behance"
-              />
+              <Behance />
               <p className="font-bold text-xs md:text-sm">
                 {isAr ? "مشاهدة بيهانس" : "View on Behance"}
               </p>
@@ -294,14 +305,14 @@ const SingleProjectPage = () => {
 
       {/* Site Preview */}
       {project.galleries && project.galleries.length > 0 && (
-        <section className="bg-[#F6FAFD] py-12 mb-20">
+        <section className="mb-16 bg-slate-50/80 py-14 md:mb-24 md:py-20">
           <div className="container">
-            <div className="flex justify-between items-start mb-8">
+            <div className="mb-8 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
               <div>
-                <h2 className="text-[#121212] md:text-[48px] text-2xl font-semibold">
+                <h2 className="text-3xl font-semibold text-slate-950 md:text-5xl">
                   {t("sitePreviewHeading")}
                 </h2>
-                <p className="text-[#5D5D5D] md:text-xl font-medium mt-4">
+                <p className="mt-3 max-w-2xl text-base leading-relaxed text-slate-600 md:text-lg">
                   {t("sitePreviewDesc", { title })}
                 </p>
               </div>
@@ -310,21 +321,21 @@ const SingleProjectPage = () => {
                   href={project.behance_url}
                   target="_blank"
                   rel="noreferrer"
-                  className="w-[379px] h-14 border-2 border-[#1073C0] rounded-[40px] flex items-center justify-center gap-3 hover:bg-[#1073C0] hover:text-white transition-all"
+                  className="inline-flex shrink-0 items-center justify-center gap-3 rounded-full border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-700 transition-colors hover:border-brandColor hover:text-brandColor"
                 >
                   <Behance />
-                  <p className="text-lg font-semibold">View on Behance</p>
+                  <span>View on Behance</span>
                 </a>
               )}
             </div>
 
             <Tabs defaultValue={project.galleries[0]?.id.toString()}>
-              <TabsList className="!border-none !bg-transparent justify-start !rounded-full flex-wrap">
+              <TabsList className="flex h-auto w-full flex-wrap justify-start gap-2 border-none bg-transparent p-0">
                 {project.galleries.map((gallery) => (
                   <TabsTrigger
                     key={gallery.id}
                     value={gallery.id.toString()}
-                    className="rounded-full data-[state=active]:bg-[#1073C0] data-[state=active]:text-white data-[state=active]:border-none bg-white border mx-2 my-1 !text-sm"
+                    className="my-1 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm text-slate-600 data-[state=active]:border-slate-950 data-[state=active]:bg-slate-950 data-[state=active]:text-white"
                   >
                     {gallery.name}
                   </TabsTrigger>
@@ -333,18 +344,17 @@ const SingleProjectPage = () => {
 
               {project.galleries.map((gallery) => (
                 <TabsContent key={gallery.id} value={gallery.id.toString()} className="mt-8">
-                  <div className="flex flex-wrap">
-                    <div className="md:w-[379px] h-full w-full border-2 border-b-0 border-[#0F7EE2] rounded-tr-[40px] rounded-tl-[40px] bg-white p-4 shadow-md hover:shadow-xl transition-all">
-                      <h3 className="text-[#121212] text-lg font-semibold leading-[150%]">
-                        {gallery.name}
-                      </h3>
+                  {gallery.image?.url && (
+                    <div className="mx-auto flex w-full max-w-6xl justify-center">
                       <img
-                        src={gallery.image?.url}
-                        alt={gallery.name}
-                        className="w-[347px] h-[221px] object-cover rounded-xl mt-8"
+                        src={gallery.image.url}
+                        alt={`${title} — ${gallery.name}`}
+                        className="mx-auto block h-auto max-h-[78vh] max-w-full w-auto object-contain"
+                        loading="lazy"
+                        decoding="async"
                       />
                     </div>
-                  </div>
+                  )}
                 </TabsContent>
               ))}
             </Tabs>
@@ -375,14 +385,15 @@ const SingleProjectPage = () => {
             “{t("launchDesc")}”
           </p>
           <Link
-            to="/"
-            className="px-8 py-4 bg-[#EA433A] text-white rounded-full font-bold text-lg hover:bg-[#d63c33] transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+            to="/#contactUS"
+            className="px-8 py-4 bg-[#EA433A] text-white rounded-full font-bold text-lg hover:bg-[#d63c33] transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brandColor"
           >
             {t("contactUsNow")}
           </Link>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 };
 

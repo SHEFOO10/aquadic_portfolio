@@ -1,4 +1,3 @@
-import React from "react";
 
 const AnalysisIcon = () => {
   return (
@@ -45,8 +44,8 @@ const AnalysisIcon = () => {
           fill="white"
         />
         <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
+          fillRule="evenodd"
+          clipRule="evenodd"
           d="M51.7829 52.522C51.4469 53.2925 51.277 54.1251 51.2843 54.9656V55H47.2106C47.2363 54.9001 47.25 54.7954 47.25 54.6875V51.5625C47.25 50.8721 46.6904 50.3125 46 50.3125C45.3096 50.3125 44.75 50.8721 44.75 51.5625V54.6875C44.75 54.7954 44.7637 54.9001 44.7894 55H40.7155V54.9656C40.7186 54.1191 40.5439 53.2814 40.2026 52.5068C39.8613 51.7321 39.3611 51.0378 38.7343 50.4688C37.0993 48.9983 35.9491 47.0662 35.4358 44.928C34.9225 42.7897 35.0703 40.5461 35.8595 38.4936C36.6487 36.4412 38.0423 34.6766 39.856 33.4331C41.6697 32.1897 43.818 31.526 46.017 31.5298C48.2159 31.5336 50.362 32.2047 52.1714 33.4544C53.9807 34.704 55.3682 36.4734 56.1504 38.5286C56.9325 40.5838 57.0725 42.8279 56.5518 44.9644C56.0312 47.1008 54.8743 49.0289 53.2343 50.4938C52.6134 51.0604 52.1189 51.7515 51.7829 52.522Z"
           fill="white"
         />
@@ -59,9 +58,9 @@ const AnalysisIcon = () => {
           width="92"
           height="92"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix
             in="SourceAlpha"
             type="matrix"

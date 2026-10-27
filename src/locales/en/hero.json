@@ -1,7 +1,18 @@
 {
-    "heroPara": "Design and digital product development company.<br/>We create beautiful and functional web platforms, apps, and custom software solutions.",
-    "getStarted": "Get Started",
-    "weHelp": "We Help",
-    "journey": "in their design & development journey.",
-    "words": ["Startups", "Businesses", "Agencies"]
+  "heroPara": "Design and digital product development company.<br/>We create beautiful and functional web platforms, apps, and custom software solutions.",
+  "getStarted": "Get Started",
+  "weHelp": "We Help",
+  "journey": "in their design & development journey.",
+  "words": [
+    "Startups",
+    "Businesses",
+    "Agencies"
+  ],
+  "eyebrow": "Design & digital product development",
+  "exploreWork": "Explore our work",
+  "capabilitiesHeading": "We build",
+  "capabilityWeb": "Web platforms",
+  "capabilityMobile": "Mobile apps",
+  "capabilitySoftware": "Custom software",
+  "visualLabel": "Digital products"
 }

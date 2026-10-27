@@ -15,35 +15,50 @@
         "part3": "Our Journey to",
         "part4": "Innovation"
     },
-        "description": "At AQuadic, we are always looking for passionate and talented individuals to join our growing team. Here, you’ll have the chance to work on innovative projects, explore the latest technologies, and contribute to creating impactful software solutions. We value creativity, collaboration, and continuous learning, offering a work environment where your ideas are heard and your skills can grow.",
-        "openPositions": {
+    "description": "At AQuadic, we are always looking for passionate and talented individuals to join our growing team. Here, you’ll have the chance to work on innovative projects, explore the latest technologies, and contribute to creating impactful software solutions. We value creativity, collaboration, and continuous learning, offering a work environment where your ideas are heard and your skills can grow.",
+    "openPositions": {
         "highlight": "Open",
-        "text": "Positions"
+        "text": "Positions",
+        "eyebrow": "Career opportunities",
+        "roleLabel": "Open position",
+        "count": "{{count}} open roles",
+        "empty": "There are no open positions right now. Please check back soon.",
+        "descriptions": {
+            "backendDeveloper": "Help build and maintain reliable backend services that support our digital products.",
+            "salesRepresentative": "Build client relationships and help businesses find the right digital solutions.",
+            "graphicDesigner": "Create engaging visual designs for websites, apps, and brand experiences.",
+            "assistant": "Support day-to-day coordination and help keep team operations running smoothly.",
+            "default": "Join the team as a {{title}} and help us deliver thoughtful digital solutions."
+        }
     },
     "viewDetails": "View Details",
     "aboutHeader": {
         "titleStart": "Shaping the",
         "titleHighlight": "Future",
         "titleEnd": "with Technology and Design",
-        "description": "At AQuadic, we specialize in delivering innovative software and design-driven solutions that help startups and businesses thrive. Our team works closely with clients to bring their ideas to life."
+        "description": "At AQuadic, we specialize in delivering innovative software and design-driven solutions that help startups and businesses thrive. Our team works closely with clients to bring their ideas to life.",
+        "imageAlt": "AQuadic team collaborating on digital projects."
     },
     "aboutStatics": {
         "years": {
-        "value": "8+",
-        "title": "Years of Experience",
-        "description": "Helping businesses grow with reliable and efficient tech solutions."
+            "value": "8+",
+            "title": "Years of Experience",
+            "description": "Helping businesses grow with reliable and efficient tech solutions."
         },
         "experts": {
-        "value": "+20",
-        "title": "Tech Experts"
+            "value": "+20",
+            "title": "Tech Experts",
+            "description": "Designers and developers working together to build useful digital products."
         },
         "clients": {
-        "value": "+15",
-        "title": "Happy Clients"
+            "value": "+15",
+            "title": "Happy Clients",
+            "description": "We turn client ideas into reliable products through close collaboration."
         },
         "countries": {
-        "value": "+12",
-        "title": "Countries Served"
+            "value": "+12",
+            "title": "Countries Served",
+            "description": "Supporting businesses with digital solutions across different markets."
         }
     },
     "aboutTech": {
@@ -52,10 +67,10 @@
         "titleEnd": "for Every Challenge",
         "description": "We deliver smart, reliable software solutions that help businesses grow, from websites and apps to custom digital products designed for seamless user experiences.",
         "services": {
-        "analysis": "Analysis and Planning",
-        "design": "Design",
-        "development": "Software Development",
-        "testing": "Testing"
+            "analysis": "Analysis and Planning",
+            "design": "Design",
+            "development": "Software Development",
+            "testing": "Testing"
         }
     },
     "ourWork": {
@@ -78,11 +93,11 @@
     "acceptedFileTypes": "Accepted File Types: pdf, word, jpg, png",
     "submit": "Submit",
     "expertise": {
-    "titleStart": "Expert",
-    "titleHighlight1": "opinions",
-    "titleMiddle": "analysis, and",
-    "titleHighlight2": "practical insights",
-    "titleEnd": "from our software team."
+        "titleStart": "Expert",
+        "titleHighlight1": "opinions",
+        "titleMiddle": "analysis, and",
+        "titleHighlight2": "practical insights",
+        "titleEnd": "from our software team."
     },
     "trending": {
         "prefix": "",
